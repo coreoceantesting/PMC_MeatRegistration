@@ -80,20 +80,20 @@ class MeatTransportController extends Controller
 
       $mainid = Auth::guard('meatregistereduser')->user()->id;
 
-    //   $check =  DB::table('meat_transport_register_tbl AS t1')
-    //                                     ->select('*')
-    //                                     ->where('t1.inserted_by', '=', $mainid)
-    //                                     ->whereNull('t1.deleted_at')
-    //                                     ->orderBy('t1.id', 'DESC')
-    //                                     // ->whereMonth('inserted_dt', Carbon::now()->month)
-    //                                     ->count();
+      $check =  DB::table('meat_transport_register_tbl AS t1')
+                                        ->select('*')
+                                        ->where('t1.inserted_by', '=', $mainid)
+                                        ->whereNull('t1.deleted_at')
+                                        ->orderBy('t1.id', 'DESC')
+                                        // ->whereMonth('inserted_dt', Carbon::now()->month)
+                                        ->count();
 
 
-    //   if($check > 0){
+      if($check > 0){
 
-    //     return redirect('/')->with('message','You Have already apply this Form.');
+        return redirect('/')->with('message','You Have already apply this Form.');
 
-    //   }else{
+      }else{
 
 
 
@@ -253,7 +253,7 @@ class MeatTransportController extends Controller
 
          return redirect('user/appli_form')->with('message','Your Record Added Successfully.');
 
-    //  }
+     }
 
     }
 

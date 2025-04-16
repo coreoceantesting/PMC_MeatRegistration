@@ -590,14 +590,14 @@ class MeatRegistrationController extends Controller
                             
         
          
-    //   if(!empty($data)) {
+      if(!empty($data)) {
              
-    //             return redirect('/')->with('warning','You Have already apply for this form');
+                return redirect('/')->with('warning','You Have already apply for this form');
                 
-    //   } else {
+      } else {
              return view('user.meat_license.meat_registration_terms');
         
-        // }
+        }
         
            
         } else {
