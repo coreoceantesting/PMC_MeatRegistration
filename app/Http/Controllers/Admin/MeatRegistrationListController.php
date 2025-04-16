@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class MeatRegistrationListController extends Controller
 {
@@ -95,6 +96,7 @@ class MeatRegistrationListController extends Controller
         
         $data = MeatRegistration_Model::where('id','=',$id)->firstOrFail();
         
+
         $update = [
             'status' => 1,
             'approve_date' => date("Y-m-d"),
@@ -105,10 +107,21 @@ class MeatRegistrationListController extends Controller
         
         $mob_number = $data->mobile_number;
         $unique_id = $data->meat_pplication_no;
-        $domain = "https://smartpmc.co.in/";
-    	$sms = "Your application no: " . $unique_id . " for meat licence has been approved by the PMC office successfully. Please visit the PMC office for further processes, including document verification and certificate issuance. You can also check your license status on " . $domain . " CORE OCEAN.";
-    	$this->sendsmsnew($sms,$mob_number);
+        $domain = "smartpmc.co.in";
+        $key= 'kbf8IN83hIxNTVgs';
+    	$templateid = "1207171576775741291";
+        $senderid = "CoreOC";
+        $route = 1;
+        $schema ="meat licence";
+    	$sms = "Your application no: " . $unique_id . " for ".$schema." has been approved by the PMC office successfully. Please visit the PMC office for further processes, including document verification and certificate issuance. You can also check your license status on $domain/PMC_MeatRegistration CORE OCEAN.";
+    	// $this->sendsmsnew($sms,$mob_number);
 
+       
+        Log::info('Preparing to send SMS to: ' . $mob_number);
+        // dd($this);
+        
+        $this->sendsmsnew($sms,$mob_number,$templateid);
+        
     //     $app_no = $request->get('license_number');
     //     $scheme = 'Meat Registration Form';
     //     // $domain = "https://".$_SERVER['HTTP_HOST'];

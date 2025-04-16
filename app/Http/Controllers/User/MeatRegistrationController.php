@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\PDF;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class MeatRegistrationController extends Controller
 {
@@ -145,20 +147,20 @@ class MeatRegistrationController extends Controller
     //   echo "hfdhg"; die;
       $mainid = Auth::guard('meatregistereduser')->user()->id;
 // dd($mainid);
-      $check =  DB::table('meat_registration_tbl AS t1')
-                                        ->select('*')
-                                        ->where('t1.inserted_by', '=', $mainid)
-                                        ->whereNull('t1.deleted_at')
-                                        ->orderBy('t1.id', 'DESC')
-                                        // ->whereMonth('inserted_dt', Carbon::now()->month)
-                                        ->count();
+    //   $check =  DB::table('meat_registration_tbl AS t1')
+    //                                     ->select('*')
+    //                                     ->where('t1.inserted_by', '=', $mainid)
+    //                                     ->whereNull('t1.deleted_at')
+    //                                     ->orderBy('t1.id', 'DESC')
+    //                                     // ->whereMonth('inserted_dt', Carbon::now()->month)
+    //                                     ->count();
 
 // dd($check);
-      if($check > 0){
+    //   if($check > 0){
 
-        return redirect('user/appli_form')->with('message','You Have already apply this Form.');
+    //     return redirect('user/appli_form')->with('message','You Have already apply this Form.');
 
-      }else{
+    //   }else{
 
 
            $rules = [
@@ -525,19 +527,34 @@ class MeatRegistrationController extends Controller
         
         
         MeatRegistration_Model::where('id', $data->id)->update($update);
-        
-        $unique_id_new =$unique_id.$data->id;
+        $key = "kbf8IN83hIxNTVgs";
+        $senderid = "CoreOC";
         $mob_number = $request->get('mobile_number');
-        $scheme = 'meat licence';
-        $domain = "https://smartpmc.co.in/";
-        $sms = "Your application no:- " . $unique_id_new . " for " . $scheme . " is received at PMC office. You can also track your application on " . $domain . " CORE OCEAN.";
-        $this->sendsmsnew($sms,$mob_number);
+        // dd($mob_number);
+        $route = 1;
+        $app_no = $unique_id.$data->id;
+        $scheme = 'Meat Registration Form';
+         $domain = 'smartpmc.co.in';
+        $project_folder = 'PMC_MeatRegistration';
         
-       
+        $msg = "Your application no:- $app_no for $scheme is received at PMC office. You can also track your application on $domain/PMC_MeatRegistration CORE OCEAN.";
+        $tempID= '1207171688071309898';
+
+        $response = Http::get('http://sms.adityahost.com/vb/apikey.php',[
+            'apikey'   => $key,
+            'senderid' => $senderid,
+            'number'   =>  $mob_number,
+            'message'  => $msg,
+            'route'    => $route,
+            'templateid'  => $tempID
+          ]);
+        $this->sendsms($msg,$request->mobile_number,$tempID,$response->body());
+          Log::info($response->body());
+        // dd($this);
 
         return redirect('user/appli_form')->with('message','Your Record Added Successfully.');
 
-     }
+    //  }
 
     }
     
@@ -573,14 +590,14 @@ class MeatRegistrationController extends Controller
                             
         
          
-      if(!empty($data)) {
+    //   if(!empty($data)) {
              
-                return redirect('/')->with('warning','You Have already apply for this form');
+    //             return redirect('/')->with('warning','You Have already apply for this form');
                 
-      } else {
+    //   } else {
              return view('user.meat_license.meat_registration_terms');
         
-        }
+        // }
         
            
         } else {

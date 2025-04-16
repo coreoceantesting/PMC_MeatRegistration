@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class MeatTransportListController extends Controller
 {
@@ -142,24 +143,19 @@ class MeatTransportListController extends Controller
         
         $mob_number = $data->mobile_number;
         $unique_id = $data->transport_license_no;
-        $domain = "https://smartpmc.co.in/";
-    	$sms = "Your application no: " . $unique_id . " for Meat Transport Business License has been approved by the PMC office successfully. Please visit the PMC office for further processes, including document verification and certificate issuance. You can also check your license status on " . $domain . " CORE OCEAN.";
-    	$this->sendsmsnew($sms,$mob_number);
+        $domain = "smartpmc.co.in";
+        $domain = "smartpmc.co.in";
+        $key= 'kbf8IN83hIxNTVgs';
+    	$templateid = "1207171576775741291";
+        $senderid = "CoreOC";
+        $route = 1;
+        $schema ="meat licence";
+    	$sms = "Your application no: " . $unique_id . " for ".$schema." has been approved by the PMC office successfully. Please visit the PMC office for further processes, including document verification and certificate issuance. You can also check your license status on $domain/PMC_MeatRegistration CORE OCEAN.";
+    	// $this->sendsmsnew($sms,$mob_number);
 
-        // $app_no = $request->get('license_number');
-        // $scheme = 'Meat Registration Form';
-        // //$domain = "https://".$_SERVER['HTTP_HOST'];
-
-        // //print_r($data->mobile_number);exit; 
-        // //$project_folder = 'PMC_MeatRegistration';
-        
-        // $msg = "Your application no:- $app_no for $scheme is Approved Successfully.";
-
-        // $tempID= '1207167447455213113';
-        // $this->sendsms($msg,$data->mobile_number,$tempID);
-        
-        
-
+        $this->sendsmsnew($sms,$mob_number,$templateid);
+        Log::info('Preparing to send SMS to: ' . $mob_number);
+        dd($this);
         return redirect('/meat_transport_list/1')->with('message', 'Meat Transport Form Approved Successfully'); //Redirect user somewhere
     }
 
