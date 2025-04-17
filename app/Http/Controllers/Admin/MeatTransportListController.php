@@ -155,7 +155,7 @@ class MeatTransportListController extends Controller
 
         $this->sendsmsnew($sms,$mob_number,$templateid);
         Log::info('Preparing to send SMS to: ' . $mob_number);
-        dd($this);
+        // dd($this);
         return redirect('/meat_transport_list/1')->with('message', 'Meat Transport Form Approved Successfully'); //Redirect user somewhere
     }
 
