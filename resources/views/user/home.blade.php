@@ -882,19 +882,19 @@
                                                         <a >
                                                             <h6 class="text-warning">Meat Renewal License by 31 ,  March 2026</h6>
                                                         </a>
-                                                        <!--<a href="{{ url('/user/meat_renewal_form') }}" >-->
-                                                        <!--    <button class="custom-btn btn-11">Renewal<div class="dot"></div></button>-->
-                                                        <!--</a>-->
+                                                   <a href="{{ url('/user/meat_renewal_form') }}" >
+                                              <button class="custom-btn btn-11">Renewal<div class="dot"></div></button>
+                                                        </a>
                                                     </span>
                                                 @elseif( !empty($isRenewable->is_expired) == 1 )
                                                 <a >
                                                             <h6 class="text-warning">Meat Renewal License by 31 ,  March 2026</h6>
                                                         </a>
-                                                    <!--<span style="text-align:center;">-->
-                                                    <!--    <a href="{{ url('/user/meat_renewal_form') }}" >-->
-                                                    <!--        <button class="custom-btn btn-11">Renewal<div class="dot"></div></button>-->
-                                                    <!--    </a>-->
-                                                    <!--</span>-->
+                                                    <span style="text-align:center;">
+                                                        <a href="{{ url('/user/meat_renewal_form') }}" >
+                                                            <button class="custom-btn btn-11">Renewal<div class="dot"></div></button>
+                                                        </a>
+                                                    </span>
                                                 @else
                                                     <span style="text-align:center;">
                                                         <a >
