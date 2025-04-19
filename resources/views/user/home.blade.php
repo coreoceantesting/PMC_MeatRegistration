@@ -1030,10 +1030,10 @@
                                                         <a >
                                                             <h6 class="text-warning">Meat / Livestock Transport Business Renewal License by 31 ,  March 2026</h6>
                                                         </a>
-                                                        <!--<a href="{{ url('/user/meat_transport_renewal_form') }}" >-->
+                                                       <a href="{{ url('/user/meat_transport_renewal_form') }}" >
                                                             <!--<button style="width:100%; height:40px; font-size:18px; margin-top:12%; " type="button" class="btn btn-primary"> Apply </button>-->
-                                                        <!--    <button class="custom-btn btn-11">Renewal<div class="dot"></div></button>-->
-                                                        <!--</a>-->
+                                                           <button class="custom-btn btn-11">Renewal<div class="dot"></div></button>
+                                                       </a>
                                                     </span>
                                                @endif
                                             @else
