@@ -509,7 +509,7 @@ class MeatRegistrationController extends Controller
         $data->regi_authority_name = $request->get('regi_authority_name');
         $data->register_number = $request->get('register_number');
         $data->valid_till = $request->get('valid_till');
-        
+        $data->is_renewal = 1;
         $data->areaof_business_place = $request->get('areaof_business_place');
         $data->business_place = $request->get('business_place');
         $data->business_place_other = $request->get('business_place_other');

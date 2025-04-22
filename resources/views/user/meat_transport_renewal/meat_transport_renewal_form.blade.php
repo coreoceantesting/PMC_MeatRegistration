@@ -99,7 +99,9 @@
                 <div class="pd-20 card-box mb-30" >
                     
                     <div class="wizard-content p-4">
-                        <form method="POST" action="{{ url('/user/meat_transport_renewal_form') }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ url("/user/meat_transport_renewal_form/{$id}/{$user_type}/store") }}" enctype="multipart/form-data">
+                            {{-- <form method="POST" action="{{ url("/user/meat_renewal_form/{$id}/{$user_type}/store") }}" enctype="multipart/form-data"> --}}
+
                             @csrf
                             
                             <section class="pt-3">
@@ -111,7 +113,9 @@
                                 <input type="hidden" name="meat_transport_oldid" id="meat_transport_oldid"  value="{{ $data->id }}" >
                                 
                                 <input type="hidden" name="trans_renwal_liceans_no" id="trans_renwal_liceans_no"  value="{{ $data->transport_license_no }}" >
-                                
+                                <input type="hidden" name="register_table_id" id="register_table_id" class="form-control" value="{{ $data->registration_id }}">
+
+
                                 <strong class="pb-1">Name of Applicant / ( अर्जदाराचे नाव ) : <span style="color:red;">*</span> </strong>
                                 <div class="form-group row">
                                     <!--<label class="col-sm-1"><strong>Title : <span style="color:red;">*</span></strong></label>-->

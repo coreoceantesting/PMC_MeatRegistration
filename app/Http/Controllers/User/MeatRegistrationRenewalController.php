@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\MeatRegistration_Model;
 use App\Models\MeatRenewalLicense_Model;
 use App\Models\MeatType_Master;
 use Illuminate\Http\Request;
@@ -96,8 +97,9 @@ class MeatRegistrationRenewalController extends Controller
     }
     
     
-    public function create()
+    public function create(Request $request,$id,$user_type)
     {
+        // dd($request->all());
         
         if (Auth::guard('meatregistereduser')->check()) {
        
@@ -108,13 +110,14 @@ class MeatRegistrationRenewalController extends Controller
        
        
        $data =   DB::table('meat_registration_tbl AS t1')
-                            ->select('t1.*', 't2.meat_name','t3.dist_name','t4.taluka_name'
-                                    ) 
+                            ->select('t1.*', 't2.meat_name','t3.dist_name','t4.taluka_name','t1.id as registration_id','t5.*'
+                                    )
+                             ->leftJoin('meat_renewal_license_tbl AS t5', 't5.register_table_id','=','t1.id')        
                             ->leftJoin('meat_type_mst AS t2', 't2.id', '=', 't1.meat_type')
                             ->leftJoin('mst_dist AS t3', 't3.id', '=', 't1.district_id')
                             ->leftJoin('mst_taluka AS t4', 't4.id', '=', 't1.taluka_id')
                           
-                            ->where('t1.inserted_by', '=', $mainid)
+                            ->where('t5.id', '=', $id)
                             // ->where('t1.status', '=', 1)
                             ->whereNull('t1.deleted_at')
                             ->whereNull('t2.deleted_at')
@@ -131,7 +134,7 @@ class MeatRegistrationRenewalController extends Controller
           }else{
             
             
-                return view('user.meat_renewal.meat_renewal_form', compact('data','meattype_mst'));
+                return view('user.meat_renewal.meat_renewal_form', compact('data','meattype_mst','id','user_type'));
 
          
              } 
@@ -151,7 +154,7 @@ class MeatRegistrationRenewalController extends Controller
 
       $check =  DB::table('meat_renewal_license_tbl AS t1')
                                         ->select('*')
-                                        ->where('t1.inserted_by', '=', $mainid)
+                                        ->where('t1.register_table_id', '=', $mainid)
                                         ->whereNull('t1.deleted_at')
                                         ->orderBy('t1.id', 'DESC')
                                         // ->whereMonth('inserted_dt', Carbon::now()->month)
@@ -513,10 +516,14 @@ class MeatRegistrationRenewalController extends Controller
             $image_path = "/PMC_Meat_Registration/meat_file/old_licence" . $image_name;
             $data->old_licence = $new_name;
         }
-        // Basic Details
+        MeatRenewalLicense_Model::where("register_table_id",$request->get('register_table_id'))->update(['is_renewal'=>0]);
 
-        $data->meat_register_oldid = $request->get('meat_register_oldid');
-        // $data->renwal_liceans_no = $request->get('renwal_liceans_no');
+        // Basic Details
+        $data->meat_register_oldid =$request->get('meat_register_oldid');
+        // dd($request->get('meat_register_oldid'));
+        $data->register_table_id = $request->get('register_table_id');
+        // dd($request->get('register_table_id'));
+         $data->renwal_liceans_no = $request->get('renwal_liceans_no');
         $data->applicant_title_id = $request->get('applicant_title_id');
         $data->applicant_fname = $request->get('applicant_fname');
         $data->applicant_mname = $request->get('applicant_mname');
@@ -562,20 +569,24 @@ class MeatRegistrationRenewalController extends Controller
         $data->areaof_business_place = $request->get('areaof_business_place');
         $data->business_place = $request->get('business_place');
         $data->business_place_other = $request->get('business_place_other');
-        
+        $data ->is_renewal = 1;
         $data->inserted_dt = date("Y-m-d H:i:s");
         $data->inserted_by = Auth::guard('meatregistereduser')->user()->id;
-        $data->save();
-        
         $unique_id = "PMC-MET".rand(1000,10000000);
+                $data->renwal_liceans_no = $unique_id;
+
+        $data->save();
+
         $update = [
             'renwal_liceans_no' => $unique_id.$data->id ,
             // 'inserted_by' => $data->id,
         ];
+        // dd($update);
         
+        // MeatRenewalLicense_Model::where('id', $data->id)->update($update);
+        MeatRegistration_Model::where("id",$request->get('register_table_id'))->update(['is_renewal' =>0]);
         
-        MeatRenewalLicense_Model::where('id', $data->id)->update($update);
-        
+        // dd($request->get('register_table_id'));
         $app_no = $unique_id.$data->id;
         $scheme = 'Meat Renewable Registration Form';
         $domain = "https://".$_SERVER['HTTP_HOST'];
@@ -624,7 +635,7 @@ class MeatRegistrationRenewalController extends Controller
                            
                             ->leftJoin('mst_dist AS t3', 't3.id', '=', 't1.district_id')
                             ->leftJoin('mst_taluka AS t4', 't4.id', '=', 't1.taluka_id')
-                            ->leftJoin('meat_registration_tbl AS t5', 't5.id', '=', 't1.meat_register_oldid')
+                            ->leftJoin('meat_registration_tbl AS t5', 't5.id', '=', 't1.register_table_id')
                            
 
                              ->where('t1.id', '=', $application_id)
@@ -1239,7 +1250,7 @@ class MeatRegistrationRenewalController extends Controller
                                         ->leftJoin('mst_dist AS t2', 't2.id', '=', 't1.district_id')
                                         ->leftJoin('mst_taluka AS t3', 't3.id', '=', 't1.taluka_id')
                                         ->leftJoin('meat_type_mst AS t4', 't4.id', '=', 't1.meat_type')
-                                        ->leftJoin('meat_registration_tbl AS t5', 't5.id', '=', 't1.meat_register_oldid')
+                                        ->leftJoin('meat_registration_tbl AS t5', 't5.id', '=', 't1.register_table_id')
                                         ->leftJoin('approve_by_admin_renewal_license_tbl AS t6', 't6.meat_pplication_id', '=', 't1.id')
                                         // ->where('t1.status', '=', $status)
                                         ->where('t1.id', '=', $id)
@@ -1359,7 +1370,7 @@ class MeatRegistrationRenewalController extends Controller
                                         ->leftJoin('mst_dist AS t2', 't2.id', '=', 't1.district_id')
                                         ->leftJoin('mst_taluka AS t3', 't3.id', '=', 't1.taluka_id')
                                         ->leftJoin('meat_type_mst AS t4', 't4.id', '=', 't1.meat_type')
-                                        ->leftJoin('meat_registration_tbl AS t5', 't5.id', '=', 't1.meat_register_oldid')
+                                        // ->leftJoin('meat_registration_tbl AS t5', 't5.id', '=', 't1.register_table_id')
                                         // ->where('t1.status', '=', $status)
                                         ->where('t1.id', '=', $application_id)
                                         ->whereNull('t1.deleted_at')
@@ -1377,5 +1388,159 @@ class MeatRegistrationRenewalController extends Controller
         }
     
     
+        public function form_list(Request $request)
+        {
 
+            // dd($request->all());
+            if (Auth::guard('meatregistereduser')->check()) {
+                $user_id = Auth::guard('meatregistereduser')->user()->id;
+                // return $user_id;
+                
+                $user_list =  DB::table('meat_registration_tbl AS t1')
+                                ->select('t1.*', 't2.meat_name','t3.dist_name','t4.taluka_name'
+                                        )
+                                        
+                                ->leftJoin('meat_type_mst AS t2', 't2.id', '=', 't1.meat_type')
+                             
+                                ->leftJoin('mst_dist AS t3', 't3.id', '=', 't1.district_id')
+                                ->leftJoin('mst_taluka AS t4', 't4.id', '=', 't1.taluka_id')
+    
+                                ->where('t1.is_renewal', '=',1)
+                                ->where('t1.final_approve', '=', 1)
+                                ->where('t1.inserted_dt', '<=', \Carbon\Carbon::now()->subMinute())
+                                ->where('t1.inserted_by', '=',$user_id)
+                                ->whereNull('t1.deleted_at')
+                                ->whereNull('t2.deleted_at')
+                                ->whereNull('t3.deleted_at')
+                                ->whereNull('t4.deleted_at')
+                               
+                                ->orderBy('t1.id', 'DESC')
+                                ->get();
+                                
+                        //   dd($user_list);
+                  $meats_license_status =  DB::table('meat_registration_tbl AS t1')
+                                            ->select('t1.id', 't1.status')
+                                            ->where('t1.inserted_by', '=',$user_id)
+                                            ->orderBy('t1.id', 'DESC')
+                                            ->whereNull('t1.deleted_at')
+                                            ->first();
+                $meat_license_status  = $meats_license_status ? $meats_license_status->status : 0; 
+                
+    
+                $renewal_list =  DB::table('meat_renewal_license_tbl AS t1')
+                                ->select('t1.*', 't2.meat_name','t3.dist_name','t4.taluka_name'
+                                        )
+                                 ->leftJoin('meat_registration_tbl AS t5','t5.id','=','t1.register_table_id')       
+                                ->leftJoin('meat_type_mst AS t2', 't2.id', '=', 't1.meat_type')
+                              
+                                ->leftJoin('mst_dist AS t3', 't3.id', '=', 't1.district_id')
+                                ->leftJoin('mst_taluka AS t4', 't4.id', '=', 't1.taluka_id')
+    
+                                ->where('t1.re_final_approve', '=', 1)
+                                ->where('t1.is_renewal', '=',1)
+                                ->where('t1.inserted_dt', '<=', \Carbon\Carbon::now()->subMinute())
+                                ->where('t1.inserted_by', '=',$user_id)
+                                ->whereNull('t1.deleted_at')
+                                ->whereNull('t2.deleted_at')
+                                ->whereNull('t3.deleted_at')
+                                ->whereNull('t4.deleted_at')
+                               
+                                ->orderBy('t1.id', 'DESC')
+                                ->get();                 
+                //    dd($renewal_list);
+                $meats_renewal_license_status =  DB::table('meat_renewal_license_tbl AS t1')
+                                            ->select('t1.id', 't1.status')
+                                            ->where('t1.inserted_by', '=',$user_id)
+                                            ->orderBy('t1.id', 'DESC')
+                                            ->whereNull('t1.deleted_at')
+                                            ->first();
+                $meatrenewal_license_status  = $meats_renewal_license_status ? $meats_renewal_license_status->status : 0; 
+                
+               if (isset($user_list)){
+         
+                return view('user.meat_renewal.user_applicant_form_renewal', compact('user_list','renewal_list','meat_license_status','meatrenewal_license_status'));
+                }else{
+                     return redirect('/');
+                }
+            } else {
+                return redirect('/user/login');
+            }
+            
+        }
+    
+
+        public function New_renewal(Request $request,$id,$user_type)
+        {
+            // dd($request->all());
+  
+            $unit_Meat_Type = DB::table('unit_Meat_Type')->get();
+
+            if (Auth::guard('meatregistereduser')->check()) {
+             
+            $meattype_mst = MeatType_Master::orderBy('id','desc')->pluck('meat_name', 'id')->whereNull('deleted_at');
+      
+            $mainid = Auth::guard('meatregistereduser')->user()->id;
+          //   dd($mainid);
+            $data =   DB::table('meat_registration_tbl AS t1')
+                                  ->select('t1.*','t1.id AS registration_id', 't2.meat_name','t3.dist_name','t4.taluka_name') 
+                                   ->leftJoin('meat_renewal_license_tbl AS t5','t5.register_table_id','=', 't1.id')       
+                                  ->leftJoin('meat_type_mst AS t2', 't2.id', '=', 't1.meat_type')
+                                  ->leftJoin('mst_dist AS t3', 't3.id', '=', 't1.district_id')
+                                  ->leftJoin('mst_taluka AS t4', 't4.id', '=', 't1.taluka_id')
+                                
+                                  ->where('t1.id', '=', $id)
+                                  ->whereNull('t1.deleted_at')
+                                  ->whereNull('t2.deleted_at')
+                                  ->whereNull('t3.deleted_at')
+                                  ->whereNull('t4.deleted_at')
+                                  ->orderBy('t1.id', 'DESC')
+                                  ->first();
+  
+                                //  dd($data);
+                 if(empty($data)) {
+                                      
+                                      return redirect('/')->with('warning','Apply For Cold Storage Registration License First');
+                                      
+                                  }elseif($data->approve_date == ""){
+                                      
+                                      return redirect('/')->with('warning','Your Application status is still Pending');
+                                      
+                                      
+                                  }else {
+                //    dd($data);
+                  //  $approve_date = $data->approve_date;  
+      
+                
+                   
+                  // $newEndingDate = date("Y-m-d", strtotime(date("Y-m-d", strtotime($approve_date)) . " + 1 year"));
+      
+                  // $currentDate = date('Y-m-d');
+      
+      
+                  // $timestamp1 = strtotime($currentDate);
+                  // $timestamp2 = strtotime($newEndingDate);
+      
+                  
+                  // if($timestamp1 > $timestamp2) { 
+      
+      
+      
+                  return view('user.meat_renewal.meat_renewal_form', compact('data','meattype_mst','unit_Meat_Type','id','user_type'));
+      
+                  // }else{
+                    
+                  //       $diff = $timestamp1 -$timestamp2 ; 
+                  //       $x = abs(floor($diff / (60 * 60 * 24))) ;
+      
+                  //      return redirect('/')->with('message','Your license has not yet expired. '  .$x.' days Remaining');
+                    
+                  // } 
+                   } 
+                  } else {
+                  return redirect('/user/login');
+              }      
+                                  
+                 
+      
+      }
 }

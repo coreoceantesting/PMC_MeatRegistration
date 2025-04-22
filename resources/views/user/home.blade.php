@@ -879,19 +879,19 @@
                                                 
                                                 @if( !empty($isRenewable->is_expired) == 0 )
                                                     <span style="text-align:center;">
-                                                        <a >
+                                                        {{-- <a >
                                                             <h6 class="text-warning">Meat Renewal License by 31 ,  March 2026</h6>
-                                                        </a>
-                                                   <a href="{{ url('/user/meat_renewal_form') }}" >
+                                                        </a> --}}
+                                                   <a href="{{ url('/user/meat_renewal_renewal') }}" >
                                               <button class="custom-btn btn-11">Renewal<div class="dot"></div></button>
                                                         </a>
                                                     </span>
                                                 @elseif( !empty($isRenewable->is_expired) == 1 )
-                                                <a >
+                                                {{-- <a >
                                                             <h6 class="text-warning">Meat Renewal License by 31 ,  March 2026</h6>
-                                                        </a>
+                                                        </a> --}}
                                                     <span style="text-align:center;">
-                                                        <a href="{{ url('/user/meat_renewal_form') }}" >
+                                                        <a href="{{ url('/user/meat_renewal_renewal') }}" >
                                                             <button class="custom-btn btn-11">Renewal<div class="dot"></div></button>
                                                         </a>
                                                     </span>
@@ -1008,13 +1008,13 @@
                                                 
                                                 @if( !empty($istransRenewable->is_expired) == 0 )
                                                     <span style="text-align:center;">
-                                                        <a >
+                                                        {{-- <a >
                                                             <h6 class="text-warning">Meat / Livestock Transport Business Renewal License by 31 ,  March 2026</h6>
                                                         </a>
-                                                        
-                                                        <!--<a href="{{ url('/user/meat_transport_renewal_form') }}" >-->
-                                                        <!--    <button class="custom-btn btn-11">Renewal<div class="dot"></div></button>-->
-                                                        <!--</a>-->
+                                                         --}}
+                                                        <a href="{{ url('/user/meat_transport_renewal') }}" >
+                                                        <button class="custom-btn btn-11">Renewal<div class="dot"></div></button>
+                                                        </a>
                                                     </span>
                                                 @elseif( !empty($istransRenewable->is_expired) == 1 )
                                                     <span style="text-align:center;">

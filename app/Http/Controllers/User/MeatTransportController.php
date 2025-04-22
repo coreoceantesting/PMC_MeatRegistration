@@ -200,7 +200,6 @@ class MeatTransportController extends Controller
         $data->aadhar_number = $request->get('aadhar_number');
         
         $data->applicant_address = $request->get('applicant_address');
-   
         
         // Business Details
         $data->business_name = $request->get('business_name');
@@ -213,6 +212,7 @@ class MeatTransportController extends Controller
         $data->per_day_capacity = $request->get('per_day_capacity');
         
         
+        $data->is_renewal = 1;
         $data->inserted_dt = date("Y-m-d H:i:s");
         $data->inserted_by = Auth::guard('meatregistereduser')->user()->id;
         $data->save();

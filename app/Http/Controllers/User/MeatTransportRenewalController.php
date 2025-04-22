@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\MeatTransportRenewalLicense_Model;
 use App\Models\MeatRegisteredUser;
+use App\Models\MeatTransport_Model;
 use App\Models\MeatType_Master;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -18,7 +19,7 @@ class MeatTransportRenewalController extends Controller
 {
 
 
-	 public function create()
+	 public function create(Request $request,$id,$user_type)
     {
 
     	//$pp = Auth::guard('meatregistereduser')->user()->id;
@@ -33,12 +34,14 @@ class MeatTransportRenewalController extends Controller
        $mainid = Auth::guard('meatregistereduser')->user()->id;
        $data =   DB::table('meat_transport_register_tbl AS t1')
                             ->select('t1.*', 't2.meat_name','t3.dist_name','t4.taluka_name'
-                                    ) 
+                                    ,'t1.id AS registration_id') 
                             ->leftJoin('meat_type_mst AS t2', 't2.id', '=', 't1.meat_type')
                             ->leftJoin('mst_dist AS t3', 't3.id', '=', 't1.district_id')
                             ->leftJoin('mst_taluka AS t4', 't4.id', '=', 't1.taluka_id')
-                          
-                            ->where('t1.inserted_by', '=', $mainid)
+                            ->leftJoin('meat_transport_renewal_tbl AS t5', 't5.register_table_id','=','t1.id')        
+
+                            // ->where('t1.inserted_by', '=', $mainid)
+                            ->where('t5.id', '=', $id)
                             ->whereNull('t1.deleted_at')
                             ->whereNull('t2.deleted_at')
                             ->whereNull('t3.deleted_at')
@@ -46,7 +49,7 @@ class MeatTransportRenewalController extends Controller
                             ->orderBy('t1.id', 'DESC')
                             ->first();
 
-
+            // dd($data);
                             //print_r($data);exit;
                 if(empty($data)) {
                 
@@ -60,7 +63,7 @@ class MeatTransportRenewalController extends Controller
                 }else {
 
         
-                return view('user.meat_transport_renewal.meat_transport_renewal_form', compact('data','meattype_mst'));
+                return view('user.meat_transport_renewal.meat_transport_renewal_form', compact('data','meattype_mst','id','user_type'));
 
        
             } 
@@ -77,20 +80,20 @@ class MeatTransportRenewalController extends Controller
 
       $mainid = Auth::guard('meatregistereduser')->user()->id;
 
-      $check =  DB::table('meat_transport_renewal_tbl AS t1')
-                                        ->select('*')
-                                        ->where('t1.inserted_by', '=', $mainid)
-                                        ->whereNull('t1.deleted_at')
-                                        ->orderBy('t1.id', 'DESC')
-                                        // ->whereMonth('inserted_dt', Carbon::now()->month)
-                                        ->count();
+    //   $check =  DB::table('meat_transport_renewal_tbl AS t1')
+    //                                     ->select('*')
+    //                                     ->where('t1.inserted_by', '=', $mainid)
+    //                                     ->whereNull('t1.deleted_at')
+    //                                     ->orderBy('t1.id', 'DESC')
+    //                                     // ->whereMonth('inserted_dt', Carbon::now()->month)
+    //                                     ->count();
 
 
-      if($check > 0){
+    //   if($check > 0){
 
-        return redirect('/')->with('message','You Have already apply for this Form.');
+    //     return redirect('/')->with('message','You Have already apply for this Form.');
 
-      }else{
+    //   }else{
 
 
       $this->validate($request, [
@@ -205,6 +208,8 @@ class MeatTransportRenewalController extends Controller
         }
         // Basic Details
 
+        MeatTransportRenewalLicense_Model::where("register_table_id",$request->get('register_table_id'))->update(['is_renewal'=>0]);
+
         $data->meat_transport_oldid = $request->get('meat_transport_oldid');
         // $data->trans_renwal_liceans_no = $request->get('trans_renwal_liceans_no');
         $data->applicant_title_id = $request->get('applicant_title_id');
@@ -234,19 +239,21 @@ class MeatTransportRenewalController extends Controller
         $data->to_date = $request->get('to_date');
         $data->meat_type = $request->get('meat_type');
         $data->per_day_capacity = $request->get('per_day_capacity');
-        
+        $data->register_table_id =$request->get('register_table_id');
+        $data ->is_renewal = 1;
         $data->inserted_dt = date("Y-m-d H:i:s");
         $data->inserted_by = Auth::guard('meatregistereduser')->user()->id;
-        $data->save();
-        
         $unique_id = "PMC-MET-VEH".rand(1000,10000000);
-        $update = [
-            'trans_renwal_liceans_no' => $unique_id.$data->id ,
-            // 'inserted_by' => $data->id,
-        ];
+        $data->trans_renwal_liceans_no = $unique_id;
+        $data->save();
+        // dd($data);
+        // $update = [
+        //     'trans_renwal_liceans_no' => $unique_id.$data->id ,
+        //     // 'inserted_by' => $data->id,
+        // ];
         
-        
-        MeatTransportRenewalLicense_Model::where('id', $data->id)->update($update);
+        MeatTransport_Model::where("id",$request->get('register_table_id'))->update(['is_renewal' =>0]);
+        // MeatTransportRenewalLicense_Model::where('id', $data->id)->update($update);
         
         $app_no = $unique_id.$data->id;
         $scheme = 'Meat / Livestock Transport Business Renewal License Registration Form ';
@@ -261,7 +268,7 @@ class MeatTransportRenewalController extends Controller
 
         // return redirect('/')->with('message','Your Record Added Successfully.');
 
-     }
+    //  }
 
     }
     
@@ -614,5 +621,159 @@ class MeatTransportRenewalController extends Controller
           //return view('user.meat_license.user_applicant_form_view', compact('data', 'user_type','meattype_mst'));
         }
 
+        public function form_list(Request $request)
+        {
+        //    dd($request);
+            // dd($request->all());
+            if (Auth::guard('meatregistereduser')->check()) {
+                $user_id = Auth::guard('meatregistereduser')->user()->id;
+                // return $user_id;
+                
+                $user_list =  DB::table('meat_transport_register_tbl AS t1')
+                                ->select('t1.*', 't2.meat_name','t3.dist_name','t4.taluka_name'
+                                        )
+                                        
+                                ->leftJoin('meat_type_mst AS t2', 't2.id', '=', 't1.meat_type')
+                             
+                                ->leftJoin('mst_dist AS t3', 't3.id', '=', 't1.district_id')
+                                ->leftJoin('mst_taluka AS t4', 't4.id', '=', 't1.taluka_id')
+    
+                                ->where('t1.is_renewal', '=',1)
+                                ->where('t1.t_final_approve', '=', 1)
+                                ->where('t1.inserted_dt', '<=', \Carbon\Carbon::now()->subMinute())
+                                ->where('t1.inserted_by', '=',$user_id)
+                                ->whereNull('t1.deleted_at')
+                                ->whereNull('t2.deleted_at')
+                                ->whereNull('t3.deleted_at')
+                                ->whereNull('t4.deleted_at')
+                               
+                                ->orderBy('t1.id', 'DESC')
+                                ->get();
+                                
+                        //   dd($user_list);
+                  $meats_license_status =  DB::table('meat_transport_register_tbl AS t1')
+                                            ->select('t1.id', 't1.status')
+                                            ->where('t1.inserted_by', '=',$user_id)
+                                            ->orderBy('t1.id', 'DESC')
+                                            ->whereNull('t1.deleted_at')
+                                            ->first();
+                $meat_license_status  = $meats_license_status ? $meats_license_status->status : 0; 
+                
+    
+                $renewal_list =  DB::table('meat_transport_renewal_tbl AS t1')
+                                ->select('t1.*', 't2.meat_name','t3.dist_name','t4.taluka_name'
+                                        )
+                                 ->leftJoin('meat_transport_register_tbl AS t5','t5.id','=','t1.register_table_id')       
+                                ->leftJoin('meat_type_mst AS t2', 't2.id', '=', 't1.meat_type')
+                              
+                                ->leftJoin('mst_dist AS t3', 't3.id', '=', 't1.district_id')
+                                ->leftJoin('mst_taluka AS t4', 't4.id', '=', 't1.taluka_id')
+    
+                                ->where('t1.tr_final_approve', '=', 1)
+                                ->where('t1.is_renewal', '=',1)
+                                ->where('t1.inserted_dt', '<=', \Carbon\Carbon::now()->subMinute())
+                                ->where('t1.inserted_by', '=',$user_id)
+                                ->whereNull('t1.deleted_at')
+                                ->whereNull('t2.deleted_at')
+                                ->whereNull('t3.deleted_at')
+                                ->whereNull('t4.deleted_at')
+                               
+                                ->orderBy('t1.id', 'DESC')
+                                ->get();                 
+                // dd($renewal_list);
+                $meats_renewal_license_status =  DB::table('meat_renewal_license_tbl AS t1')
+                                            ->select('t1.id', 't1.status')
+                                            ->where('t1.inserted_by', '=',$user_id)
+                                            ->orderBy('t1.id', 'DESC')
+                                            ->whereNull('t1.deleted_at')
+                                            ->first();
+                $meatrenewal_license_status  = $meats_renewal_license_status ? $meats_renewal_license_status->status : 0; 
+                
+               if (isset($user_list)){
+         
+                return view('user.meat_transport_renewal.user_transport_applicant_form_renewal', compact('user_list','renewal_list','meat_license_status','meatrenewal_license_status'));
+                }else{
+                     return redirect('/');
+                }
+            } else {
+                return redirect('/user/login');
+            }
+            
+        }
+
+        public function New_renewal(Request $request,$id,$user_type)
+        {
+            // dd($request->all());
+  
+            $unit_Meat_Type = DB::table('unit_Meat_Type')->get();
+
+            if (Auth::guard('meatregistereduser')->check()) {
+             
+            $meattype_mst = MeatType_Master::orderBy('id','desc')->pluck('meat_name', 'id')->whereNull('deleted_at');
+      
+            $mainid = Auth::guard('meatregistereduser')->user()->id;
+          //   dd($mainid);
+            $data =   DB::table('meat_transport_register_tbl AS t1')
+                                  ->select('t1.*','t1.id AS registration_id', 't2.meat_name','t3.dist_name','t4.taluka_name') 
+                                   ->leftJoin('meat_transport_renewal_tbl AS t5','t5.register_table_id','=', 't1.id')       
+                                  ->leftJoin('meat_type_mst AS t2', 't2.id', '=', 't1.meat_type')
+                                  ->leftJoin('mst_dist AS t3', 't3.id', '=', 't1.district_id')
+                                  ->leftJoin('mst_taluka AS t4', 't4.id', '=', 't1.taluka_id')
+                                
+                                  ->where('t1.id', '=', $id)
+                                  ->whereNull('t1.deleted_at')
+                                  ->whereNull('t2.deleted_at')
+                                  ->whereNull('t3.deleted_at')
+                                  ->whereNull('t4.deleted_at')
+                                  ->orderBy('t1.id', 'DESC')
+                                  ->first();
+  
+                                //  dd($data);
+                 if(empty($data)) {
+                                      
+                                      return redirect('/')->with('warning','Apply For Cold Storage Registration License First');
+                                      
+                                  }elseif($data->approve_date == ""){
+                                      
+                                      return redirect('/')->with('warning','Your Application status is still Pending');
+                                      
+                                      
+                                  }else {
+                //    dd($data);
+                  //  $approve_date = $data->approve_date;  
+      
+                
+                   
+                  // $newEndingDate = date("Y-m-d", strtotime(date("Y-m-d", strtotime($approve_date)) . " + 1 year"));
+      
+                  // $currentDate = date('Y-m-d');
+      
+      
+                  // $timestamp1 = strtotime($currentDate);
+                  // $timestamp2 = strtotime($newEndingDate);
+      
+                  
+                  // if($timestamp1 > $timestamp2) { 
+      
+      
+      
+                  return view('user.meat_transport_renewal.meat_transport_renewal_form', compact('data','meattype_mst','unit_Meat_Type','id','user_type'));
+      
+                  // }else{
+                    
+                  //       $diff = $timestamp1 -$timestamp2 ; 
+                  //       $x = abs(floor($diff / (60 * 60 * 24))) ;
+      
+                  //      return redirect('/')->with('message','Your license has not yet expired. '  .$x.' days Remaining');
+                    
+                  // } 
+                   } 
+                  } else {
+                  return redirect('/user/login');
+              }      
+                                  
+                 
+      
+      }
 
 }

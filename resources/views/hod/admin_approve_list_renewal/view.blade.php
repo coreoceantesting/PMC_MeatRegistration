@@ -465,10 +465,10 @@
                                                     </div>
                                                 </a>
                                                 <?php } else {  ?>
-
-                                                     <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/adharcard_doc/{{ $meat_renewal_view->regi_adharcard_doc }}" target="_blank">
+                                                    {{-- @dd($meat_renewal_view) --}}
+                                                     <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/adharcard_doc/{{ $meat_renewal_view->adharcard_doc }}" target="_blank">
                                                     <div class="form-group">
-                                                        <?php $document_path = $meat_renewal_view->regi_adharcard_doc;
+                                                        <?php $document_path = $meat_renewal_view->adharcard_doc;
                                                            $filter_path =  explode(".",$document_path);
                                                            $size_of_array = count($filter_path);
                                                            $filter_ext = $filter_path[$size_of_array - 1];
@@ -477,12 +477,12 @@
                                                         $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                            {?>
                                                         <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/adharcard_doc/{{ $meat_renewal_view->regi_adharcard_doc }}  " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/adharcard_doc/{{ $meat_renewal_view->adharcard_doc }}  " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
                                                         </p>
                                                         <?php }
                                                                 else{
                                                                     ?>
-                                                                    <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/adharcard_doc/{{ $meat_renewal_view->regi_adharcard_doc }}" target="_blank" download>
+                                                                    <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/adharcard_doc/{{ $meat_renewal_view->adharcard_doc }}" target="_blank" download>
                                                                         <p class="mt-3 mb-0" id="image_div">
                                                                         <button type="button"class="btn btn-info">
                                                                             Download File
@@ -528,9 +528,9 @@
                                                 </a>
                                                 <?Php }else { ?>
 
-                                                    <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/residitional_proof_doc/{{ $meat_renewal_view->regi_residitional_proof_doc }}" target="_blank">
+                                                    <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/residitional_proof_doc/{{ $meat_renewal_view->residitional_proof_doc }}" target="_blank">
                                            <div class="form-group">
-                                                <?php $document_path = $meat_renewal_view->regi_residitional_proof_doc;
+                                                <?php $document_path = $meat_renewal_view->residitional_proof_doc;
                                                            $filter_path =  explode(".",$document_path);
                                                            $size_of_array = count($filter_path);
                                                            $filter_ext = $filter_path[$size_of_array - 1];
@@ -539,12 +539,12 @@
                                                         $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                            {?>
                                                         <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/residitional_proof_doc/{{ $meat_renewal_view->regi_residitional_proof_doc }}" alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/residitional_proof_doc/{{ $meat_renewal_view->residitional_proof_doc }}" alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
                                                         </p>
                                                         <?php }
                                                                 else{
                                                                     ?>
-                                                                    <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/residitional_proof_doc/{{ $meat_renewal_view->regi_residitional_proof_doc }} " target="_blank" download>
+                                                                    <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/residitional_proof_doc/{{ $meat_renewal_view->residitional_proof_doc }} " target="_blank" download>
                                                                         <p class="mt-3 mb-0" id="image_div">
                                                                         <button type="button"class="btn btn-info">
                                                                             Download File
@@ -594,9 +594,9 @@
 
                                             <?php } else { ?>
 
-                                                 <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/legal_business_doc/{{ $meat_renewal_view->regi_legal_business_doc }}" target="_blank">
+                                                 <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/legal_business_doc/{{ $meat_renewal_view->legal_business_doc }}" target="_blank">
                                                     <div class="form-group">
-                                                        <?php $document_path = $meat_renewal_view->regi_legal_business_doc;
+                                                        <?php $document_path = $meat_renewal_view->legal_business_doc;
                                                            $filter_path =  explode(".",$document_path);
                                                            $size_of_array = count($filter_path);
                                                            $filter_ext = $filter_path[$size_of_array - 1];
@@ -605,12 +605,12 @@
                                                         $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                            {?>
                                                         <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/legal_business_doc/{{ $meat_renewal_view->regi_legal_business_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/legal_business_doc/{{ $meat_renewal_view->legal_business_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
                                                         </p>
                                                         <?php }
                                                                 else{
                                                                     ?>
-                                                                    <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/legal_business_doc/{{ $meat_renewal_view->regi_legal_business_doc }}" target="_blank" download>
+                                                                    <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/legal_business_doc/{{ $meat_renewal_view->legal_business_doc }}" target="_blank" download>
                                                                         <p class="mt-3 mb-0" id="image_div">
                                                                         <button type="button"class="btn btn-info">
                                                                             Download File
@@ -658,9 +658,9 @@
 
                                             <?php }else { ?>
 
-                                                  <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/business_registration_doc/{{ $meat_renewal_view->regi_business_registration_doc }}" target="_blank">
+                                                  <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/business_registration_doc/{{ $meat_renewal_view->business_registration_doc }}" target="_blank">
                                                     <div class="form-group">
-                                                        <?php $document_path = $meat_renewal_view->regi_business_registration_doc;
+                                                        <?php $document_path = $meat_renewal_view->business_registration_doc;
                                                            $filter_path =  explode(".",$document_path);
                                                            $size_of_array = count($filter_path);
                                                            $filter_ext = $filter_path[$size_of_array - 1];
@@ -669,12 +669,12 @@
                                                         $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                            {?>
                                                         <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/business_registration_doc/{{ $meat_renewal_view->regi_business_registration_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/business_registration_doc/{{ $meat_renewal_view->business_registration_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
                                                         </p>
                                                         <?php }
                                                                 else{
                                                                     ?>
-                                                                    <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/business_registration_doc/{{ $meat_renewal_view->regi_business_registration_doc }}" target="_blank" download>
+                                                                    <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/business_registration_doc/{{ $meat_renewal_view->business_registration_doc }}" target="_blank" download>
                                                                         <p class="mt-3 mb-0" id="image_div">
                                                                         <button type="button"class="btn btn-info">
                                                                             Download File
@@ -724,9 +724,9 @@
 
                                             <?php } else { ?>
 
-                                                     <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/property_tax_doc/{{ $meat_renewal_view->property_doc }}" target="_blank">
+                                                     <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/property_tax_doc/{{ $meat_renewal_view->property_tax_doc }}" target="_blank">
                                                     <div class="form-group">
-                                                        <?php $document_path = $meat_renewal_view->property_doc;
+                                                        <?php $document_path = $meat_renewal_view->property_tax_doc;
                                                            $filter_path =  explode(".",$document_path);
                                                            $size_of_array = count($filter_path);
                                                            $filter_ext = $filter_path[$size_of_array - 1];
@@ -735,12 +735,12 @@
                                                         $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                            {?>
                                                         <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/property_tax_doc/{{ $meat_renewal_view->property_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/property_tax_doc/{{ $meat_renewal_view->property_tax_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
                                                         </p>
                                                         <?php }
                                                                 else{
                                                                     ?>
-                                                                    <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/property_tax_doc/{{ $meat_renewal_view->property_doc }}" target="_blank" download>
+                                                                    <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/property_tax_doc/{{ $meat_renewal_view->property_tax_doc }}" target="_blank" download>
                                                                         <p class="mt-3 mb-0" id="image_div">
                                                                         <button type="button"class="btn btn-info">
                                                                             Download File
@@ -1044,9 +1044,9 @@
 
                                             <?php } else { ?>
 
-                                                <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/issued_doc/{{ $meat_renewal_view->regi_issued_doc }}" target="_blank">
+                                                <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/issued_doc/{{ $meat_renewal_view->issued_doc }}" target="_blank">
                                                     <div class="form-group">
-                                                        <?php $document_path = $meat_renewal_view->regi_issued_doc;
+                                                        <?php $document_path = $meat_renewal_view->issued_doc;
                                                            $filter_path =  explode(".",$document_path);
                                                            $size_of_array = count($filter_path);
                                                            $filter_ext = $filter_path[$size_of_array - 1];
@@ -1055,12 +1055,12 @@
                                                         $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                            {?>
                                                         <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/issued_doc/{{ $meat_renewal_view->regi_issued_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/issued_doc/{{ $meat_renewal_view->issued_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
                                                         </p>
                                                         <?php }
                                                                 else{
                                                                     ?>
-                                                                    <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/issued_doc/{{ $meat_renewal_view->regi_issued_doc }}" target="_blank" download>
+                                                                    <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/issued_doc/{{ $meat_renewal_view->issued_doc }}" target="_blank" download>
                                                                         <p class="mt-3 mb-0" id="image_div">
                                                                         <button type="button"class="btn btn-info">
                                                                             Download File
@@ -1110,9 +1110,9 @@
 
                                             <?php } else { ?>
 
-                                                 <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/applicant_signature/{{ $meat_renewal_view->regi_app_sign }}" target="_blank">
+                                                 <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/applicant_signature/{{ $meat_renewal_view->app_sign }}" target="_blank">
                                                     <div class="form-group">
-                                                        <?php $document_path = $meat_renewal_view->regi_app_sign;
+                                                        <?php $document_path = $meat_renewal_view->app_sign;
                                                            $filter_path =  explode(".",$document_path);
                                                            $size_of_array = count($filter_path);
                                                            $filter_ext = $filter_path[$size_of_array - 1];
@@ -1121,12 +1121,12 @@
                                                         $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                            {?>
                                                         <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/applicant_signature/{{ $meat_renewal_view->regi_app_sign }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/applicant_signature/{{ $meat_renewal_view->app_sign }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
                                                         </p>
                                                         <?php }
                                                                 else{
                                                                     ?>
-                                                                    <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/applicant_signature/{{ $meat_renewal_view->regi_app_sign }}" target="_blank" download>
+                                                                    <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/applicant_signature/{{ $meat_renewal_view->app_sign }}" target="_blank" download>
                                                                         <p class="mt-3 mb-0" id="image_div">
                                                                         <button type="button"class="btn btn-info">
                                                                             Download File

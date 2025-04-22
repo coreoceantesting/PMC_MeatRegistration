@@ -149,14 +149,18 @@
                     <div class="col-12 mb-30">
                         <div class="card-box height-100-p overflow-hidden"  style="border: 1px solid #000000;">
                             <div class="profile-tab height-100-p">
-                                <form method="POST" action="{{ url('/user/meat_renewal_form') }}" enctype="multipart/form-data">
+                                <form method="POST" action="{{ url("/user/meat_renewal_form/{$id}/{$user_type}/store") }}" enctype="multipart/form-data">
                                     @csrf
-                                    
+                                    {{-- action="{{ url('/user/meat_renewal_form/' . $id . '/' . $user_type . '/store') }}" --}}
                                     @if(Auth::guard('meatregistereduser')->check())
                                        <input type="hidden" name="user_id" id="user_id" class="form-control" value="{{ Auth::guard('meatregistereduser')->user()->id }}">
                                     @elseif(Auth::guard('web')->check())
                                        <input type="hidden" name="admin_id" id="admin_id" class="form-control" value="{{ Auth::user()->id }}">
+
                                     @endif
+                                    <input type="hidden" name="renwal_liceans_no" id="renwal_liceans_no" value="{{ $data->meat_pplication_no }}">
+                                    <input type="hidden" name="register_table_id" id="register_table_id"  value="{{ $data->registration_id }}" >
+{{-- @dump($data->meat_pplication_no) --}}
                                     <div class="tab height-100-p">
                                         <ul class="nav nav-tabs customtab" role="tablist">
                                             <li class="nav-item active">
@@ -473,7 +477,7 @@
                                     <div class="col-sm-4 col-md-4 p-2">
                                        
 
-                                    <select class="form-control @error('business_type') is-invalid @enderror"  name="business_type" id="business_type" style="width: 100%; height: 38px; pointer-events:none">
+                                    <select class="form-control @error('business_type') is-invalid @enderror"  name="business_type" id="business_type" style="width: 100%; height: 38px;">
                                         <option value=" ">Select Kind of Business / (व्यवसायाचा प्रकार)</option>
                                         <option value="1" {{ $data->business_type  == '1' ? 'selected' : '' }}>Butcher Shope ( मांस  विक्री  केंद्र )</option>
                                         <option value="2" {{ $data->business_type  == '2' ? 'selected' : '' }}>Meat Processing Plant ( मांस  प्रक्रिया   केंद्र  )</option>

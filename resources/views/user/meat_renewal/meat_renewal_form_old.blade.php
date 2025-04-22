@@ -197,7 +197,7 @@
                                 <hr>
                             
 
-                                 <input type="hidden" name="meat_register_oldid" id="meat_register_oldid"  value="{{ $data->id }}" >
+                                 <input type="hidden" name="register_table_id" id="register_table_id"  value="{{ $data->id }}" >
                                  <input type="hidden" name="renwal_liceans_no" id="renwal_liceans_no"  value="{{ $data->meat_pplication_no }}" >
 
                                 <strong class="pb-1">Name of Applicant / ( अर्जदाराचे नाव ) : <span style="color:red;">*</span> </strong>

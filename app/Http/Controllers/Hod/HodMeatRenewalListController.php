@@ -65,7 +65,7 @@ class HodMeatRenewalListController extends Controller
                                         ->leftJoin('mst_dist AS t2', 't2.id', '=', 't1.district_id')
                                         ->leftJoin('mst_taluka AS t3', 't3.id', '=', 't1.taluka_id')
                                         ->leftJoin('meat_type_mst AS t4', 't4.id', '=', 't1.meat_type')
-                                        ->leftJoin('meat_registration_tbl AS t5', 't5.id', '=', 't1.meat_register_oldid')
+                                        ->leftJoin('meat_registration_tbl AS t5', 't5.id', '=', 't1.register_table_id')
                                         // ->where('t1.status', '=', $status)
                                         ->where('t1.re_hod_status', '=', $status)
                                         ->where('t1.id', '=', $id)
@@ -184,7 +184,7 @@ class HodMeatRenewalListController extends Controller
         
                                         
             $meat_renewal_view =  DB::table('meat_renewal_license_tbl AS t1')
-                                        ->select('t1.*', 't2.dist_name','t3.taluka_name', 't4.meat_name','t5.meat_pplication_no','t5.adharcard_doc','t5.residitional_proof_doc','t5.legal_business_doc','t5.business_registration_doc','t5.property_tax_doc','t5.paid_water_doc','t5.slaughter_letter_doc','t5.treatment_authorized_doc','t5.fitness_certificate_doc','t5.issued_doc','t5.applicant_signature', 't5.profile_photo', 't5.inserted_by', 't6.meat_pplication_id', 't6.total_recived_tax', 't6.receipt_no', 't6.date_of_receipt', 't6.license_number', 't6.date_of_license_obtain', 't6.re_hod_sign')
+                                        ->select('t1.*', 't2.dist_name','t3.taluka_name', 't4.meat_name','t5.meat_pplication_no','t5.adharcard_doc','t5.residitional_proof_doc','t5.legal_business_doc','t5.business_registration_doc','t5.property_tax_doc','t5.paid_water_doc as paid_water','t5.slaughter_letter_doc as letter_doc','t5.treatment_authorized_doc as tre_authority_doc','t5.fitness_certificate_doc as fitness_doc','t5.issued_doc','t5.applicant_signature as app_sign', 't5.profile_photo', 't5.inserted_by', 't6.meat_pplication_id', 't6.total_recived_tax', 't6.receipt_no', 't6.date_of_receipt', 't6.license_number', 't6.date_of_license_obtain', 't6.re_hod_sign')
                                         ->leftJoin('mst_dist AS t2', 't2.id', '=', 't1.district_id')
                                         ->leftJoin('mst_taluka AS t3', 't3.id', '=', 't1.taluka_id')
                                         ->leftJoin('meat_type_mst AS t4', 't4.id', '=', 't1.meat_type')
@@ -597,7 +597,7 @@ class HodMeatRenewalListController extends Controller
                                         ->leftJoin('mst_dist AS t2', 't2.id', '=', 't1.district_id')
                                         ->leftJoin('mst_taluka AS t3', 't3.id', '=', 't1.taluka_id')
                                         ->leftJoin('meat_type_mst AS t4', 't4.id', '=', 't1.meat_type')
-                                        ->leftJoin('meat_registration_tbl AS t5', 't5.id', '=', 't1.meat_register_oldid')
+                                        ->leftJoin('meat_registration_tbl AS t5', 't5.id', '=', 't1.register_table_id')
                                         
                                         ->where('t1.id', '=', $id)
                                         ->whereNull('t1.deleted_at')
@@ -606,7 +606,7 @@ class HodMeatRenewalListController extends Controller
                                         ->whereNull('t4.deleted_at')
                                         ->orderBy('t1.id', 'DESC')
                                         ->first();
-          //dd($meat_renewal_view);
+        //   dd($meat_renewal_view);
 
         return view('hod.Report.meat_renewal_report_view', compact('meat_renewal_view'));
     }

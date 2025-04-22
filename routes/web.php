@@ -353,9 +353,14 @@ Route::group(['middleware' => ['auth:web']], function () {
 
 
 // ======================= Meat Vehicle Renewal Form
-Route::get('/user/meat_transport_renewal_form', [MeatTransportRenewalController::class, 'create'])->name('user.meat_transport_renewal_form');
 
-Route::post('/user/meat_transport_renewal_form', [MeatTransportRenewalController::class, 'store'])->name('user.meat_transport_renewal_form.store');
+Route::get('/user/meat_transport_renewal', [MeatTransportRenewalController::class, 'form_list'])->name('user.meat_renewal_form_list');
+
+Route::get('/user/meat_transport_renewal/{id}/{user_type}', [MeatTransportRenewalController::class, 'New_renewal'])->name('user.meat_transport_renewal_form_new');
+
+Route::get('/user/meat_transport_renewal_form/{id}/{user_type}', [MeatTransportRenewalController::class, 'create'])->name('user.meat_transport_renewal_form');
+
+Route::post('/user/meat_transport_renewal_form/{id}/{user_type}/store', [MeatTransportRenewalController::class, 'store'])->name('user.meat_transport_renewal_form.store');
 
 Route::get('/user/appli_form/View_trans_renewal/{application_no}/{user_type}', [MeatTransportRenewalController::class, 'UpdatevehicalRenewalForm_View'])->name('user.appli_form.View_trans_renewal');
 
@@ -412,12 +417,18 @@ Route::post('/department_list', [DogRegistrationController::class, 'Department_L
 
 
 // ======================= Meat Renewal Form
-    Route::get('/user/meat_renewal_form', [MeatRegistrationRenewalController::class, 'create'])->name('user.meat_renewal_form');
+
+Route::get('/user/meat_renewal_renewal', [MeatRegistrationRenewalController::class, 'form_list'])->name('user.meat_renewal_form');
+
+    Route::get('/user/meat_renewal_form/{id}/{user_type}', [MeatRegistrationRenewalController::class, 'create'])->name('user.meat_renewal_form');
 
   // Route::get('/user/meat_renewal_forms', [MeatRegistrationRenewalController::class, 'creates'])->name('user.meat_renewal_forms');
 
 
-Route::post('/user/meat_renewal_form', [MeatRegistrationRenewalController::class, 'store'])->name('user.meat_renewal_form.store');
+Route::post('/user/meat_renewal_form/{id}/{user_type}/store', [MeatRegistrationRenewalController::class, 'store'])->name('user.meat_renewal_form.store');
+
+Route::get('/user/meat_renewal_renewal/{id}/{user_type}', [MeatRegistrationRenewalController::class, 'New_renewal'])->name('user.cold_storage_new_renewal');
+
 
 Route::get('/user/appli_form/View_renewal/{application_no}/{user_type}', [MeatRegistrationRenewalController::class, 'UserRenewalFormView'])->name('user.appli_form.View_renewal');
 

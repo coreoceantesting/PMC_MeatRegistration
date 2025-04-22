@@ -515,7 +515,7 @@ class MeatRegistrationRenewalController extends Controller
         }
         // Basic Details
 
-        $data->meat_register_oldid = $request->get('meat_register_oldid');
+        $data->register_table_id = $request->get('register_table_id');
         // $data->renwal_liceans_no = $request->get('renwal_liceans_no');
         $data->applicant_title_id = $request->get('applicant_title_id');
         $data->applicant_fname = $request->get('applicant_fname');
@@ -609,7 +609,7 @@ class MeatRegistrationRenewalController extends Controller
                            
                             ->leftJoin('mst_dist AS t3', 't3.id', '=', 't1.district_id')
                             ->leftJoin('mst_taluka AS t4', 't4.id', '=', 't1.taluka_id')
-                            ->leftJoin('meat_registration_tbl AS t5', 't5.id', '=', 't1.meat_register_oldid')
+                            ->leftJoin('meat_registration_tbl AS t5', 't5.id', '=', 't1.register_table_id')
                            
 
                              ->where('t1.id', '=', $application_id)
@@ -1173,7 +1173,7 @@ class MeatRegistrationRenewalController extends Controller
                                         ->leftJoin('mst_dist AS t2', 't2.id', '=', 't1.district_id')
                                         ->leftJoin('mst_taluka AS t3', 't3.id', '=', 't1.taluka_id')
                                         ->leftJoin('meat_type_mst AS t4', 't4.id', '=', 't1.meat_type')
-                                        ->leftJoin('meat_registration_tbl AS t5', 't5.id', '=', 't1.meat_register_oldid')
+                                        ->leftJoin('meat_registration_tbl AS t5', 't5.id', '=', 't1.register_table_id')
                                         ->leftJoin('approve_by_admin_renewal_license_tbl AS t6', 't6.meat_pplication_id', '=', 't1.id')
                                         // ->where('t1.status', '=', $status)
                                         ->where('t1.id', '=', $id)
