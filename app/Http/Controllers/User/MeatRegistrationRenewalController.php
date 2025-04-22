@@ -149,7 +149,7 @@ class MeatRegistrationRenewalController extends Controller
 
     public function store(Request $request)
     {
-
+// dd($request);
       $mainid = Auth::guard('meatregistereduser')->user()->id;
 
       $check =  DB::table('meat_renewal_license_tbl AS t1')
@@ -577,25 +577,28 @@ class MeatRegistrationRenewalController extends Controller
 
         $data->save();
 
-        $update = [
-            'renwal_liceans_no' => $unique_id.$data->id ,
-            // 'inserted_by' => $data->id,
-        ];
-        // dd($update);
+        // $update = [
+        //     'renwal_liceans_no' => $unique_id.$data->id ,
+        //     // 'inserted_by' => $data->id,
+        // ];
+        // // dd($update);
         
         // MeatRenewalLicense_Model::where('id', $data->id)->update($update);
         MeatRegistration_Model::where("id",$request->get('register_table_id'))->update(['is_renewal' =>0]);
         
         // dd($request->get('register_table_id'));
-        $app_no = $unique_id.$data->id;
+        $app_no = $unique_id;
         $scheme = 'Meat Renewable Registration Form';
-        $domain = "https://".$_SERVER['HTTP_HOST'];
+        $domain = 'pmc-meatreegistration.smartpmc.co.in/';
+        $mobile_number = $request->get('mobile_number');
         $project_folder = 'PMC_Meat_Registration';
-        
-        $msg = "Your application no:- $app_no for $scheme is received at PMC office. You can also track your application on $domain/$project_folder/ PMC.";
+        // dd($app_no);
+        $msg = "Your application no:- $app_no for $scheme is received at PMC office. You can also track your application on $domain CORE OCEAN.";
+    //    dd($msg);
         $tempID= '1207167447455213113';
-        $this->sendsms($msg,$request->mobile_number,$tempID);
+        $this->sendsms($msg,$mobile_number,$tempID);
 
+    //  dd($this);
         return redirect('user/appli_form')->with('message','Your License Renawal Record Added Successfully.');
 
         // return redirect('/')->with('message','Your Record Added Successfully.');
@@ -1471,7 +1474,7 @@ class MeatRegistrationRenewalController extends Controller
 
         public function New_renewal(Request $request,$id,$user_type)
         {
-            // dd($request->all());
+            //  dd($request->all());
   
             $unit_Meat_Type = DB::table('unit_Meat_Type')->get();
 
@@ -1496,7 +1499,7 @@ class MeatRegistrationRenewalController extends Controller
                                   ->orderBy('t1.id', 'DESC')
                                   ->first();
   
-                                //  dd($data);
+                                //   dd($data);
                  if(empty($data)) {
                                       
                                       return redirect('/')->with('warning','Apply For Cold Storage Registration License First');

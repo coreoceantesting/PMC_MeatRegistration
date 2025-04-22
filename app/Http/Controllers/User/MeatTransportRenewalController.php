@@ -255,15 +255,29 @@ class MeatTransportRenewalController extends Controller
         MeatTransport_Model::where("id",$request->get('register_table_id'))->update(['is_renewal' =>0]);
         // MeatTransportRenewalLicense_Model::where('id', $data->id)->update($update);
         
-        $app_no = $unique_id.$data->id;
-        $scheme = 'Meat / Livestock Transport Business Renewal License Registration Form ';
-        $domain = "https://".$_SERVER['HTTP_HOST'];
-        $project_folder = 'PMC_Meat_Registration';
+        // $app_no = $unique_id.$data->id;
+        // $scheme = 'Meat / Livestock Transport Business Renewal License Registration Form ';
+        // $domain = "https://".$_SERVER['HTTP_HOST'];
+        // $project_folder = 'PMC_Meat_Registration';
         
-        $msg = "Your application no:- $app_no for $scheme is received at PMC office. You can also track your application on $domain/$project_folder/ PMC.";
-        $tempID= '1207167447455213113';
-        $this->sendsms($msg,$request->mobile_number,$tempID);
+        // $msg = "Your application no:- $app_no for $scheme is received at PMC office. You can also track your application on $domain/$project_folder/ PMC.";
+        // $tempID= '1207167447455213113';
+        // $this->sendsms($msg,$request->mobile_number,$tempID);
 
+        $app_no = $unique_id;
+        $scheme = 'Meat vehical Renewable Form';
+        $mobile_number = $request->get('mobile_number');
+        //  dd($mobile_number);
+        $domain = 'pmc-meatreegistration.smartpmc.co.in/';
+        $senderid = "CoreOC";
+        $project_folder = 'PMC_Pet_Registration';
+        $route = 1;
+        $key= 'kbf8IN83hIxNTVgs';
+        $msg = " Your application no:- $app_no for $scheme is received at PMC office. You can also track your application on $domain CORE OCEAN.";
+        $tempID = '1207171688071309898';
+// dd($msg);
+        $this->sendsms($msg,$mobile_number,$tempID);
+//  dd($this);
         return redirect('user/appli_form')->with('message','Your Transport License Renawal Record Added Successfully.');
 
         // return redirect('/')->with('message','Your Record Added Successfully.');

@@ -164,13 +164,13 @@
                                     <div class="tab height-100-p">
                                         <ul class="nav nav-tabs customtab" role="tablist">
                                             <li class="nav-item active">
-                                                <a class="nav-link active" data-toggle="tab" href="#basic_information" role="tab">Basic Information <br> ( मुलभूत माहिती ) </a>
+                                                <a class="nav-link active basic_information" data-toggle="tab" href="#basic_information" role="tab">Basic Information <br> ( मुलभूत माहिती ) </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" data-toggle="tab" href="#pet_details" role="tab">Business Details <br> ( व्यवसाय तपशील ) </a>
+                                                <a class="nav-link pet_details" data-toggle="tab" href="#pet_details" role="tab">Business Details <br> ( व्यवसाय तपशील ) </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" data-toggle="tab" href="#other_document" role="tab">Upload Documents <br> ( दस्तऐवज अपलोड करा ) </a>
+                                                <a class="nav-link other_document" data-toggle="tab" href="#other_document" role="tab">Upload Documents <br> ( दस्तऐवज अपलोड करा ) </a>
                                             </li>
                                         </ul>
                                         <div class="tab-content">
@@ -441,8 +441,25 @@
                                     </div>
                                     
                                  
-                                </div>                         
-                                  
+                                </div>    
+
+                                      <div class="form-group row mt-4">
+                                                            <!-- Back button aligned left -->
+                                                            <div class="col-md-6 text-left">
+                                                                <button type="button" class="btn btn-danger" data-toggle="tab">
+                                                                    Back
+                                                                </button>
+                                                            </div>
+
+                                                            <!-- Save and Next button aligned right -->
+                                                            <div class="col-md-6 text-right">
+                                                                <button type="button" class="btn btn-primary" data-toggle="tab" href="#pet_details"
+                                                                    onclick="changetab(this, '.basic_information', '.pet_details')">
+                                                                    Save and Next
+                                                                </button>
+                                                            </div>
+                                                        </div>
+
                                                         <!-- <a class="btn btn-primary btnNext" >Next</a>  -->
                                                     </div>
                                                 </div>
@@ -625,7 +642,7 @@
                                     </div>
                                 </div>
                               
-                                
+                           
 
  <strong class="pt-2 text-primary">
                                     Business registration details / ( व्यवसाय नोंदणी तपशील )
@@ -714,7 +731,23 @@
                                          <input  class="form-control" value="{{ $data->business_place_other  }}" >
                                     </div>
                                 </div>       
-                           
+                                <div class="form-group row mt-4">
+                                    <!-- Back button on the left -->
+                                    <div class="col-md-6 text-left">
+                                        <button type="button" class="btn btn-danger" data-toggle="tab" href="#basic_information"
+                                            onclick="changetab(this,'.pet_details' , '.basic_information')">
+                                            Back
+                                        </button>
+                                    </div>
+
+                                    <!-- Save and Next button on the right -->
+                                    <div class="col-md-6 text-right">
+                                        <button type="button" class="btn btn-primary" data-toggle="tab" href="#other_document"
+                                            onclick="changetab(this, '.pet_details', '.other_document')">
+                                            Save and Next
+                                        </button>
+                                    </div>
+                                </div>
 
                                                         
                                                         
@@ -1148,9 +1181,17 @@
                               
 
             
-                                                        
-                                                        <div class="form-group row mt-4">
-                                                            <!--<label class="col-md-3"></label>-->
+                                <div class="form-group row mt-4">
+                                    <!-- Back button on the left -->
+                                    <div class="col-md-6" style="display: flex; justify-content: start;">
+                                        <button type="button" class="btn btn-danger" data-toggle="tab"
+                                        href="#pet_details" onclick="changetab(this, '.other_document', '.pet_details')">
+                                            Back
+                                        </button>
+                                    </div>                        
+
+                                        <div class="col-md-6" style="display: flex; justify-content: end;">
+                                        <!--<label class="col-md-3"></label>-->
                                                             <div class="col-md-12" style="display: flex; justify-content: end;">
                                                                 @if(Auth::guard('meatregistereduser')->check())
                                                                    <a href="{{ url('/') }}" class="btn btn-danger ">Cancel</a>&nbsp;&nbsp; 
@@ -1162,6 +1203,10 @@
                                                                 
                                                                 <button type="submit" class="btn btn-success" >Update </button>
                                                             </div>
+
+                                                        </div>
+                                                        
+                                                    </div>     
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1379,6 +1424,14 @@
 });
     </script>
     
+    <script>
+        function changetab(current_button, current_tab, next_tab) {
+            // alert(1)
+            $(current_button).removeClass('active');
+            $(current_tab).removeClass('active');
+            $(next_tab).addClass('active');
+        }
+    </script>
     
 </body>
 

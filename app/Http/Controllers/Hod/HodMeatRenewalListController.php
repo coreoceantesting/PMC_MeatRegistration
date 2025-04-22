@@ -7,11 +7,13 @@ use Illuminate\Http\Request;
 use App\Models\MeatRenewalLicense_Model;
 use App\Models\ApproveAdminRenewalLicense_Model;
 use App\Models\ApproverenewalAdmin_Model;
-
+use App\Models\MeatRegisteredUser;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class HodMeatRenewalListController extends Controller
 {
@@ -262,8 +264,40 @@ class HodMeatRenewalListController extends Controller
              're_final_approve_by' => Auth::user()->id,
          ];
          
+         $data = MeatRenewalLicense_Model::where('id', $id)->first();
+
          MeatRenewalLicense_Model::where('id', $id)->update($update);
-         
+         $unique_id = $data->renwal_liceans_no;
+        //  dd($unique_id);
+         $user_id=$data->inserted_by;
+       $user = MeatRegisteredUser::where('id',$user_id)->first();
+         $mob_number = $data->mobile_number;
+            //   dd($mob_number);
+         Log::info($mob_number);
+         $scheme = 'Application For Cold Storage Renewal License';
+         $application_no = $unique_id; 
+        //   dd($application_no);
+         // $sms = "Your application no: 458789754 for Cat Registration is received at PMC office. You can also track your application on https://cat-license.smartpmc.co.in/ CORE OCEAN.";
+         //  $tempID= '1207171688071309898';
+ 
+           $key = "kbf8IN83hIxNTVgs";
+          $senderid = "CoreOC";
+          $route = 1;
+          $sms = "Your application no: $application_no for $scheme has been approved by the PMC office successfully CORE OCEAN.";
+          $tempID= '1207171576716170457';
+          
+          $response = Http::get('http://sms.adityahost.com/vb/apikey.php',[
+            'apikey'   => $key,
+            'senderid' => $senderid,
+            'number'   => $mob_number,
+            'message'  => $sms,
+            'route'    => $route,
+            'templateid'  => $tempID
+          ]);
+          Log::info('SMS API Response: ', ['response' => $response->body()]);
+            // dd($response);
+ 
+
          return redirect('/final_meat_renewal_list/1')->with('message', 'Meat Renewal Form Final Approved By Hod Successfully'); //Redirect user somewhere
      }
      
@@ -280,6 +314,7 @@ class HodMeatRenewalListController extends Controller
             
              MeatRenewalLicense_Model::where('id', $id)->update($update);
              
+
             return redirect('/final_meat_renewal_list/2')->with('message', 'Meat Renewal Form Final Rejected By Hod Successfully');
      }
 

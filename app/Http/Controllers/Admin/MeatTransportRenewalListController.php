@@ -11,11 +11,12 @@ use App\Models\PET_Refund;
 use App\Models\MeatTransportRenewalLicense_Model;
 use App\Models\ApproveAdminRenewalLicense_Model;
 use App\Models\ApproveAdmin_RenewalTransport_Model;
-
+use App\Models\MeatRegisteredUser;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class MeatTransportRenewalListController extends Controller
 {
@@ -87,12 +88,48 @@ class MeatTransportRenewalListController extends Controller
             'approve_date' => date("Y-m-d H:i:s"),
             'approve_by' => Auth::user()->id,
         ];
-        
+        $data = MeatTransportRenewalLicense_Model::where('id', $id)->first();
+
         MeatTransportRenewalLicense_Model::where('id', $id)->update($update);
+
+        $unique_id = $data->trans_renwal_liceans_no;
+        //   dd($unique_id);
+        $user_id=$data->inserted_by;
+        $user = MeatRegisteredUser::where('id',$user_id)->first();
+        $mob_number=$data->mobile_number;
+                // dd($data->mobile_number);
+        $schema="Meat Transport";
+        $domain = "pmc-meatreegistration.smartpmc.co.in/";
+    	$sms = "Your application no: " . $unique_id . " for ".$schema." has been approved by the PMC office successfully. Please visit the PMC office for further processes, including document verification and certificate issuance. You can also check your license status on " . $domain . " CORE OCEAN.";
+    	$templateid = "1207171576775741291";
+        $senderid = "CoreOC";
+        $route = 1;
+        Log::info('Preparing to send SMS to: ' . $mob_number);
+
+        
+        $this->sendsmsnew($sms,$mob_number,$templateid);
+        //  dd($this);
+      
 
         return redirect('/meat_transport_renewal_list/1')->with('message', 'Meat Transport Renewal Form Approved Successfully'); //Redirect user somewhere
     }
 
+    public function sendsmsnew($sms,$mob_number,$templateid)
+    {
+
+        $key = "kbf8IN83hIxNTVgs";
+        $mbl=$mob_number;   /*or $mbl="XXXXXXXXXX,XXXXXXXXXX";*/
+        $message=$sms;
+        $message_content=urlencode($message);
+        $tempID= $templateid;
+        $senderid="CoreOC";
+        $route= 1;
+        $url = "http://sms.adityahost.com/vb/apikey.php?apikey=$key&senderid=$senderid&number=$mbl&message=$message_content&templateid=$tempID";
+
+        $output = file_get_contents($url);  /*default function for push any url*/
+
+    }
+    
      public function RejectMeatRenewalTransport(request $request, $id){
          
          $update = [
