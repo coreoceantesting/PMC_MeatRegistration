@@ -143,17 +143,17 @@ class MeatRegistrationController extends Controller
      public function store(Request $request)
     {
 
-// dd($request->all());
+//  dd($request->all());
     //   echo "hfdhg"; die;
       $mainid = Auth::guard('meatregistereduser')->user()->id;
-// dd($mainid);
-    //   $check =  DB::table('meat_registration_tbl AS t1')
-    //                                     ->select('*')
-    //                                     ->where('t1.inserted_by', '=', $mainid)
-    //                                     ->whereNull('t1.deleted_at')
-    //                                     ->orderBy('t1.id', 'DESC')
-    //                                     // ->whereMonth('inserted_dt', Carbon::now()->month)
-    //                                     ->count();
+//  dd($mainid);
+      $check =  DB::table('meat_registration_tbl AS t1')
+                                        ->select('*')
+                                        ->where('t1.inserted_by', '=', $mainid)
+                                        ->whereNull('t1.deleted_at')
+                                        ->orderBy('t1.id', 'DESC')
+                                        // ->whereMonth('inserted_dt', Carbon::now()->month)
+                                        ->count();
 
 // dd($check);
     //   if($check > 0){
@@ -185,7 +185,7 @@ class MeatRegistrationController extends Controller
         'unit' =>'required',
         // Business Details
         'business_name' => 'required|string',
-        'meat_type' => 'required|string',
+        'meat_type' => 'required',
         'per_day_capacity' => 'required|string',
         'provision_water' => 'required|numeric',
         'provision_electricty' => 'required|numeric',
@@ -497,7 +497,8 @@ class MeatRegistrationController extends Controller
         // Business Details
         $data->business_name = $request->get('business_name');
         $data->business_type = $request->get('business_type');
-        $data->meat_type = $request->get('meat_type');
+        $data->meat_type = implode(',', $request->get('meat_type'));
+        //  $data->meat_type =  $request->get('meat_type');
         $data->per_day_capacity = $request->get('per_day_capacity');
         $data->provision_water = $request->get('provision_water');
         $data->provision_electricty = $request->get('provision_electricty');
@@ -513,18 +514,19 @@ class MeatRegistrationController extends Controller
         $data->areaof_business_place = $request->get('areaof_business_place');
         $data->business_place = $request->get('business_place');
         $data->business_place_other = $request->get('business_place_other');
-        
+        $unique_id = "PMC-MET".rand(1000,10000000);
+        $data->meat_pplication_no =$unique_id;
         $data->inserted_dt = date("Y-m-d H:i:s");
         $data->inserted_by = Auth::guard('meatregistereduser')->user()->id;
         $data->save();
-        
-        // dd($data);
-        $unique_id = "PMC-MET".rand(1000,10000000);
+    //  dd($data);
+        // $unique_id = "PMC-MET".rand(1000,10000000);
         $update = [
-            'meat_pplication_no' => $unique_id.$data->id ,
+            'meat_pplication_no' => $unique_id,
             // 'inserted_by' => $data->id,
         ];
         
+        // dd($unique_id);
         
         MeatRegistration_Model::where('id', $data->id)->update($update);
         $key = "kbf8IN83hIxNTVgs";

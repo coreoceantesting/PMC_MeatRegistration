@@ -760,15 +760,15 @@
                                     
                                   
                                   
-                                  <label class="col-sm-2"><strong>Upload ID proof (Adharcard) of the applicant  <br> (अर्जदाराचा आयडी पुरावा (आधारकार्ड) अपलोड करा ) : <span style="color:red;">*</span></strong></label>
+                                <label class="col-sm-2"><strong>Upload ID proof (Adharcard) of the applicant  <br> (अर्जदाराचा आयडी पुरावा (आधारकार्ड) अपलोड करा ) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
-                                        <!--<?php if(!empty($data->adharcard_doc)) { ?>-->
+                                        <?php //if(!empty($data->adharcard_doc)) { ?>
                                         <!--<input type="file" name="adharcard_doc" id="adharcard_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('adharcard_doc') is-invalid @enderror" value="{{ $data->adharcard_doc }}" placeholder="Upload adharcard of applicant">-->
-                                        <!--<?php }else{?>-->
-                                        <!--  <input type="file" name="adharcard_doc" id="adharcard_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('adharcard_doc') is-invalid @enderror" value="{{ $data->regi_adharcard_doc }}" placeholder="Upload adharcard of applicant">-->
+                                        <?php //}else{?>
+                                          <!--<input type="file" name="adharcard_doc" id="adharcard_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('adharcard_doc') is-invalid @enderror" value="{{ $data->regi_adharcard_doc }}" placeholder="Upload adharcard of applicant">-->
 
 
-                                        <!--<?php }?>-->
+                                        <?php //}?>
 
                                         <!--<small class="text-secondary text-justify "> Note : The file should be less than 2MB .</small>-->
                                         <!--<br>-->
@@ -794,31 +794,31 @@
                                                             <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/adharcard_doc/{{ $data_registraion->adharcard_doc }}  " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
                                                         </p>
                                                         <?php }
-                                                                else{
+                                                                elseif($filter_ext == 'pdf'){
                                                                     ?>
-                                                                    <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/adharcard_doc/{{ $data_registraion->adharcard_doc }}" target="_blank" download>
+                                                                    <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/adharcard_doc/{{ $data_registraion->adharcard_doc }}" target="_blank" >
                                                                         <p class="mt-3 mb-0" id="image_div">
                                                                         <button type="button"class="btn btn-info">
-                                                                            Download File
+                                                                            View File
                                                                         </button>
                                                                         </p>                                                                
                                                                     </a>
-                                                        <?php }?>
+                                                        <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
                                                     </div>
                                                 </a>
-                                        
                                     </div>
                                     
+                                     
                                     <label class="col-sm-2"><strong>Upload Ration card, electricity / telephone bill. <br> ( रेशन कार्ड, वीज / टेलिफोन बिल अपलोड करा ) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
 
-                                        <!--<?php if(!empty($data->residitional_proof_doc)) { ?>-->
-                                        <!-- <input type="file" name="residitional_proof_doc" id="residitional_proof_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('residitional_proof_doc') is-invalid @enderror" value="{{ $data->residitional_proof_doc }}" placeholder="Upload residitional proof of applicat">-->
-                                        <!--<?php }else{?>-->
-                                        <!--   <input type="file" name="residitional_proof_doc" id="residitional_proof_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('residitional_proof_doc') is-invalid @enderror" value="{{ $data->regi_residitional_proof_doc }}" placeholder="Upload residitional proof of applicat">-->
+                                        <?php //if(!empty($data->residitional_proof_doc)) { ?>
+                                         <!--<input type="file" name="residitional_proof_doc" id="residitional_proof_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('residitional_proof_doc') is-invalid @enderror" value="{{ $data->residitional_proof_doc }}" placeholder="Upload residitional proof of applicat">-->
+                                        <?php //}else{?>
+                                           <!--<input type="file" name="residitional_proof_doc" id="residitional_proof_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('residitional_proof_doc') is-invalid @enderror" value="{{ $data->regi_residitional_proof_doc }}" placeholder="Upload residitional proof of applicat">-->
 
 
-                                        <!--<?php }?>-->
+                                        <?php //}?>
 
 
                                       
@@ -832,7 +832,7 @@
                                         <!--    </span>-->
                                         <!--@enderror-->
                                         
-                                        <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/residitional_proof_doc/{{ $data_registraion->residitional_proof_doc}}" target="_blank">
+                                         <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/residitional_proof_doc/{{ $data_registraion->residitional_proof_doc }}" target="_blank">
                                                     <div class="form-group">
                                                         <?php $document_path = $data_registraion->residitional_proof_doc;
                                                            $filter_path =  explode(".",$document_path);
@@ -843,22 +843,23 @@
                                                         $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                            {?>
                                                         <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/residitional_proof_doc/{{ $data_registraion->residitional_proof_doc }}  " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/residitional_proof_doc/{{ $data_registraion->residitional_proof_doc }}" alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
                                                         </p>
                                                         <?php }
-                                                                else{
+                                                                elseif($filter_ext == 'pdf'){
                                                                     ?>
-                                                                    <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/residitional_proof_doc/{{ $data_registraion->residitional_proof_doc }}" target="_blank" download>
+                                                                    <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/residitional_proof_doc/{{ $data_registraion->residitional_proof_doc }} " target="_blank" >
                                                                         <p class="mt-3 mb-0" id="image_div">
                                                                         <button type="button"class="btn btn-info">
-                                                                            Download File
+                                                                            View File
                                                                         </button>
                                                                         </p>                                                                
                                                                     </a>
-                                                        <?php }?>
+                                                        <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
                                                     </div>
                                                 </a>
                                     </div> 
+                                    
                                     
                                     
                                       
@@ -877,7 +878,7 @@
                                         <!--        <strong>{{ $message }}</strong>-->
                                         <!--    </span>-->
                                         <!--@enderror-->
-                                         <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/legal_business_doc/{{ $data_registraion->legal_business_doc}}" target="_blank">
+                                         <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/legal_business_doc/{{ $data_registraion->legal_business_doc }}" target="_blank">
                                                     <div class="form-group">
                                                         <?php $document_path = $data_registraion->legal_business_doc;
                                                            $filter_path =  explode(".",$document_path);
@@ -888,37 +889,37 @@
                                                         $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                            {?>
                                                         <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/legal_business_doc/{{ $data_registraion->legal_business_doc }}  " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/legal_business_doc/{{ $data_registraion->legal_business_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
                                                         </p>
                                                         <?php }
-                                                                else{
+                                                                elseif($filter_ext == 'pdf'){
                                                                     ?>
-                                                                    <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/legal_business_doc/{{ $data_registraion->legal_business_doc }}" target="_blank" download>
+                                                                    <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/legal_business_doc/{{ $data_registraion->legal_business_doc }}" target="_blank" >
                                                                         <p class="mt-3 mb-0" id="image_div">
                                                                         <button type="button"class="btn btn-info">
-                                                                            Download File
+                                                                            View File
                                                                         </button>
                                                                         </p>                                                                
                                                                     </a>
-                                                        <?php }?>
+                                                        <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
                                                     </div>
                                                 </a>
                                     </div>
                                     
                                     <label class="col-sm-2"><strong>Upload business registration certificate <br> ( व्यवसाय नोंदणी प्रमाणपत्र अपलोड करा ) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
+                                        <!-- <input type="file" name="business_registration_doc" id="business_registration_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('business_registration_doc') is-invalid @enderror" value="{{ $data->regi_business_registration_doc }}" placeholder="Upload business registration certificate">-->
                                         <!--<small class="text-secondary text-justify "> Note : The file should be less than 2MB .</small>-->
                                         <!--<br>-->
                                         <!--<small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>-->
                                         <!--<br>-->
-                                        <!--<input type="file" name="business_registration_doc" id="business_registration_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('business_registration_doc') is-invalid @enderror" value="{{ $data->regi_business_registration_doc }}" placeholder="Upload business registration certificate">-->
+                                       
                                         <!--@error('business_registration_doc')-->
                                         <!--    <span class="invalid-feedback" role="alert">-->
                                         <!--        <strong>{{ $message }}</strong>-->
                                         <!--    </span>-->
                                         <!--@enderror-->
-                                        
-                                         <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/business_registration_doc/{{ $data_registraion->business_registration_doc}}" target="_blank">
+                                          <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/business_registration_doc/{{ $data_registraion->business_registration_doc }}" target="_blank">
                                                     <div class="form-group">
                                                         <?php $document_path = $data_registraion->business_registration_doc;
                                                            $filter_path =  explode(".",$document_path);
@@ -929,19 +930,19 @@
                                                         $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                            {?>
                                                         <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/business_registration_doc/{{ $data_registraion->business_registration_doc }}  " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/business_registration_doc/{{ $data_registraion->business_registration_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
                                                         </p>
                                                         <?php }
-                                                                else{
+                                                                elseif($filter_ext == 'pdf'){
                                                                     ?>
-                                                                    <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/business_registration_doc/{{ $data_registraion->business_registration_doc }}" target="_blank" download>
+                                                                    <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/business_registration_doc/{{ $data_registraion->business_registration_doc }}" target="_blank" >
                                                                         <p class="mt-3 mb-0" id="image_div">
                                                                         <button type="button"class="btn btn-info">
-                                                                            Download File
+                                                                            View File
                                                                         </button>
                                                                         </p>                                                                
                                                                     </a>
-                                                        <?php }?>
+                                                        <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
                                                     </div>
                                                 </a>
                                     </div> 
@@ -952,20 +953,20 @@
                                 <div class="form-group row">
                                     <label class="col-sm-2"><strong>Upload receipt of recently paid property tax <br> ( मालमत्ता कर भरल्याचा पुरावा अपलोड करा ): <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
-                                        <!--<input type="file" name="property_tax_doc" id="property_tax_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('property_tax_doc') is-invalid @enderror" value="{{ $data->property_doc }}" placeholder="Upload receipt of recently paid property tax">-->
-                                        <!--<small class="text-secondary text-justify "> Note : The file should be less than 2MB .</small>-->
-                                        <!--<br>-->
-                                        <!--<small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>-->
-                                        <!--<br>-->
-                                        <!--@error('property_tax_doc')-->
-                                        <!--    <span class="invalid-feedback" role="alert">-->
-                                        <!--        <strong>{{ $message }}</strong>-->
-                                        <!--    </span>-->
-                                        <!--@enderror-->
+                                        <input type="file" name="property_tax_doc" id="property_tax_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('property_tax_doc') is-invalid @enderror" value="{{ $data->property_doc }}" placeholder="Upload receipt of recently paid property tax">
+                                        <small class="text-secondary text-justify "> Note : The file should be less than 2MB .</small>
+                                        <br>
+                                        <small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>
+                                        <br>
+                                        @error('property_tax_doc')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                         
-                                         <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/property_tax_doc/{{ $data_registraion->property_tax_doc}}" target="_blank">
+                                        <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/property_tax_doc/{{ $data->property_tax_doc }}" target="_blank">
                                                     <div class="form-group">
-                                                        <?php $document_path = $data_registraion->property_tax_doc;
+                                                        <?php $document_path = $data->property_tax_doc;
                                                            $filter_path =  explode(".",$document_path);
                                                            $size_of_array = count($filter_path);
                                                            $filter_ext = $filter_path[$size_of_array - 1];
@@ -974,38 +975,41 @@
                                                         $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                            {?>
                                                         <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/property_tax_doc/{{ $data_registraion->property_tax_doc }}  " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/property_tax_doc/{{ $data->property_tax_doc }}" alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
                                                         </p>
                                                         <?php }
-                                                                else{
+                                                                elseif($filter_ext == 'pdf'){
                                                                     ?>
-                                                                    <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/property_tax_doc/{{ $data_registraion->property_tax_doc }}" target="_blank" download>
+                                                                    <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/property_tax_doc/{{ $data->property_tax_doc }}" target="_blank" >
                                                                         <p class="mt-3 mb-0" id="image_div">
                                                                         <button type="button"class="btn btn-info">
-                                                                            Download File
+                                                                            View File
                                                                         </button>
                                                                         </p>                                                                
                                                                     </a>
-                                                        <?php }?>
+                                                        <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
                                                     </div>
                                                 </a>
                                     </div>
                                     
                                     <label class="col-sm-2"><strong>Upload receipt of recently paid water ( पानी पट्टी पावती अपलोड करा ) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
-                                        <!--<input type="file" name="paid_water_doc" id="paid_water_doc" accept=".png, .jpg, .jpeg, .pdf"  class="form-control @error('paid_water_doc') is-invalid @enderror" value="{{ $data->paid_water }}" placeholder="Upload receipt of recently paid water">-->
-                                        <!--<small class="text-secondary text-justify "> Note : The file should be less than 2MB .</small>-->
-                                        <!--<br>-->
-                                        <!--<small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>-->
-                                        <!--<br>-->
-                                        <!--@error('paid_water_doc')-->
-                                        <!--    <span class="invalid-feedback" role="alert">-->
-                                        <!--        <strong>{{ $message }}</strong>-->
-                                        <!--    </span>-->
-                                        <!--@enderror-->
-                                        <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/paid_water_doc/{{ $data_registraion->paid_water_doc }}" target="_blank">
+                                        
+                                        <input type="file" name="paid_water_doc" id="paid_water_doc" accept=".png, .jpg, .jpeg, .pdf"  class="form-control @error('paid_water_doc') is-invalid @enderror" value="{{ $data->paid_water }}" placeholder="Upload receipt of recently paid water">
+                                        <small class="text-secondary text-justify "> Note : The file should be less than 2MB .</small>
+                                        <br>
+                                        <small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>
+                                        <br>
+                                        @error('paid_water_doc')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                        
+                                        
+                                         <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/paid_water_doc/{{ $data->paid_water_doc }}" target="_blank">
                                                     <div class="form-group">
-                                                        <?php $document_path = $data_registraion->paid_water_doc;
+                                                        <?php $document_path = $data->paid_water_doc;
                                                            $filter_path =  explode(".",$document_path);
                                                            $size_of_array = count($filter_path);
                                                            $filter_ext = $filter_path[$size_of_array - 1];
@@ -1014,331 +1018,335 @@
                                                         $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                            {?>
                                                         <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/paid_water_doc/{{ $data_registraion->paid_water_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/paid_water_doc/{{ $data->paid_water_doc }}" alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
                                                         </p>
                                                         <?php }
-                                                                else{
+                                                                elseif($filter_ext == 'pdf'){
                                                                     ?>
-                                                                    <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/paid_water_doc/{{ $data_registraion->paid_water_doc }}" target="_blank" download>
+                                                                    <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/paid_water_doc/{{ $data->paid_water_doc }}" target="_blank" >
                                                                         <p class="mt-3 mb-0" id="image_div">
                                                                         <button type="button"class="btn btn-info">
-                                                                            Download File
+                                                                            View File
                                                                         </button>
                                                                         </p>                                                                
                                                                     </a>
-                                                        <?php }?>
+                                                        <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
                                                     </div>
                                                 </a>
-                                      
                                     </div> 
                                 </div>
                                 
                                 <div class="form-group row">
                            
                                     
-                                      <label class="col-sm-2"><strong>Upload Official Slaughterhouse Information e-certificate <br>( अधिकृत कत्तलखाण्याची माहिती ई संमातीपत्र अपलोड करा ) : <span style="color:red;">*</span></strong></label>
-                                    <div class="col-sm-4 col-md-4 p-2">
-                                        <!--<input type="file" name="slaughter_letter_doc" id="slaughter_letter_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('slaughter_letter_doc') is-invalid @enderror" value="{{ $data->letter_doc }}" placeholder="Upload details & authority letter from authorized slaughter house / poultry form & authority letter">-->
-                                        <!--<small class="text-secondary text-justify "> Note : The file should be less than 2MB .</small>-->
-                                        <!--<br>-->
-                                        <!--<small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>-->
-                                        <!--<br>-->
-                                        <!--@error('slaughter_letter_doc')-->
-                                        <!--    <span class="invalid-feedback" role="alert">-->
-                                        <!--        <strong>{{ $message }}</strong>-->
-                                        <!--    </span>-->
-                                        <!--@enderror-->
-                                          <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/slaughter_letter_doc/{{ $data_registraion->slaughter_letter_doc}}" target="_blank">
-                                                    <div class="form-group">
-                                                        <?php $document_path = $data_registraion->slaughter_letter_doc;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                        <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/slaughter_letter_doc/{{ $data_registraion->slaughter_letter_doc}}  " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
-                                                        </p>
-                                                        <?php }
-                                                                else{
-                                                                    ?>
-                                                                    <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/slaughter_letter_doc/{{ $data_registraion->slaughter_letter_doc }}" target="_blank" download>
-                                                                        <p class="mt-3 mb-0" id="image_div">
-                                                                        <button type="button"class="btn btn-info">
-                                                                            Download File
-                                                                        </button>
-                                                                        </p>                                                                
-                                                                    </a>
-                                                        <?php }?>
-                                                    </div>
-                                                </a>
-                                    </div>
-                                    
-                                    <label class="col-sm-2"><strong>Upload pest control treatment certificate issued from authorized agency <br> ( नोंदणीकृत  संस्थेकडून  कीटनाशक फवारणी केल्याचे प्रमाणपत्र अपलोड करा ): <span style="color:red;">*</span></strong></label>
-                                    <div class="col-sm-4 col-md-4 p-2">
-                                        <!--<input type="file" name="treatment_authorized_doc" id="treatment_authorized_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('treatment_authorized_doc') is-invalid @enderror" value="{{ $data->tre_authority_doc }}" placeholder="Upload pest control treatment certificate issued from authorized agency">-->
-                                        <!--<small class="text-secondary text-justify "> Note : The file should be less than 2MB .</small>-->
-                                        <!--<br>-->
-                                        <!--<small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>-->
-                                        <!--<br>-->
-                                        <!--@error('treatment_authorized_doc')-->
-                                        <!--    <span class="invalid-feedback" role="alert">-->
-                                        <!--        <strong>{{ $message }}</strong>-->
-                                        <!--    </span>-->
-                                        <!--@enderror-->
-                                        <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/treatment_authorized_doc/{{ $data_registraion->treatment_authorized_doc }}" target="_blank">
-                                                    <div class="form-group">
-                                                        <?php $document_path = $data_registraion->treatment_authorized_doc;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                        <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/treatment_authorized_doc/{{ $data_registraion->treatment_authorized_doc }}" alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
-                                                        </p>
-                                                        <?php }
-                                                                else{
-                                                                    ?>
-                                                                    <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/treatment_authorized_doc/{{ $data_registraion->treatment_authorized_doc }} " target="_blank" download>
-                                                                        <p class="mt-3 mb-0" id="image_div">
-                                                                        <button type="button"class="btn btn-info">
-                                                                            Download File
-                                                                        </button>
-                                                                        </p>                                                                
-                                                                    </a>
-                                                        <?php }?>
-                                                    </div>
-                                                </a>
-                                        
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group row">
-                                    <label class="col-sm-2"><strong>Upload medical fitness certificate issued by MBBS Doctor <br> ( एमबीबीएस डॉक्टरांनी दिलेले वैद्यकीय फिटनेस प्रमाणपत्र अपलोड करा ): <span style="color:red;">*</span></strong></label>
-                                    <div class="col-sm-4 col-md-4 p-2">
-                                        <!--<input type="file" name="fitness_certificate_doc" id="fitness_certificate_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('fitness_certificate_doc') is-invalid @enderror" value="{{ $data->fitness_doc }}" placeholder="Upload medical fitness certificate issued by Municipal hospital">-->
-                                        <!--<small class="text-secondary text-justify "> Note : The file should be less than 2MB .</small>-->
-                                        <!--<br>-->
-                                        <!--<small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>-->
-                                        <!--<br>-->
-                                        <!--@error('fitness_certificate_doc')-->
-                                        <!--    <span class="invalid-feedback" role="alert">-->
-                                        <!--        <strong>{{ $message }}</strong>-->
-                                        <!--    </span>-->
-                                        <!--@enderror-->
-                                        <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/fitness_certificate_doc/{{ $data_registraion->fitness_certificate_doc }}" target="_blank">
-                                                    <div class="form-group">
-                                                        <?php $document_path = $data_registraion->fitness_certificate_doc;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                        <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/fitness_certificate_doc/{{ $data_registraion->fitness_certificate_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
-                                                        </p>
-                                                        <?php }
-                                                                else{
-                                                                    ?>
-                                                                    <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/fitness_certificate_doc/{{ $data_registraion->fitness_certificate_doc }} " target="_blank" download>
-                                                                        <p class="mt-3 mb-0" id="image_div">
-                                                                        <button type="button"class="btn btn-info">
-                                                                            Download File
-                                                                        </button>
-                                                                        </p>                                                                
-                                                                    </a>
-                                                        <?php }?>
-                                                    </div>
-                                                </a>
-                                    </div> 
-                                    
-                                    <label class="col-sm-2 d-none"><strong>Upload FSSAI Registration Certificate  <br> (अन्न  सुरक्षा व मानदे अधिनियम २००६ व नियम  व नियमन,२०११ अन्वये, व्यवसाय नोंदणी प्रमाणपत्र )करा ) : <span style="color:red;">*</span></strong></label>
-                                    <div class="col-sm-4 col-md-4 p-2 d-none">
-                                        <!--<input type="file" name="issued_doc" id="issued_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('issued_doc') is-invalid @enderror" value="{{ $data->regi_issued_doc }}" placeholder="Upload document issued by APEDA, MPCB(ETP), FSSAI">-->
-                                        <!--<small class="text-secondary text-justify "> Note : The file should be less than 2MB .</small>-->
-                                        <!--<br>-->
-                                        <!--<small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>-->
-                                        <!--<br>-->
-                                        <!--@error('issued_doc')-->
-                                        <!--    <span class="invalid-feedback" role="alert">-->
-                                        <!--        <strong>{{ $message }}</strong>-->
-                                        <!--    </span>-->
-                                        <!--@enderror-->
-                                        
-                                         <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/issued_doc/{{ $data_registraion->issued_doc }}" target="_blank">
-                                                    <div class="form-group">
-                                                        <?php $document_path = $data_registraion->issued_doc;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                        <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/issued_doc/{{ $data_registraion->issued_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
-                                                        </p>
-                                                        <?php }
-                                                                else{
-                                                                    ?>
-                                                                    <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/issued_doc/{{ $data_registraion->issued_doc }}" target="_blank" download>
-                                                                        <p class="mt-3 mb-0" id="image_div">
-                                                                        <button type="button"class="btn btn-info">
-                                                                            Download File
-                                                                        </button>
-                                                                        </p>                                                                
-                                                                    </a>
-                                                        <?php }?>
-                                                    </div>
-                                                </a>
-                                    </div>
-                                </div>
-                                
-                                
-                                <div class="form-group row">
-                                    <label class="col-sm-2"><strong>Upload applicant signature / ( अर्जदाराची स्वाक्षरी अपलोड करा ) : <span style="color:red;">*</span></strong></label>
-                                    <div class="col-sm-4 col-md-4 p-2">
-                                        <!--<input type="file" name="applicant_signature" id="applicant_signature" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('applicant_signature') is-invalid @enderror" value="{{$data->app_sign }}" placeholder="Upload applicant signature">-->
-                                        <!--<small class="text-secondary text-justify "> Note : The file should be less than 2MB .</small>-->
-                                        <!--<br>-->
-                                        <!--<small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>-->
-                                        <!--<br>-->
-                                        <!--@error('applicant_signature')-->
-                                        <!--    <span class="invalid-feedback" role="alert">-->
-                                        <!--        <strong>{{ $message }}</strong>-->
-                                        <!--    </span>-->
-                                        <!--@enderror-->
-                                        
-                                         <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/applicant_signature/{{ $data_registraion->applicant_signature }}" target="_blank">
-                                                    <div class="form-group">
-                                                        <?php $document_path = $data_registraion->applicant_signature;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                        <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/applicant_signature/{{ $data_registraion->applicant_signature }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
-                                                        </p>
-                                                        <?php }
-                                                                else{
-                                                                    ?>
-                                                                    <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/applicant_signature/{{ $data_registraion->applicant_signature }}" target="_blank" download>
-                                                                        <p class="mt-3 mb-0" id="image_div">
-                                                                        <button type="button"class="btn btn-info">
-                                                                            Download File
-                                                                        </button>
-                                                                        </p>                                                                
-                                                                    </a>
-                                                        <?php }?>
-                                                    </div>
-                                                </a>
-                                    </div>
-                                    
-                                    <label class="col-sm-2"><strong>Upload applicant profile photo / ( अर्जदाराचा प्रोफाइल फोटो अपलोड करा ): <span style="color:red;">*</span></strong></label>
-                                    <div class="col-sm-4 col-md-4 p-2">
-                                        <!--<input type="file" name="profile_photo" id="profile_photo" accept=".png, .jpg, .jpeg, .pdf"  class="form-control @error('profile_photo') is-invalid @enderror" value="{{ $data->regi_profile_photo }}" placeholder="Upload applicant profile photo">-->
-                                        <!--<small class="text-secondary text-justify "> Note : The file should be less than 2MB .</small>-->
-                                        <!--<br>-->
-                                        <!--<small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>-->
-                                        <!--<br>-->
-                                        <!--@error('profile_photo')-->
-                                        <!--    <span class="invalid-feedback" role="alert">-->
-                                        <!--        <strong>{{ $message }}</strong>-->
-                                        <!--    </span>-->
-                                        <!--@enderror-->
-                                        
-                                        <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/profile_photo/{{ $data_registraion->profile_photo }}" target="_blank">
-                                                    <div class="form-group">
-                                                        <?php $document_path = $data_registraion->profile_photo;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                        <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/profile_photo/{{ $data_registraion->profile_photo }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
-                                                        </p>
-                                                        <?php }
-                                                                else{
-                                                                    ?>
-                                                                    <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/profile_photo/{{ $data_registraion->profile_photo }}" target="_blank" download>
-                                                                        <p class="mt-3 mb-0" id="image_div">
-                                                                        <button type="button"class="btn btn-info">
-                                                                            Download File
-                                                                        </button>
-                                                                        </p>                                                                
-                                                                    </a>
-                                                        <?php }?>
-                                                    </div>
-                                                </a>
-                                    </div> 
-                                </div>
-
-                                <div class="form-group row">
-                                    <label class="col-sm-2"><strong>Upload previous year licence copy  / ( मागील वर्षाच्या परवान्याची प्रत अपलोड करा ) : <span style="color:red;">*</span></strong></label>
-                                    <div class="col-sm-4 col-md-4 p-2">
-                                        <input type="file" name="old_licence" id="old_licence" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('old_licence') is-invalid @enderror" value="{{$data->old_licence }}" placeholder="Upload old_licence ">
-                                        <small class="text-secondary text-justify "> Note : The file should be less than 2MB .</small>
-                                        <br>
-                                        <small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>
-                                        <br>
-                                        @error('old_licence')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                        
-                                         <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/old_licence/{{ $data->old_licence }}" target="_blank">
-                                                    <div class="form-group">
-                                                        <?php $document_path = $data->old_licence;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                        <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/old_licence/{{ $data->old_licence }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
-                                                        </p>
-                                                        <?php }
-                                                                else{
-                                                                    ?>
-                                                                    <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/old_licence/{{ $data->old_licence }}" target="_blank" download>
-                                                                        <p class="mt-3 mb-0" id="image_div">
-                                                                        <button type="button"class="btn btn-info">
-                                                                            Download File
-                                                                        </button>
-                                                                        </p>                                                                
-                                                                    </a>
-                                                        <?php }?>
-                                                    </div>
-                                                </a>
-                                    </div>
-                                    </div>
-                                    
-                                        
-                                  <div class="form-group row mt-4">
-                                    <label class="col-md-3"></label>
-                                    <div class="col-md-9" style="display: flex; justify-content: flex-end;">
-                                        <a href="{{ url('user/appli_form') }}" class="btn btn-danger">Cancel</a>&nbsp;&nbsp;
+                                    <label class="col-sm-2"><strong>Upload details & authority letter from authorized slaughter house / poultry form & authority letter <br>( अधिकृत कुक्कुट पालन करणाऱ्या संस्थेचे व कत्तलखाण्याची माहिती ई संमातीपत्र अपलोड करा ) : <span style="color:red;">*</span></strong></label>
+                                  <div class="col-sm-4 col-md-4 p-2">
+                                      <!--<input type="file" name="slaughter_letter_doc" id="slaughter_letter_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('slaughter_letter_doc') is-invalid @enderror" value="{{ $data->letter_doc }}" placeholder="Upload details & authority letter from authorized slaughter house / poultry form & authority letter">-->
+                                      <!--<small class="text-secondary text-justify "> Note : The file should be less than 2MB .</small>-->
+                                      <!--<br>-->
+                                      <!--<small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>-->
+                                      <!--<br>-->
+                                      <!--@error('slaughter_letter_doc')-->
+                                      <!--    <span class="invalid-feedback" role="alert">-->
+                                      <!--        <strong>{{ $message }}</strong>-->
+                                      <!--    </span>-->
+                                      <!--@enderror-->
+                                      
+                                        <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/slaughter_letter_doc/{{ $data_registraion->slaughter_letter_doc }}" target="_blank">
+                                                  <div class="form-group">
+                                                      <?php $document_path = $data_registraion->slaughter_letter_doc;
+                                                         $filter_path =  explode(".",$document_path);
+                                                         $size_of_array = count($filter_path);
+                                                         $filter_ext = $filter_path[$size_of_array - 1];
+                                                         
+                                                      if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+                                                      $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
+                                                         {?>
+                                                      <p class="mt-3 mb-0" id="image_div">
+                                                          <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/slaughter_letter_doc/{{ $data_registraion->slaughter_letter_doc }}" alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                      </p>
+                                                      <?php }
+                                                              elseif($filter_ext == 'pdf'){
+                                                                  ?>
+                                                                  <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/slaughter_letter_doc/{{ $data_registraion->slaughter_letter_doc }}" target="_blank" >
+                                                                      <p class="mt-3 mb-0" id="image_div">
+                                                                      <button type="button"class="btn btn-info">
+                                                                          View File
+                                                                      </button>
+                                                                      </p>                                                                
+                                                                  </a>
+                                                      <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
+                                                  </div>
+                                              </a>
+                                  </div>
+                                  
+                                  <label class="col-sm-2"><strong>Upload pest control treatment certificate issued from authorized agency <br> ( नोंदणीकृत  संस्थेकडून  कीटनाशक फवारणी केल्याचे प्रमाणपत्र अपलोड करा ): <span style="color:red;">*</span></strong></label>
+                                  <div class="col-sm-4 col-md-4 p-2">
+                                       <input type="file" name="treatment_authorized_doc" id="treatment_authorized_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('treatment_authorized_doc') is-invalid @enderror" value="{{$data->treatment_authorized_doc }}" placeholder="Upload old_licence ">
                                      
-                                        <button type="submit" class="btn btn-success">Update</button>
-                                       
-                                    </div>
-                                </div>       
+                                      <small class="text-secondary text-justify "> Note : The file should be less than 2MB .</small>
+                                      <br>
+                                      <small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>
+                                      <br>
+                                      @error('treatment_authorized_doc')
+                                          <span class="invalid-feedback" role="alert">
+                                              <strong>{{ $message }}</strong>
+                                          </span>
+                                      @enderror
+                                      
+                                      <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/treatment_authorized_doc/{{ $data->treatment_authorized_doc }}" target="_blank">
+                                                  <div class="form-group">
+                                                      <?php $document_path = $data->treatment_authorized_doc;
+                                                         $filter_path =  explode(".",$document_path);
+                                                         $size_of_array = count($filter_path);
+                                                         $filter_ext = $filter_path[$size_of_array - 1];
+                                                         
+                                                      if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+                                                      $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
+                                                         {?>
+                                                      <p class="mt-3 mb-0" id="image_div">
+                                                          <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/treatment_authorized_doc/{{ $data->treatment_authorized_doc }}" alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                      </p>
+                                                      <?php }
+                                                              elseif($filter_ext == 'pdf'){
+                                                                  ?>
+                                                                  <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/treatment_authorized_doc/{{ $data->treatment_authorized_doc }}" target="_blank" >
+                                                                      <p class="mt-3 mb-0" id="image_div">
+                                                                      <button type="button"class="btn btn-info">
+                                                                          View File
+                                                                      </button>
+                                                                      </p>                                                                
+                                                                  </a>
+                                                      <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
+                                                  </div>
+                                              </a>
+                                  </div>
+                              </div>
+                              
+                              <div class="form-group row">
+                                  <label class="col-sm-2"><strong>Upload medical fitness certificate issued by MBBS Doctor <br> ( एमबीबीएस डॉक्टरांनी दिलेले वैद्यकीय फिटनेस प्रमाणपत्र अपलोड करा ): <span style="color:red;">*</span></strong></label>
+                                  <div class="col-sm-4 col-md-4 p-2">
+                                       <input type="file" name="fitness_certificate_doc" id="fitness_certificate_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('fitness_certificate_doc') is-invalid @enderror" value="{{$data->fitness_certificate_doc }}" placeholder="Upload old_licence ">
+                                    
+                                      <small class="text-secondary text-justify "> Note : The file should be less than 2MB .</small>
+                                      <br>
+                                      <small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>
+                                      <br>
+                                      @error('fitness_certificate_doc')
+                                          <span class="invalid-feedback" role="alert">
+                                              <strong>{{ $message }}</strong>
+                                          </span>
+                                      @enderror
+                                      
+                                       <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/fitness_certificate_doc/{{ $data->fitness_certificate_doc }}" target="_blank">
+                                                  <div class="form-group">
+                                                      <?php $document_path = $data->fitness_certificate_doc;
+                                                         $filter_path =  explode(".",$document_path);
+                                                         $size_of_array = count($filter_path);
+                                                         $filter_ext = $filter_path[$size_of_array - 1];
+                                                         
+                                                      if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+                                                      $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
+                                                         {?>
+                                                      <p class="mt-3 mb-0" id="image_div">
+                                                          <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/fitness_certificate_doc/{{ $data->fitness_certificate_doc }}" alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                      </p>
+                                                      <?php }
+                                                              elseif($filter_ext == 'pdf'){
+                                                                  ?>
+                                                                  <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/fitness_certificate_doc/{{ $data->fitness_certificate_doc }}" target="_blank" >
+                                                                      <p class="mt-3 mb-0" id="image_div">
+                                                                      <button type="button"class="btn btn-info">
+                                                                          View File
+                                                                      </button>
+                                                                      </p>                                                                
+                                                                  </a>
+                                                     <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
+                                                  </div>
+                                              </a>
+                                  </div> 
+                                  
+                                  {{-- <label class="col-sm-2"><strong>Upload FSSAI Registration Certificate  <br> (अन्न  सुरक्षा व मानदे अधिनियम २००६ व नियम  व नियमन,२०११ अन्वये, व्यवसाय नोंदणी प्रमाणपत्र )करा ) : <span style="color:red;">*</span></strong></label>
+                                  <div class="col-sm-4 col-md-4 p-2">
+                                      <!--<input type="file" name="issued_doc" id="issued_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('issued_doc') is-invalid @enderror" value="{{ $data->regi_issued_doc }}" placeholder="Upload document issued by APEDA, MPCB(ETP), FSSAI">-->
+                                      <!--<small class="text-secondary text-justify "> Note : The file should be less than 2MB .</small>-->
+                                      <!--<br>-->
+                                      <!--<small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>-->
+                                      <!--<br>-->
+                                      <!--@error('issued_doc')-->
+                                      <!--    <span class="invalid-feedback" role="alert">-->
+                                      <!--        <strong>{{ $message }}</strong>-->
+                                      <!--    </span>-->
+                                      <!--@enderror-->
+                                      
+                                       <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/issued_doc/{{ $data_registraion->issued_doc }}" target="_blank">
+                                                  <div class="form-group">
+                                                      <?php $document_path = $data_registraion->issued_doc;
+                                                         $filter_path =  explode(".",$document_path);
+                                                         $size_of_array = count($filter_path);
+                                                         $filter_ext = $filter_path[$size_of_array - 1];
+                                                         
+                                                      if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+                                                      $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
+                                                         {?>
+                                                      <p class="mt-3 mb-0" id="image_div">
+                                                          <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/issued_doc/{{ $data_registraion->issued_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                      </p>
+                                                      <?php }
+                                                              elseif($filter_ext == 'pdf'){
+                                                                  ?>
+                                                                  <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/issued_doc/{{ $data_registraion->issued_doc }}" target="_blank" >
+                                                                      <p class="mt-3 mb-0" id="image_div">
+                                                                      <button type="button"class="btn btn-info">
+                                                                          View File
+                                                                      </button>
+                                                                      </p>                                                                
+                                                                  </a>
+                                                      <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
+                                                  </div>
+                                              </a>
+                                  </div> --}}
+                              </div>
+                              
+                              
+                              <div class="form-group row">
+                                  <label class="col-sm-2"><strong>Upload applicant signature / ( अर्जदाराची स्वाक्षरी अपलोड करा ) : <span style="color:red;">*</span></strong></label>
+                                  <div class="col-sm-4 col-md-4 p-2">
+                                      <!--<input type="file" name="applicant_signature" id="applicant_signature" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('applicant_signature') is-invalid @enderror" value="{{$data->app_sign }}" placeholder="Upload applicant signature">-->
+                                      <!--<small class="text-secondary text-justify "> Note : The file should be less than 2MB .</small>-->
+                                      <!--<br>-->
+                                      <!--<small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>-->
+                                      <!--<br>-->
+                                      <!--@error('applicant_signature')-->
+                                      <!--    <span class="invalid-feedback" role="alert">-->
+                                      <!--        <strong>{{ $message }}</strong>-->
+                                      <!--    </span>-->
+                                      <!--@enderror-->
+                                      
+                                      
+                                        <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/applicant_signature/{{ $data_registraion->applicant_signature }}" target="_blank">
+                                                  <div class="form-group">
+                                                      <?php $document_path = $data_registraion->applicant_signature;
+                                                         $filter_path =  explode(".",$document_path);
+                                                         $size_of_array = count($filter_path);
+                                                         $filter_ext = $filter_path[$size_of_array - 1];
+                                                         
+                                                      if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+                                                      $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
+                                                         {?>
+                                                      <p class="mt-3 mb-0" id="image_div">
+                                                          <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/applicant_signature/{{ $data_registraion->applicant_signature }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                      </p>
+                                                      <?php }
+                                                              elseif($filter_ext == 'pdf'){
+                                                                  ?>
+                                                                  <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/applicant_signature/{{ $data_registraion->applicant_signature }}" target="_blank" >
+                                                                      <p class="mt-3 mb-0" id="image_div">
+                                                                      <button type="button"class="btn btn-info">
+                                                                          View File
+                                                                      </button>
+                                                                      </p>                                                                
+                                                                  </a>
+                                                      <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
+                                                  </div>
+                                              </a>
+                                  </div>
+                                  
+                                  <label class="col-sm-2"><strong>Upload applicant profile photo / ( अर्जदाराचा प्रोफाइल फोटो अपलोड करा ): <span style="color:red;">*</span></strong></label>
+                                  <div class="col-sm-4 col-md-4 p-2">
+                                      <!--<input type="file" name="profile_photo" id="profile_photo" accept=".png, .jpg, .jpeg, .pdf"  class="form-control @error('profile_photo') is-invalid @enderror" value="{{ $data->regi_profile_photo }}" placeholder="Upload applicant profile photo">-->
+                                      <!--<small class="text-secondary text-justify "> Note : The file should be less than 2MB .</small>-->
+                                      <!--<br>-->
+                                      <!--<small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>-->
+                                      <!--<br>-->
+                                      <!--@error('profile_photo')-->
+                                      <!--    <span class="invalid-feedback" role="alert">-->
+                                      <!--        <strong>{{ $message }}</strong>-->
+                                      <!--    </span>-->
+                                      <!--@enderror-->
+                                      
+                                        <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/profile_photo/{{ $data_registraion->profile_photo }}" target="_blank">
+                                                  <div class="form-group">
+                                                      <?php $document_path = $data_registraion->profile_photo;
+                                                         $filter_path =  explode(".",$document_path);
+                                                         $size_of_array = count($filter_path);
+                                                         $filter_ext = $filter_path[$size_of_array - 1];
+                                                         
+                                                      if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+                                                      $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
+                                                         {?>
+                                                      <p class="mt-3 mb-0" id="image_div">
+                                                          <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/profile_photo/{{ $data_registraion->profile_photo }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                      </p>
+                                                      <?php }
+                                                              elseif($filter_ext == 'pdf'){
+                                                                  ?>
+                                                                  <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/profile_photo/{{ $data_registraion->profile_photo }}" target="_blank" >
+                                                                      <p class="mt-3 mb-0" id="image_div">
+                                                                      <button type="button"class="btn btn-info">
+                                                                          View File
+                                                                      </button>
+                                                                      </p>                                                                
+                                                                  </a>
+                                                      <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
+                                                  </div>
+                                              </a>
+                                  </div> 
+                              </div>
+
+                              <div class="form-group row">
+                                <label class="col-sm-2"><strong>Upload previous year licence copy  / ( मागील वर्षाच्या परवान्याची प्रत अपलोड करा ) : <span style="color:red;">*</span></strong></label>
+                                <div class="col-sm-4 col-md-4 p-2">
+                                    <input type="file" name="old_licence" id="old_licence" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('old_licence') is-invalid @enderror" value="{{$data->old_licence }}" placeholder="Upload old_licence ">
+                                    <small class="text-secondary text-justify "> Note : The file should be less than 2MB .</small>
+                                    <br>
+                                    <small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>
+                                    <br>
+                                    @error('old_licence')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                    
+                                     <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/old_licence/{{ $data->old_licence }}" target="_blank">
+                                                <div class="form-group">
+                                                    <?php $document_path = $data->old_licence;
+                                                       $filter_path =  explode(".",$document_path);
+                                                       $size_of_array = count($filter_path);
+                                                       $filter_ext = $filter_path[$size_of_array - 1];
+                                                       
+                                                    if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+                                                    $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
+                                                       {?>
+                                                    <p class="mt-3 mb-0" id="image_div">
+                                                        <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/old_licence/{{ $data->old_licence }}" alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                    </p>
+                                                    <?php }
+                                                            elseif($filter_ext == 'pdf'){
+                                                                ?>
+                                                                <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/old_licence/{{ $data->old_licence }}" target="_blank" >
+                                                                    <p class="mt-3 mb-0" id="image_div">
+                                                                    <button type="button"class="btn btn-info">
+                                                                        View File
+                                                                    </button>
+                                                                    </p>                                                                
+                                                                </a>
+                                                    <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
+                                                </div>
+                                            </a>
+                                </div>
+                                </div>
+                                
+                                    
+                              <div class="form-group row mt-4">
+                                <label class="col-md-3"></label>
+                                <div class="col-md-9" style="display: flex; justify-content: flex-end;">
+                                    <a href="{{ url('/') }}" class="btn btn-danger">Cancel</a>&nbsp;&nbsp;
+                                 
+                                    <button type="submit" class="btn btn-success">Update</button>
+                                   
+                                </div>
+                            </div>        
                             </section>
                             
                         </form>

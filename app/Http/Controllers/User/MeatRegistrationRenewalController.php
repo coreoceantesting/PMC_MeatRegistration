@@ -171,48 +171,48 @@ class MeatRegistrationRenewalController extends Controller
       $this->validate($request, [
             
             // Basic Details
-            'applicant_title_id' => 'required|numeric',
-            'applicant_fname' => 'required|string',
-            'applicant_mname' => 'required|string',
-            'applicant_lname' => 'required|string',
+            // 'applicant_title_id' => 'required|numeric',
+            // 'applicant_fname' => 'required|string',
+            // 'applicant_mname' => 'required|string',
+            // 'applicant_lname' => 'required|string',
             // 'appl_dob' => 'required|string',
             // 'appl_age' => 'required|string',
-            'mobile_number' => 'required|string',
-            'email' => 'required|string',
+            // 'mobile_number' => 'required|string',
+            // 'email' => 'required|string',
             // 'gender' => 'required|string',
-            'aadhar_number' => 'required|string',
+            // 'aadhar_number' => 'required|string',
             
             // Residential Address of Applicant
-            'house_number' => 'required|string',
+            // 'house_number' => 'required|string',
             // 'house_name' => 'required|string',
-            'street_1' => 'required|string',
+            // 'street_1' => 'required|string',
             // 'street_2' => 'required|string',
-            'area_1' => 'required|string',
+            // 'area_1' => 'required|string',
             // 'area_2' => 'required|string',
-            'country_id' => 'required|string',
-            'state_id' => 'required|string',
-            'district_id' => 'required|string',
-            'taluka_id' => 'required|string',
-            'zipcode' => 'required|string',
+            // 'country_id' => 'required|string',
+            // 'state_id' => 'required|string',
+            // 'district_id' => 'required|string',
+            // 'taluka_id' => 'required|string',
+            // 'zipcode' => 'required|string',
             
             // Business Details
-            'business_name' => 'required|string',
-            'business_type' => 'required|numeric',
-            'meat_type' => 'required|string',
-            'per_day_capacity' => 'required|string',
-            'provision_water' => 'required|numeric',
-            'provision_electricty' => 'required|numeric',
-            'business_address' => 'required|string',
-            'sewerage_disposing' => 'required|numeric',
+            // 'business_name' => 'required|string',
+            // 'business_type' => 'required|numeric',
+            // 'meat_type' => 'required',
+            // 'per_day_capacity' => 'required|string',
+            // 'provision_water' => 'required|numeric',
+            // 'provision_electricty' => 'required|numeric',
+            // 'business_address' => 'required|string',
+            // 'sewerage_disposing' => 'required|numeric',
             // 'prcision_dispose_id' => 'required|string',
-            'place_id' => 'required|numeric',
+            // 'place_id' => 'required|numeric',
             
-            'regi_authority_name' => 'required|string',
-            'register_number' => 'required|string',
-            'valid_till' => 'required|string',
+            // 'regi_authority_name' => 'required|string',
+            // 'register_number' => 'required|string',
+            // 'valid_till' => 'required|string',
              
-             'areaof_business_place' => 'required|string',
-             'business_place' => 'required|numeric',
+            //  'areaof_business_place' => 'required|string',
+            //  'business_place' => 'required|numeric',
             //  'business_place_other' => 'required|string',
             
             // Upload Document
@@ -238,7 +238,7 @@ class MeatRegistrationRenewalController extends Controller
             // 'slaughter_letter_doc' => 'required|mimes:jpeg,png,jpg,pdf|max:2048',
             // 'applicant_signature' => 'required|mimes:jpeg,png,jpg,pdf|max:2048',
             // 'profile_photo' => 'required|mimes:jpeg,png,jpg,pdf|max:2048',
-            'old_licence' => 'required|mimes:jpeg,png,jpg,pdf|max:2048',
+            // 'old_licence' => 'required|mimes:jpeg,png,jpg,pdf|max:2048',
 
          ],[
               // Basic Details
@@ -352,6 +352,123 @@ class MeatRegistrationRenewalController extends Controller
 
         $data = new MeatRenewalLicense_Model();
         
+        if ($request->hasFile('adharcard_doc')) {
+            $aadharcardFile = $request->file('adharcard_doc');
+            $aadharcardName = time() . '_' . $aadharcardFile->getClientOriginalName();
+            $aadharcardFile->move(public_path('PMC_Meat_Registration/meat_file/adharcard_doc'), $aadharcardName);
+        } else {
+            $aadharcardName = $request->input('old_adharcard_doc'); // Use old file
+        }
+
+        if ($request->hasFile('residitional_proof_doc')) {
+            $residitionalproofFile = $request->file('residitional_proof_doc');
+            $residitionalproofName = time() . '_' . $residitionalproofFile->getClientOriginalName();
+            $residitionalproofFile->move(public_path('PMC_Meat_Registration/meat_file/residitional_proof_doc'), $residitionalproofName);
+        } else {
+            $residitionalproofName = $request->input('old_residitional_proof_doc'); // Use old file
+        }
+
+        if ($request->hasFile('legal_business_doc')) {
+            $legalbusinessFile = $request->file('legal_business_doc');
+            $legalbusinessName = time() . '_' . $legalbusinessFile->getClientOriginalName();
+            $legalbusinessFile->move(public_path('PMC_Meat_Registration/meat_file/legal_business_doc'), $legalbusinessName);
+        } else {
+            $legalbusinessName = $request->input('old_legal_business_doc'); // Use old file
+        }
+
+        if ($request->hasFile('business_registration_doc')) {
+            $businessregiFile = $request->file('business_registration_doc');
+            $businessregiName = time() . '_' . $businessregiFile->getClientOriginalName();
+            $businessregiFile->move(public_path('PMC_Meat_Registration/meat_file/business_registration_doc'), $businessregiName);
+        } else {
+            $businessregiName = $request->input('old_business_registration_doc'); // Use old file
+        }
+      
+        if ($request->hasFile('property_tax_doc')) {
+            $propertytaxFile = $request->file('property_tax_doc');
+            $propertytaxName = time() . '_' . $propertytaxFile->getClientOriginalName();
+            $propertytaxFile->move(public_path('PMC_Meat_Registration/meat_file/property_tax_doc'), $propertytaxName);
+        } else {
+            $propertytaxName = $request->input('old_property_tax_doc'); // Use old file
+        }
+
+        if ($request->hasFile('paid_water_doc')) {
+            $paidwaterFile = $request->file('paid_water_doc');
+            $paidwaterName = time() . '_' . $paidwaterFile->getClientOriginalName();
+            $paidwaterFile->move(public_path('PMC_Meat_Registration/meat_file/paid_water_doc'), $paidwaterName);
+        } else {
+            $propertytaxName = $request->input('old_paid_water_doc'); // Use old file
+        }
+        // dd($propertytaxName);
+    
+
+        if ($request->hasFile('slaughter_letter_doc')) {
+            $slugletterFile = $request->file('slaughter_letter_doc');
+            $slugletterName = time() . '_' . $slugletterFile->getClientOriginalName();
+            $slugletterFile->move(public_path('PMC_Meat_Registration/meat_file/slaughter_letter_doc'), $slugletterName);
+        } else {
+            $slugletterName = $request->input('old_slaughter_letter_doc'); // Use old file
+        }
+        if ($request->hasFile('treatment_authorized_doc')) {
+            $authorizedFile = $request->file('treatment_authorized_doc');
+            $authorizedName = time() . '_' . $authorizedFile->getClientOriginalName();
+            $authorizedFile->move(public_path('PMC_Meat_Registration/meat_file/treatment_authorized_doc'), $authorizedName);
+        } else {
+            $authorizedName = $request->input('old_treatment_authorized_doc'); // Use old file
+        }
+        if ($request->hasFile('fitness_certificate_doc')) {
+            $fitnessFile = $request->file('fitness_certificate_doc');
+            $fitnessName = time() . '_' . $fitnessFile->getClientOriginalName();
+            $fitnessFile->move(public_path('PMC_Meat_Registration/meat_file/fitness_certificate_doc'), $fitnessName);
+        } else {
+            $fitnessName = $request->input('old_fitness_certificate_doc'); // Use old file
+        }
+        // if ($request->hasFile('Factory_reg_and_license_doc')) {
+        //     $factoryregFile = $request->file('Factory_reg_and_license_doc');
+        //     $factoryregName = time() . '_' . $factoryregFile->getClientOriginalName();
+        //     $factoryregFile->move(public_path('PMC_Meat_Registration/meat_file/Factory_reg_and_license_doc'), $factoryregName);
+        // } else {
+        //     $factoryregName = $request->input('old_Factory_reg_and_license_doc'); // Use old file
+        // }
+        if ($request->hasFile('issued_doc')) {
+            $issueddocFile = $request->file('issued_doc');
+            $issueddocName = time() . '_' . $issueddocFile->getClientOriginalName();
+            $issueddocFile->move(public_path('PMC_Meat_Registration/meat_file/issued_doc'), $issueddocName);
+        } else {
+            $issueddocName = $request->input('old_issued_doc'); // Use old file
+        }
+
+        if ($request->hasFile('applicant_signature')) {
+            $appsignatureFile = $request->file('applicant_signature');
+            $appsignatureName = time() . '_' . $appsignatureFile->getClientOriginalName();
+            $appsignatureFile->move(public_path('PMC_Meat_Registration/meat_file/applicant_signature'), $appsignatureName);
+        } else {
+            $appsignatureName = $request->input('old_applicant_signature'); // Use old file
+        }
+
+        if ($request->hasFile('profile_photo')) {
+            $profilephotoFile = $request->file('profile_photo');
+            $profilephotoName = time() . '_' . $profilephotoFile->getClientOriginalName();
+            $profilephotoFile->move(public_path('PMC_Meat_Registration/meat_file/profile_photo'), $profilephotoName);
+        } else {
+            $profilephotoName = $request->input('old_profile_photo'); // Use old file
+        }
+
+
+        if ($request->hasFile('municipal_corpor_doc')) {
+            $muncipalcorporFile = $request->file('municipal_corpor_doc');
+            $muncipalcorporName = time() . '_' . $muncipalcorporFile->getClientOriginalName();
+            $muncipalcorporFile->move(public_path('PMC_Meat_Registration/meat_file/municipal_corpor_doc'), $muncipalcorporName);
+        } else {
+            $muncipalcorporName = $request->input('old_municipal_corpor_doc'); // Use old file
+        }
+        if ($request->hasFile('old_licence')) {
+            $oldlicenceFile = $request->file('old_licence');
+            $oldlicenceName = time() . '_' . $oldlicenceFile->getClientOriginalName();
+            $oldlicenceFile->move(public_path('PMC_Meat_Registration/meat_file/old_licence'), $oldlicenceName);
+        } else {
+            $oldlicenceName = $request->input('old_old_licence'); // Use old file
+        }
        
         
         // if(!empty($request->hasFile('adharcard_doc'))){
@@ -553,7 +670,8 @@ class MeatRegistrationRenewalController extends Controller
         // Business Details
         $data->business_name = $request->get('business_name');
         $data->business_type = $request->get('business_type');
-        $data->meat_type = $request->get('meat_type');
+         $data->meat_type = implode(",", $request->get('meat_type'));
+        //  $data->meat_type = $request->get('meat_type');
         $data->per_day_capacity = $request->get('per_day_capacity');
         $data->provision_water = $request->get('provision_water');
         $data->provision_electricty = $request->get('provision_electricty');
@@ -569,6 +687,21 @@ class MeatRegistrationRenewalController extends Controller
         $data->areaof_business_place = $request->get('areaof_business_place');
         $data->business_place = $request->get('business_place');
         $data->business_place_other = $request->get('business_place_other');
+        $data->adharcard_doc =$aadharcardName;
+        $data->residitional_proof_doc=$residitionalproofName;
+        $data->legal_business_doc=$legalbusinessName;
+        $data->registration_doc=$businessregiName;
+        $data->property_tax_doc=$propertytaxName;
+        $data->paid_water_doc=$propertytaxName;
+        $data->slaughter_letter_doc=$slugletterName;
+        $data->treatment_authorized_doc=$authorizedName;
+        $data->fitness_certificate_doc=$fitnessName;
+        // $data->Factory_reg_and_license_doc=$factoryregName;
+        $data->issued_doc=$issueddocName;
+        $data->applicant_signature=$appsignatureName;
+        $data->profile_photo=$profilephotoName;
+        $data->municipal_corpor_doc=$muncipalcorporName;
+        $data->old_licence=$oldlicenceName;
         $data ->is_renewal = 1;
         $data->inserted_dt = date("Y-m-d H:i:s");
         $data->inserted_by = Auth::guard('meatregistereduser')->user()->id;
@@ -576,7 +709,7 @@ class MeatRegistrationRenewalController extends Controller
                 $data->renwal_liceans_no = $unique_id;
 
         $data->save();
-
+// dd($data);
         // $update = [
         //     'renwal_liceans_no' => $unique_id.$data->id ,
         //     // 'inserted_by' => $data->id,
@@ -625,6 +758,7 @@ class MeatRegistrationRenewalController extends Controller
     public function UserRenewalFormView(Request $request, $application_id, $user_type)
     {
         
+        $unit_Meat_Type = DB::table('unit_Meat_Type')->get();
         $meattype_mst = MeatType_Master::orderBy('id','desc')->pluck('meat_name', 'id')->whereNull('deleted_at');
 
 
@@ -674,7 +808,7 @@ class MeatRegistrationRenewalController extends Controller
                             ->first();
                             
             
-          return view('user.meat_renewal.user_renewal_applicant_form_view', compact('data', 'user_type','meattype_mst', 'data_registraion'));
+          return view('user.meat_renewal.user_renewal_applicant_form_view', compact('data', 'user_type','meattype_mst', 'data_registraion','unit_Meat_Type'));
         }
         
     }
@@ -1373,7 +1507,7 @@ class MeatRegistrationRenewalController extends Controller
                                         ->leftJoin('mst_dist AS t2', 't2.id', '=', 't1.district_id')
                                         ->leftJoin('mst_taluka AS t3', 't3.id', '=', 't1.taluka_id')
                                         ->leftJoin('meat_type_mst AS t4', 't4.id', '=', 't1.meat_type')
-                                        // ->leftJoin('meat_registration_tbl AS t5', 't5.id', '=', 't1.register_table_id')
+                                         ->leftJoin('meat_registration_tbl AS t5', 't5.id', '=', 't1.register_table_id')
                                         // ->where('t1.status', '=', $status)
                                         ->where('t1.id', '=', $application_id)
                                         ->whereNull('t1.deleted_at')

@@ -449,10 +449,10 @@
                                                         <?php }
                                                                 else{
                                                                     ?>
-                                                                    <a href="{{url('/')}}/PMC_vehicle_Registration/meat_file/driving_licence/{{ $data->driving_licence }}" target="_blank" download>
+                                                                    <a href="{{url('/')}}/PMC_vehicle_Registration/meat_file/driving_licence/{{ $data->driving_licence }}" target="_blank">
                                                                         <p class="mt-3 mb-0" id="image_div">
                                                                         <button type="button"class="btn btn-info">
-                                                                            Download File
+                                                                            View File
                                                                         </button>
                                                                         </p>                                                                
                                                                     </a>
@@ -492,10 +492,10 @@
                                                         <?php }
                                                                 else{
                                                                     ?>
-                                                                    <a href="{{url('/')}}/PMC_vehicle_Registration/meat_file/vehicle_insurance_doc/{{ $data->vehicle_insurance_doc }}" target="_blank" download>
+                                                                    <a href="{{url('/')}}/PMC_vehicle_Registration/meat_file/vehicle_insurance_doc/{{ $data->vehicle_insurance_doc }}" target="_blank">
                                                                         <p class="mt-3 mb-0" id="image_div">
                                                                         <button type="button"class="btn btn-info">
-                                                                            Download File
+                                                                            View File
                                                                         </button>
                                                                         </p>                                                                
                                                                     </a>
@@ -537,10 +537,10 @@
                                                         <?php }
                                                                 else{
                                                                     ?>
-                                                                    <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/transport_renewal/old_licence/{{ $data->old_licence }}" target="_blank" download>
+                                                                    <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/transport_renewal/old_licence/{{ $data->old_licence }}" target="_blank">
                                                                         <p class="mt-3 mb-0" id="image_div">
                                                                         <button type="button"class="btn btn-info">
-                                                                            Download File
+                                                                            View File
                                                                         </button>
                                                                         </p>                                                                
                                                                     </a>

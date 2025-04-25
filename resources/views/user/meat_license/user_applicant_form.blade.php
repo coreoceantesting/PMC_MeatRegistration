@@ -156,17 +156,13 @@
                                             @endif
                                         @endif
                                         
-                                        @if (!empty($user_list) && count($user_list) > 0)
-        								@if($user_list[0]->final_approve == 1)
+                                       
         								<th class="no-export">Meat License Certificate</th>
-        								@endif
-        								 @endif
+        							
         								 
-        								 	@if (!empty($user_list) && count($user_list) > 0)
-                                        	 @if($user_list[0]->status == '1') 
+        								 	
                                              <th>Invoice</th>
-                                            @endif
-                                        	  @endif
+                                         
         								 
                                         <th>Action</th>
                                     </tr>
@@ -214,9 +210,9 @@
         								      <td>{{ $value->final_reason_for_rejection }}</td>
         								    @endif
             								
-            								@if($value->final_approve == 1)
                                             
                                             <td style="display:flex;">
+                                                @if($value->final_approve == 1)
                                             
                                               <a href='{{ url("/user/self_affadevit_pdf/{$value->id}") }}' class="btn btn-success btn-sm">
                                                Affidavit
@@ -230,16 +226,16 @@
                                                Marathi 
                                              </a>
                                             
+                                             @endif
                                              </td>
-                                               @endif
                                                
-                                              @if($value->status == 1)
                                                <td> 
+                                                   @if($value->status == 1)
                                                <a href='{{ url("/user/appli_form/invoice_meat/{$value->id}/{$value->type}") }}' class="btn btn-primary waves-effect m-r-20" target="_blank">
                                                   Invoice
                                                 </a>
-                                                </td>
                                                 @endif
+                                                </td>
                                                 
                                                <td style="display:flex;" class="no-export">
                                                @if($value->hod_status == '0' && $value->status == '0' && $value->final_approve == '0')
@@ -614,17 +610,13 @@
                                             @endif
                                         @endif
                                         
-                                        	@if (!empty($transport_renewal_list) && count($transport_renewal_list) > 0)
-        								@if($transport_renewal_list[0]->tr_final_approve == 1)
+                                   
         									<th class="no-export">Meat Renewal License Certificate</th>
-        								@endif
-        								 @endif
+        								
                                         
-                                       	@if (!empty($transport_renewal_list) && count($transport_renewal_list) > 0)
-                                        	 @if($transport_renewal_list[0]->status == '1') 
+                                      
                                              <th>Invoice</th>
-                                            @endif
-                                        	  @endif
+                                          
                                        
                                         <th>Action</th>
                                     </tr>
@@ -671,9 +663,9 @@
         								      <td>{{ $value->tr_final_reason_for_rejection }}</td>
         								    @endif
             								
-            							@if($value->tr_final_approve == 1)
                                             
                                             <td style="display:flex;">
+                                                @if($value->tr_final_approve == 1)
                                             
                                              <!-- <a href='{{ url("/user/self_affadevit_pdf/{$value->id}") }}' class="btn btn-success btn-sm">-->
                                              <!--  Affidavit-->
@@ -687,16 +679,16 @@
                                                Marathi 
                                              </a>
                                             
+                                             @endif
                                              </td>
-                                               @endif
                                                
-                                               @if($value->status == 1)
                                                <td> 
+                                                   @if($value->status == 1)
                                                <a href='{{ url("/user/appli_form/invoice_transrenewal/{$value->id}/{$value->type}") }}' class="btn btn-primary waves-effect m-r-20" target="_blank">
                                                   Invoice
                                                 </a>
-                                                </td>
                                                 @endif
+                                            </td>
                                                 
                                                <td style="display:flex;" class="no-export">
                                                  @if($value->tr_hod_status == '0' && $value->status == '0' && $value->tr_final_approve == '0')

@@ -124,7 +124,7 @@ class MeatTransportRenewalController extends Controller
             'business_address' => 'required|string',
             'from_date' => 'required|string',
             'to_date' => 'required|string',
-            'meat_type' => 'required|numeric',
+            'meat_type' => 'required',
             'per_day_capacity' => 'required|string',
            
             // 'old_licence' => 'required|mimes:jpeg,png,jpg,pdf|max:2048',
@@ -237,7 +237,8 @@ class MeatTransportRenewalController extends Controller
         $data->business_address = $request->get('business_address');
         $data->from_date = $request->get('from_date');
         $data->to_date = $request->get('to_date');
-        $data->meat_type = $request->get('meat_type');
+        $data->meat_type = implode(",", $request->get('meat_type'));
+        // dd($data->meat_type);
         $data->per_day_capacity = $request->get('per_day_capacity');
         $data->register_table_id =$request->get('register_table_id');
         $data ->is_renewal = 1;
@@ -246,7 +247,7 @@ class MeatTransportRenewalController extends Controller
         $unique_id = "PMC-MET-VEH".rand(1000,10000000);
         $data->trans_renwal_liceans_no = $unique_id;
         $data->save();
-        // dd($data);
+        //  dd($data);
         // $update = [
         //     'trans_renwal_liceans_no' => $unique_id.$data->id ,
         //     // 'inserted_by' => $data->id,

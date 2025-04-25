@@ -187,7 +187,7 @@
                                 
                                             
                                            <td style="display:flex;" class="no-export">
-                                              <a href="{{ url('/user/cold_storage_renewal_form/' . $value->id . '/0') }}" class="btn btn-primary btn-sm">
+                                              <a href="{{ url('/user/meat_renewal_form/' . $value->id . '/0') }}" class="btn btn-primary btn-sm">
                                                 <i class="material-icons"><i class="micon dw dw-eye"></i></i>
                                                 Renewal
                                             </a>
