@@ -472,10 +472,10 @@
                                                         <div class="form-group row">
                                                             <label class="col-sm-2"><strong>Meat Type / (मांसाचा प्रकार) : <span style="color:red;">*</span></strong></label>
                                                             <div class="col-sm-4 col-md-4 p-2">
-                                                                <select class="form-control custom-select2 @error('meat_type') is-invalid @enderror" name="meat_type" id="meat_type" style="width: 100%; height: 38px;">
-                                                                    <option value=" ">Select Meat Type / (मांसाचा प्रकार) </option>
+                                                                <select class="form-control custom-select2 @error('meat_type') is-invalid @enderror" name="meat_type[]" id="meat_type" multiple style="width: 100%; height: 38px;">
+                                                                    <option value=" ">Select Meat Type / (मांसाचा प्रकार)</option>
                                                                     @foreach ($meattype_mst as $key => $value)
-                                                                        <option value="{{ $key }}" {{ old('meat_type') == $key ? 'selected' : '' }}>{{ $value }}</option>
+                                                                    <option value="{{ $key }}" {{ in_array($key, old('meat_type', [])) ? 'selected' : '' }}>{{ $value }}</option>
                                                                     @endforeach
                                                                 </select>
 
@@ -485,7 +485,7 @@
                                                                     </span>
                                                                 @enderror
                                                             </div>
-                                                            
+
                                                             <label class="col-sm-2"><strong>Per Day Capacity / (प्रतिदिन क्षमता) : <span style="color:red;">*</span> </strong></label>
                                                             <div class="col-sm-4 col-md-4 p-2">
                                                                 <input type="text" name="per_day_capacity" id="per_day_capacity" class="form-control @error('per_day_capacity') is-invalid @enderror" value="{{ old('per_day_capacity') }}"
@@ -496,7 +496,7 @@
                                                                     </span>
                                                                 @enderror
                                                             </div>
-                                                            
+
                                                              <label class="col-sm-2"><strong>Unit / (युनिट) : <span style="color:red;">*</span></strong></label>
                                                                 <div class="col-sm-4 col-md-4 p-2">
                                                                     <select class="form-control custom-select2 @error('unit') is-invalid @enderror" name="unit" id="unit" style="width: 100%; height: 38px;">
@@ -507,7 +507,7 @@
                                                                             </option>
                                                                         @endforeach
                                                                     </select>
-                                                                    
+
                                                                     @error('unit')
                                                                         <span class="invalid-feedback" role="alert">
                                                                             <strong>{{ $message }}</strong>
@@ -917,9 +917,9 @@
                                                                         </span>
                                                                     @enderror
                                                                 </div>
-                                                                
-                                                                 
-                                                                
+
+
+
                                                                  <label class="col-sm-2"><strong>Upload business registration certificate <br> ( व्यवसाय नोंदणी प्रमाणपत्र अपलोड करा ) : </strong></label>
                                                                 <div class="col-sm-4 col-md-4 p-2">
 
@@ -1046,7 +1046,7 @@
         </div>
     </div>
 
-    
+
     <script src="{{ url('/') }}/userend/assets/vendors/scripts/core.js"></script>
     <script src="{{ url('/') }}/userend/assets/vendors/scripts/script.min.js"></script>
     <script src="{{ url('/') }}/userend/assets/vendors/scripts/process.js"></script>
@@ -1140,7 +1140,7 @@
         });
     </script>
 
-   
+
     <script>
         $(document).ready(function() {
 
@@ -1169,7 +1169,7 @@
         });
     </script>
 
-  
+
     <script>
         $(document).ready(function() {
             var today = new Date();
