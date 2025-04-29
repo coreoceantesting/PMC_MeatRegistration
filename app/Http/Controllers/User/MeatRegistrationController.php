@@ -498,7 +498,7 @@ class MeatRegistrationController extends Controller
         $data->business_name = $request->get('business_name');
         $data->business_type = $request->get('business_type');
         $data->meat_type = implode(',', $request->get('meat_type'));
-        // dd($data->meat_type);
+    //  dd($data->meat_type);
         //  $data->meat_type =  $request->get('meat_type');
         $data->per_day_capacity = $request->get('per_day_capacity');
         $data->provision_water = $request->get('provision_water');
@@ -507,20 +507,22 @@ class MeatRegistrationController extends Controller
         $data->sewerage_disposing = $request->get('sewerage_disposing');
         $data->prcision_dispose_id = $request->get('prcision_dispose_id');
         $data->place_id = $request->get('place_id');
-
+        // dd($data->place_id);
         $data->regi_authority_name = $request->get('regi_authority_name');
         $data->register_number = $request->get('register_number');
         $data->valid_till = $request->get('valid_till');
         $data->is_renewal = 1;
         $data->areaof_business_place = $request->get('areaof_business_place');
         $data->business_place = $request->get('business_place');
-        $data->business_place_other = $request->get('business_place_other');
+    //    $data->business_place_other = $request->get('business_place_other');
+        // dd($data->business_place_other);
         $unique_id = "PMC-MET".rand(1000,10000000);
         $data->meat_pplication_no =$unique_id;
+        // dd($data->meat_pplication_no);
         $data->inserted_dt = date("Y-m-d H:i:s");
         $data->inserted_by = Auth::guard('meatregistereduser')->user()->id;
         $data->save();
-       dd($data);
+        //  dd($data->save());
         // $unique_id = "PMC-MET".rand(1000,10000000);
         $update = [
             'meat_pplication_no' => $unique_id,
@@ -786,13 +788,13 @@ class MeatRegistrationController extends Controller
     // ======== View Auth User Application Form
     public function User_ApplicationForm_View(Request $request, $application_id, $user_type)
     {
-
+        // dd($request);
         $meattype_mst = MeatType_Master::orderBy('id','desc')->pluck('meat_name', 'id')->whereNull('deleted_at');
-
+        $unit_Meat_Type = DB::table('unit_Meat_Type')->get();
 
         if($user_type == 'Meat_Registration')
         {
-             $unit_Meat_Type = DB::table('unit_Meat_Type')->get();
+
             $data =   DB::table('meat_registration_tbl AS t1')
                             ->select('t1.*', 't2.meat_name','t3.dist_name','t4.taluka_name'
                                     )
@@ -861,8 +863,15 @@ class MeatRegistrationController extends Controller
                                         ->first();
             // dd($meat_registration_view)                            ;
         // return $meat_registration_view;
+        $array = explode(",",$meat_registration_view->meat_type);
 
-        return view('user.meat_license.view', compact('meat_registration_view','meattype_mst','unit_Meat_Type'));
+        $meatNames = DB::table('meat_type_mst')
+                      ->whereIn('id', $array)
+                      ->pluck('meat_name');
+        $commaSeparatedMeatNames = $meatNames->implode(', ');
+
+
+        return view('user.meat_license.view', compact('meat_registration_view','meattype_mst','unit_Meat_Type','commaSeparatedMeatNames'));
 
           //return view('user.meat_license.user_applicant_form_view', compact('data', 'user_type','meattype_mst'));
         }
@@ -910,50 +919,52 @@ class MeatRegistrationController extends Controller
 
     public function updatemeatregiter(Request $request, $id)
     {
+        // dd($request);
         $this->validate($request, [
 
             // Basic Details
-            'applicant_title_id' => 'required|numeric',
-            'applicant_fname' => 'required|string',
-            'applicant_mname' => 'required|string',
-            'applicant_lname' => 'required|string',
+            // 'applicant_title_id' => 'required|numeric',
+            // 'applicant_fname' => 'required|string',
+            // 'applicant_mname' => 'required|string',
+            // 'applicant_lname' => 'required|string',
 
-            'mobile_number' => 'required|string',
-            'email' => 'required|string',
+            // 'mobile_number' => 'required|string',
+            // 'email' => 'required|string',
 
-            'aadhar_number' => 'required|string',
+            // 'aadhar_number' => 'required|string',
 
-            // Residential Address of Applicant
-            'house_number' => 'required|string',
+            // // Residential Address of Applicant
+            // 'house_number' => 'required|string',
 
-            'street_1' => 'required|string',
+            // 'street_1' => 'required|string',
 
-            'area_1' => 'required|string',
+            // 'area_1' => 'required|string',
 
-            'country_id' => 'required|string',
-            'state_id' => 'required|string',
-            'district_id' => 'required|string',
-            'taluka_id' => 'required|string',
-            'zipcode' => 'required|string',
+            // 'country_id' => 'required|string',
+            // 'state_id' => 'required|string',
+            // 'district_id' => 'required|string',
+            // 'taluka_id' => 'required|string',
+            // 'zipcode' => 'required|string',
 
-            // Business Details
-            'business_name' => 'required|string',
-            'business_type' => 'required|numeric',
-            'meat_type' => 'required|string',
-            'per_day_capacity' => 'required|string',
-            'provision_water' => 'required|numeric',
-            'provision_electricty' => 'required|numeric',
-            'business_address' => 'required|string',
-            'sewerage_disposing' => 'required|numeric',
+            // // Business Details
+            // 'business_name' => 'required|string',
+            // 'business_type' => 'required|numeric',
+            'unit'=>'required',
+            // 'meat_type' => 'required|string',
+            // 'per_day_capacity' => 'required|string',
+            // 'provision_water' => 'required|numeric',
+            // 'provision_electricty' => 'required|numeric',
+            // 'business_address' => 'required|string',
+            // 'sewerage_disposing' => 'required|numeric',
 
-            'place_id' => 'required|numeric',
+            // 'place_id' => 'required|numeric',
 
-            'regi_authority_name' => 'required|string',
-            'register_number' => 'required|string',
-            'valid_till' => 'required|string',
+            // 'regi_authority_name' => 'required|string',
+            // 'register_number' => 'required|string',
+            // 'valid_till' => 'required|string',
 
-             'areaof_business_place' => 'required|string',
-             'business_place' => 'required|numeric',
+            //  'areaof_business_place' => 'required|string',
+            //  'business_place' => 'required|numeric',
 
 
 
