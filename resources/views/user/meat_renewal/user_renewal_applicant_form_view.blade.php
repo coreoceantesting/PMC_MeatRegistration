@@ -23,12 +23,12 @@
     <link rel="stylesheet" type="text/css" href="{{ url('/') }}/userend/assets/vendors/styles/core.css">
     <link rel="stylesheet" type="text/css" href="{{ url('/') }}/userend/assets/vendors/styles/icon-font.min.css">
     <link rel="stylesheet" type="text/css" href="{{ url('/') }}/userend/assets/vendors/styles/style.css">
-    <link rel="stylesheet" type="text/css" href="{{ url('/') }}/userend/assets/src/plugins/jquery-steps/jquery.steps.css">
+    {{-- <link rel="stylesheet" type="text/css" href="{{ url('/') }}/userend/assets/src/plugins/jquery-steps/jquery.steps.css"> --}}
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
+
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -39,27 +39,27 @@
 
         gtag('config', 'UA-119386393-1');
     </script>
-    
+
 </head>
 
 <style>
     .error{
         color:red;
     }
-    
+
     .wizard-content .wizard>.steps>ul>li.current>a {
         color: #1b00ff;
         font-size: 18px;
         cursor: default;
         font-weight: bolder;
     }
-    
+
     .wizard-content .wizard>.steps>ul>li.current .step {
         border-color: #1b00ff;
         background-color: #fff;
         color: #1b00ff;
     }
-    
+
     .wizard-content .wizard>.actions>ul>li>a {
         background: #1b00ff;
         color: #fff;
@@ -70,19 +70,19 @@
         min-width: 100px;
         text-align: center;
     }
-    
+
     .wizard-content .wizard>.actions>ul>li>a[href="#previous"] {
         background-color: #fff;
         color: #1b00ff;
         border: 1px solid #1b00ff;
     }
-    
+
     .wizard-content .wizard>.steps>ul>li.done .step {
         background-color: #1b00ff;
         border-color: #1b00ff;
         color: #fff;
     }
-    
+
     .wizard-content .wizard.wizard-circle>.steps>ul>li:after, .wizard-content .wizard.wizard-circle>.steps>ul>li:before {
         top: 45px;
         width: 50%;
@@ -92,14 +92,14 @@
 </style>
 
 <body>
-    
+
     <div class="col-12" style="padding-top:20px; padding-bottom:20px;">
         <div class="align-items-center">
 
             <div class="min-height-200px">
                 <div class="page-header" style="border: 1px solid #000000;">
                     <div class="row">
-                        
+
                         <div class="col-sm-2 col-xs-12 text-right d-flex justify-content-center d-block d-sm-none mb-4">
                             <div class="user-info-dropdown">
                                 <div class="dropdown">
@@ -113,11 +113,11 @@
                                             </span>
                                         @elseif(Auth::guard('web')->check())
                                            <span class="user-name">
-                                                {{ Auth::user()->name }} 
+                                                {{ Auth::user()->name }}
                                             </span>
                                         @else
                                            <span class="user-name">
-                                                
+
                                             </span>
                                         @endif
                                     </a>
@@ -132,7 +132,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="col-sm-10 col-xs-12 d-flex flex-column align-items-center align-items-sm-start">
                             <div class="title">
                                 <h4>Application for Meat Renewal License</h4>
@@ -145,7 +145,7 @@
                                 </ol>
                             </nav>
                         </div>
-                        
+
                         <div class="col-sm-2 col-xs-12 text-right d-none d-sm-block">
                             <div class="user-info-dropdown">
                                 <div class="dropdown">
@@ -159,14 +159,14 @@
                                             </span>
                                         @elseif(Auth::guard('web')->check())
                                            <span class="user-name">
-                                                {{ Auth::user()->name }} 
+                                                {{ Auth::user()->name }}
                                             </span>
                                         @else
                                            <span class="user-name">
-                                                
+
                                             </span>
                                         @endif
-                    
+
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list" >
                                         <a class="dropdown-item" href="{{ url('/user/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
@@ -179,35 +179,35 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
-                
-                
+
+
                 <div class="pd-20 card-box mb-30" style="border: 1px solid #000000;">
-                    
+
                     <div class="wizard-content p-3">
                         <!-- <form class="tab-wizard wizard-circle wizard"  method="POST" action="#" enctype="multipart/form-data"> -->
                             <form class="tab-wizard wizard-circle wizard"  method="POST" action="{{ url('/user/update_Meat_renewal_form', $data->id) }}" enctype="multipart/form-data">
                              @csrf
-                            
+
                              <input type="hidden" id="id" name="id" value="{{ $data->id or '' }}">
-                
-                            
-                            
-                            
+
+
+
+
                             <section class="pt-3">
                                 <strong class="pt-2 text-primary">
                                      Basic Details / ( मूलभूत तपशील )
                                 </strong>
                                 <hr>
-                            
 
-                                
+
+
 
                                 <strong class="pb-1">Name of Applicant / ( अर्जदाराचे नाव ) : <span style="color:red;">*</span> </strong>
                                 <div class="form-group row">
-                                   
+
                                     <div class="col-sm-3 col-md-3 p-2">
                                         <select class="form-control  @error('applicant_title_id') is-invalid @enderror"  name="applicant_title_id" id="applicant_title_id" style="width: 100%; height: 38px; pointer-events:none">
                                             <option value=" ">Select Applicant Title</option>
@@ -226,10 +226,10 @@
                                         @enderror
                                     </div>
 
-                                       
-                                  
-                                    
-                                    
+
+
+
+
                                     <div class="col-sm-3 col-md-3 p-2">
                                         <input type="text" name="applicant_fname" id="inputTextBox" class="form-control @error('applicant_fname') is-invalid @enderror" value="{{ $data->applicant_fname }}" readonly placeholder="Applicant First Name.">
                                         @error('applicant_fname')
@@ -237,7 +237,7 @@
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
-                                       
+
                                     </div>
 
                                     <div class="col-sm-3 col-md-3 p-2">
@@ -248,7 +248,7 @@
                                             </span>
                                         @enderror
                                     </div>
-                                    
+
                                     <!--<label class="col-sm-1"><strong>Last Name : <span style="color:red;">*</span></strong></label>-->
                                     <div class="col-sm-3 col-md-3 p-2">
                                         <input type="text" name="applicant_lname" id="inputTextBox" class="form-control @error('applicant_lname') is-invalid @enderror" value="{{ $data->applicant_lname }}" readonly placeholder="Applicant Last Name.">
@@ -259,8 +259,8 @@
                                         @enderror
                                     </div>
                                 </div>
-                                    
-                                    
+
+
                                 <div class="form-group row">
                                      <label class="col-sm-2"><strong>Mobile Number / (मोबाईल नंबर) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
@@ -271,7 +271,7 @@
                                             </span>
                                         @enderror
                                     </div>
-                                    
+
                                     <label class="col-sm-2"><strong>Email Id / (ई - मेल आयडी) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
                                         <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{ $data->email }}" readonly placeholder="Email Id / (ई - मेल आयडी)">
@@ -281,7 +281,7 @@
                                             </span>
                                         @enderror
                                     </div>
-                                    
+
                                     <label class="col-sm-2"><strong>Aadhar Number / (आधार क्रमांक) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
                                         <input type="text" name="aadhar_number" id="aadhar_number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" maxlength="12" class="form-control @error('aadhar_number') is-invalid @enderror" value="{{ $data->aadhar_number }}" readonly placeholder="Aadhar Number / (आधार क्रमांक)">
@@ -292,8 +292,8 @@
                                         @enderror
                                     </div>
                                 </div>
-                                
-                                
+
+
                                 <strong class="pt-2 text-primary">
                                      Residential Address of Applicant / ( अर्जदाराचा निवासी पत्ता )
                                 </strong>
@@ -309,7 +309,7 @@
                                             </span>
                                         @enderror
                                     </div>
-                                    
+
                                     <label class="col-sm-2"><strong>House Name / (घराचे नाव) :</strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
                                         <input type="text" name="house_name" id="house_name" class="form-control @error('house_name') is-invalid @enderror" value="{{ $data->house_name }}" readonly placeholder="House Name / (घराचे नाव)">
@@ -320,8 +320,8 @@
                                         @enderror
                                     </div>
                                 </div>
-                                    
-                            
+
+
                                 <div class="form-group row">
                                     <label class="col-sm-2"><strong>Street 1 / <br> ( रस्ता १ ): <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
@@ -332,15 +332,15 @@
                                             </span>
                                         @enderror
 
-                                     
+
                                     </div>
-                                    
+
                                     <label class="col-sm-2"><strong>Street 2 / <br> ( रस्ता 2 ) : </strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
                                         <input class="form-control " name="street_2" id="street_2" value="{{ $data->street_2 }}" >
                                     </div>
                                 </div>
-                            
+
                                 <div class="form-group row">
                                     <label class="col-sm-2"><strong>Area 1 / ( क्षेत्र १ ) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
@@ -350,28 +350,28 @@
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
-                                       
+
                                     </div>
-                                    
+
                                     <label class="col-sm-2"><strong>Area 2 / <br> ( क्षेत्र  २ ) : </strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
                                         <input class="form-control " name="area_2" id="area_2" value="{{ $data->area_2 }}" readonly>
                                     </div>
                                 </div>
-                            
+
                                 <div class="form-group row">
                                     <?php
                                         $country_id = '';
-                                        
+
                                         if($data->country_id == 1)
                                         {
                                             $country_id = 'India';
                                         }
-                                        
+
                                     ?>
                                     <label class="col-sm-2"><strong>Country / <br> ( देश ) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
-                                         <select class="form-control @error('country_id') is-invalid @enderror"  name="country_id" id="country_id" style="width: 100%; height: 38px; pointer-events:none" > 
+                                         <select class="form-control @error('country_id') is-invalid @enderror"  name="country_id" id="country_id" style="width: 100%; height: 38px; pointer-events:none" >
                                             <option value=" ">Select Country / (देश) </option>
                                             <option value="1" {{ $data->country_id == '1' ? 'selected' : '' }}>India</option>
                                         </select>
@@ -381,8 +381,8 @@
                                             </span>
                                         @enderror
                                     </div>
-                                    
-                                    
+
+
                                     <label class="col-sm-2"><strong>State / ( राज्य ) <span style="color:red;">*</span>: </strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
                                          <select class="form-control  @error('state_id') is-invalid @enderror"  name="state_id" id="state_id" style="width: 100%; height: 38px; pointer-events:none" >
@@ -394,7 +394,7 @@
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
-                                       
+
                                     </div>
                                 </div>
 
@@ -406,7 +406,7 @@
                                                             ORDER BY `mst_dist`.`id` DESC
                                                             ');
                                 ?>
-                                
+
                                 <div class="form-group row">
                                     <label class="col-sm-2"><strong>District / <br> ( जिल्हा ) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
@@ -445,10 +445,10 @@
                                         @enderror
                                     </div>
 
-                                       
+
                                     </div>
-                                
-                            
+
+
                                 <div class="form-group row">
                                     <label class="col-sm-2"><strong>Zip Code / <br> ( पिनकोड ): <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
@@ -460,17 +460,17 @@
                                             </span>
                                         @enderror
 
-                                     
+
                                     </div>
-                                    
-                                 
+
+
                                 </div>
-                            
+
                                <strong class="pt-2 text-primary">
                                     Business Details / ( व्यवसाय तपशील )
                                 </strong>
                                 <hr>
-                                
+
                                  <div class="form-group row">
                                     <label class="col-sm-2"><strong>Name of the business / (व्यवसायाचे नाव) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
@@ -481,12 +481,12 @@
                                             </span>
                                         @enderror
 
-                                        
+
                                     </div>
-                                    
+
                                     <label class="col-sm-2"><strong>Kind of Business / (व्यवसायाचा प्रकार) : <span style="color:red;">*</span> </strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
-                                       
+
 
                                     <select class="form-control  @error('business_type') is-invalid @enderror"  name="business_type" id="business_type" style="width: 100%; height: 38px; pointer-events:none">
                                         <option value=" ">Select Kind of Business / (व्यवसायाचा प्रकार)</option>
@@ -501,59 +501,85 @@
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
-                                        
+
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-2"><strong>Meat Type / (मांसाचा प्रकार) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
-                                        <select class="form-control  @error('meat_type') is-invalid @enderror"  name="meat_type" id="meat_type" style="width: 100%; height: 38px; pointer-events:none">
-                                            <option value=" ">Select Meat Type / (मांसाचा प्रकार) </option>
+                                        <select class="form-control custom-select2 select2 @error('meat_type') is-invalid @enderror" name="meat_type[]" id="meat_type" multiple style="width: 100%; height: 50px;">
+                                            <option value=" ">Select Meat Type / (मांसाचा प्रकार)</option>
+                                            @php
+                                                $arrayMeat = explode(",", $data->meat_type);
+                                            @endphp
                                             @foreach ($meattype_mst as $key => $value)
-                                            <option value="{{ $key }}" {{ $data->meat_type == $key ? 'selected' : '' }}>{{ $value }}</option>
+                                            <option value="{{ $key }}" {{ in_array($key, $arrayMeat) ? 'selected' : '' }}>{{ $value }}</option>
                                             @endforeach
                                         </select>
-                                        
-                                        @error('meat_type')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
+                                        {{-- @dd($data->meat_type); --}}
+                                        {{-- @dump($data->meat_type) --}}
 
-                                        
                                     </div>
-                                    
+
+
                                     <label class="col-sm-2"><strong>Per Day Capacity / (प्रतिदिन क्षमता) : <span style="color:red;">*</span> </strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
-                                         <input type="text" name="per_day_capacity" id="per_day_capacity" class="form-control @error('per_day_capacity') is-invalid @enderror" value="{{ $data->per_day_capacity  }}" readonly placeholder="Per Day Capacity / प्रतिदिन क्षमता">
+                                         <input type="text" name="per_day_capacity" id="per_day_capacity" class="form-control @error('per_day_capacity') is-invalid @enderror" value="{{ $data->per_day_capacity  }}" placeholder="Per Day Capacity / प्रतिदिन क्षमता">
                                         @error('per_day_capacity')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
-                                      
+
                                     </div>
-                                     <label class="col-sm-2"><strong>Unit / (युनिट) : <span style="color:red;">*</span></strong></label>
-                                                                <div class="col-sm-4 col-md-4 p-2">
-                                                                    <select class="form-control custom-select2 @error('unit') is-invalid @enderror" name="unit" id="unit" style="width: 100%; height: 38px;">
-                                                                        <option value="">Select Unit / (युनिट)</option>
-                                                                        @foreach ($unit_Meat_Type as $item)
-                                                                            <option value="{{ $item->id }}" {{ old('unit') == $item->id ? 'selected' : '' }}>
-                                                                                {{ $item->unit_name }}
-                                                                            </option>
-                                                                        @endforeach
-                                                                    </select>
-                                                                    
-                                                                    @error('unit')
-                                                                        <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                                    @enderror
-                                                                </div>
+
+                                    {{-- <label class="col-sm-2"><strong>
+                                     Unit/ (युनिट) :  <span style="color:red;">*</span></strong></label>
+                                   <div class="col-sm-4 col-md-4 p-2">
+                                       <select class="form-control custom-select2 @error('unit') is-invalid @enderror" name="unit" id="meat_type" style="width: 100%; height: 38px;">
+                                            <option value="">Select Unit / (युनिट) </option>
+                                            @foreach ($unit_Meat_Type as $item)
+                                                <option value="{{ $item->id }}" {{ (old('unit') ?? $data->unit) == $item->id ? 'selected' : '' }}>
+                                                    {{ $item->unit_name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+
+
+                                        @error('unit')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+ --}}
+
+                                    {{-- </div> --}}
                                 </div>
-                            
+                                <div class="form-group row">
+                                    <label class="col-sm-2"><strong>
+                                        Unit/ (युनिट) :  <span style="color:red;">*</span></strong></label>
+                                      <div class="col-sm-4 col-md-4 p-2">
+                                          <select class="form-control custom-select2 @error('unit') is-invalid @enderror" name="unit" id="unit" style="width: 100%; height: 38px;">
+                                               <option value="">Select Unit / (युनिट) </option>
+                                               @foreach ($unit_Meat_Type as $item)
+                                                   <option value="{{ $item->id }}" {{ (old('unit') ?? $data->unit) == $item->id ? 'selected' : '' }}>
+                                                       {{ $item->unit_name }}
+                                                   </option>
+                                               @endforeach
+                                           </select>
+                                           {{-- @dd($unit_Meat_Type); --}}
+
+                                           @error('unit')
+                                               <span class="invalid-feedback" role="alert">
+                                                   <strong>{{ $message }}</strong>
+                                               </span>
+                                           @enderror
+
+                                       </div>
+                                </div>
+
                              <div class="form-group row">
-                                         
+
                                             <label class="col-sm-2"><strong>Provision of water / (पाण्याची व्यवस्था आहे का ?) : <span style="color:red;">*</span></strong></label>
                                             <div class="col-sm-4 col-md-4 p-2">
                                                  <select class="form-control  @error('provision_water') is-invalid @enderror"  name="provision_water" id="provision_water" style="width: 100%; height: 38px; pointer-events:none">
@@ -561,16 +587,16 @@
                                             <option value="1" {{ $data->provision_water == '1' ? 'selected' : '' }}>Yes</option>
                                             <option value="2" {{ $data->provision_water == '2' ? 'selected' : '' }}>No</option>
                                         </select>
-                                        
+
                                         @error('provision_water')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
 
-                                               
+
                                             </div>
-                                          
+
                                             <label class="col-sm-2"><strong>Provision of electricity / (विजेची व्यवस्था आहे का ? ) : <span style="color:red;">*</span></strong></label>
                                             <div class="col-sm-4 col-md-4 p-2">
                                                  <select class="form-control  @error('provision_electricty') is-invalid @enderror"  name="provision_electricty" id="provision_electricty" style="width: 100%; height: 38px; pointer-events:none">
@@ -578,17 +604,17 @@
                                             <option value="1" {{ $data->provision_electricty == '1' ? 'selected' : '' }}>Yes</option>
                                             <option value="2" {{ $data->provision_electricty == '2' ? 'selected' : '' }}>No</option>
                                         </select>
-                                        
+
                                         @error('provision_electricty')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
 
-                                                
+
                                             </div>
                                         </div>
-                                        
+
                                          <div class="form-group row">
                                             <label class="col-sm-2"><strong>Address of the business / (व्यवसायाचा पत्ता) : <span style="color:red;">*</span> </strong></label>
                                             <div class="col-sm-12 col-md-12 p-2">
@@ -599,13 +625,13 @@
                                             </span>
                                         @enderror
 
-                                               
+
 
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
-                                            
+
                                              <label class="col-sm-2"><strong>Provision of sewerage for disposing effluent / (सांडपाण्याची भूमिगत गटाराची व्यवस्था आहे का ?) : <span style="color:red;">*</span></strong></label>
                                             <div class="col-sm-4 col-md-4 p-2">
                                                 <select class="form-control  @error('sewerage_disposing') is-invalid @enderror"  name="sewerage_disposing" id="sewerage_disposing" style="width: 100%; height: 38px; pointer-events:none">
@@ -613,7 +639,7 @@
                                             <option value="1" {{ $data->sewerage_disposing == '1' ? 'selected' : '' }}>Yes</option>
                                             <option value="2" {{ $data->sewerage_disposing == '2' ? 'selected' : '' }}>No</option>
                                         </select>
-                                        
+
                                         @error('sewerage_disposing')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -629,7 +655,7 @@
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
-                                               
+
                                             </div>
                                             @endif
                                         </div>
@@ -644,7 +670,7 @@
                                             <option value="1" {{ $data->place_id == '1' ? 'selected' : '' }}>Yes</option>
                                             <option value="2" {{ $data->place_id == '2' ? 'selected' : '' }}>No</option>
                                         </select>
-                                        
+
                                         @error('place_id')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -652,8 +678,8 @@
                                         @enderror
                                     </div>
                                 </div>
-                                        
-                                        
+
+
                             <strong class="pt-2 text-primary">
                                     Business registration details / ( व्यवसाय नोंदणी तपशील )
                                 </strong>
@@ -668,10 +694,10 @@
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
-                                       
-                                        
+
+
                                     </div>
-                                    
+
                                     <label class="col-sm-2"><strong> Registration Number   / (नोंदणी क्रमांक) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 ">
 
@@ -681,11 +707,11 @@
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
-                                      
-                                        
+
+
                                     </div>
                                     </div>
-                                  <div class="form-group row">   
+                                  <div class="form-group row">
                                     <label class="col-sm-2"><strong> Valid till / (पर्यंत वैध) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4">
                                        <input type="Date" name="valid_till" id="valid_till" class="form-control  @error('valid_till') is-invalid @enderror" value="{{ $data->valid_till  }}" placeholder="valid till " readonly>
@@ -694,10 +720,10 @@
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
-                                       
+
                                     </div>
                                 </div>
-                                        
+
                                    <strong class="pt-2 text-primary">
                                     Details of business place / ( व्यवसायाच्या ठिकाणाचा तपशील )
                                 </strong>
@@ -711,55 +737,54 @@
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
-                                        
+
                                     </div>
-                                    
+
                                     <label class="col-sm-2"><strong> Place   / (ठिकाण) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
-                                        
-                                        
-                                        
-                                            <select class="form-control  @error('business_place') is-invalid @enderror"  name="business_place" id="business_place" style="width: 100%; height: 38px; pointer-events:none"  onchange="showDiv('hidden_div', this)">
-                                            <option value=" ">Select  place   </option>
-                                            <option value="1" {{ $data->business_place == '1' ? 'selected' : '' }}>सिडको  मार्केटमधील जागा/ Place in CIDCO Market </option>
-                                            <option value="2" {{ $data->business_place == '2' ? 'selected' : '' }}>वाणिज्य वापराखालील जागा/ Space under commercial use </option>
-                                            <option value="3" {{ $data->business_place == '3' ? 'selected' : '' }}>गावठाण भागातील  जागा/ Places in village( Gavthan ) area </option>
-                                            <option value="4" {{ $data->business_place == '4' ? 'selected' : '' }}> इतर नमूद करणे/ To mention others </option>
-                                        </select>
+
+
+
+                                            <select class="form-control custom-select2 @error('business_place') is-invalid @enderror" name="business_place" id="business_place" style="width: 100%; height: 38px;">
+                                                <option value=" ">Select place</option>
+                                                <option value="1" {{ $data->business_place == '1' ? 'selected' : '' }}>महानगर पालिका बाजार/ Mahanagara Palika Bazaet</option>
+                                                <option value="2" {{ $data->business_place == '2' ? 'selected' : '' }}>खाजगी जागा/ Private space</option>
+                                            </select>
                                         @error('business_place')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
-                                              
+
                                     </div>
+
                                     </div>
-                                  <div class="form-group row other_b" id="hidden_div" style="display:none">   
+                                  <div class="form-group row other_b" id="hidden_div" style="display:none">
                                     <label class="col-sm-2"><strong> Other  : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4">
-                                      
+
                                          <input  class="form-control" value="{{ $data->business_place_other  }}" >
                                     </div>
-                                </div>       
-                                        
+                                </div>
+
                                       <strong class="pt-2 text-primary">
                                     Upload Document / ( दस्तऐवज अपलोड करा )
                                 </strong>
                                 <br>
                                 <br>
-                                <strong class="text-danger text-justify "> 
+                                <strong class="text-danger text-justify ">
                                     Note :- please attach attested photocopies of document
                                 </strong><br>
                                 <strong class="text-danger text-justify ">
                                     टीप :- कृपया  छायांकित  प्रती प्रमाणित करून सादर  करणे
                                 </strong>
-                                <hr>    
-                                        
+                                <hr>
+                            <div id="div2" style="display: none;">
                                <div class="form-group row">
-                                    
-                                    
-                                  
-                                  
+
+
+
+
                                 <label class="col-sm-2"><strong>Upload ID proof (Adharcard) of the applicant  <br> (अर्जदाराचा आयडी पुरावा (आधारकार्ड) अपलोड करा ) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
                                         <?php //if(!empty($data->adharcard_doc)) { ?>
@@ -779,15 +804,15 @@
                                         <!--        <strong>{{ $message }}</strong>-->
                                         <!--    </span>-->
                                         <!--@enderror-->
-                                        
+
                                          <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/adharcard_doc/{{ $data_registraion->adharcard_doc }}" target="_blank">
                                                     <div class="form-group">
                                                         <?php $document_path = $data_registraion->adharcard_doc;
                                                            $filter_path =  explode(".",$document_path);
                                                            $size_of_array = count($filter_path);
                                                            $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+
+                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
                                                         $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                            {?>
                                                         <p class="mt-3 mb-0" id="image_div">
@@ -801,14 +826,14 @@
                                                                         <button type="button"class="btn btn-info">
                                                                             View File
                                                                         </button>
-                                                                        </p>                                                                
+                                                                        </p>
                                                                     </a>
                                                         <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
                                                     </div>
                                                 </a>
                                     </div>
-                                    
-                                     
+
+
                                     <label class="col-sm-2"><strong>Upload Ration card, electricity / telephone bill. <br> ( रेशन कार्ड, वीज / टेलिफोन बिल अपलोड करा ) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
 
@@ -821,7 +846,7 @@
                                         <?php //}?>
 
 
-                                      
+
                                         <!--<small class="text-secondary text-justify "> Note : The file should be less than 2MB .</small>-->
                                         <!--<br>-->
                                         <!--<small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>-->
@@ -831,15 +856,15 @@
                                         <!--        <strong>{{ $message }}</strong>-->
                                         <!--    </span>-->
                                         <!--@enderror-->
-                                        
+
                                          <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/residitional_proof_doc/{{ $data_registraion->residitional_proof_doc }}" target="_blank">
                                                     <div class="form-group">
                                                         <?php $document_path = $data_registraion->residitional_proof_doc;
                                                            $filter_path =  explode(".",$document_path);
                                                            $size_of_array = count($filter_path);
                                                            $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+
+                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
                                                         $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                            {?>
                                                         <p class="mt-3 mb-0" id="image_div">
@@ -853,18 +878,18 @@
                                                                         <button type="button"class="btn btn-info">
                                                                             View File
                                                                         </button>
-                                                                        </p>                                                                
+                                                                        </p>
                                                                     </a>
                                                         <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
                                                     </div>
                                                 </a>
-                                    </div> 
-                                    
-                                    
-                                    
-                                      
+                                    </div>
+
+
+
+
                                 </div>
-                                
+
                                 <div class="form-group row">
                                     <label class="col-sm-2"><strong>Upload legal document of the business place <br> ( जागेचा अधिकृततेचा पुरावा अपलोड करा ) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
@@ -878,34 +903,34 @@
                                         <!--        <strong>{{ $message }}</strong>-->
                                         <!--    </span>-->
                                         <!--@enderror-->
-                                         <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/legal_business_doc/{{ $data_registraion->legal_business_doc }}" target="_blank">
+                                         <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/legal_business_doc/{{ $data_registraion->legal_business_doc }}" target="_blank">
                                                     <div class="form-group">
                                                         <?php $document_path = $data_registraion->legal_business_doc;
                                                            $filter_path =  explode(".",$document_path);
                                                            $size_of_array = count($filter_path);
                                                            $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+
+                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
                                                         $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                            {?>
                                                         <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/legal_business_doc/{{ $data_registraion->legal_business_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/legal_business_doc/{{ $data_registraion->legal_business_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
                                                         </p>
                                                         <?php }
                                                                 elseif($filter_ext == 'pdf'){
                                                                     ?>
-                                                                    <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/legal_business_doc/{{ $data_registraion->legal_business_doc }}" target="_blank" >
+                                                                    <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/legal_business_doc/{{ $data_registraion->legal_business_doc }}" target="_blank" >
                                                                         <p class="mt-3 mb-0" id="image_div">
                                                                         <button type="button"class="btn btn-info">
                                                                             View File
                                                                         </button>
-                                                                        </p>                                                                
+                                                                        </p>
                                                                     </a>
                                                         <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
                                                     </div>
                                                 </a>
                                     </div>
-                                    
+
                                     <label class="col-sm-2"><strong>Upload business registration certificate <br> ( व्यवसाय नोंदणी प्रमाणपत्र अपलोड करा ) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
                                         <!-- <input type="file" name="business_registration_doc" id="business_registration_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('business_registration_doc') is-invalid @enderror" value="{{ $data->regi_business_registration_doc }}" placeholder="Upload business registration certificate">-->
@@ -913,43 +938,43 @@
                                         <!--<br>-->
                                         <!--<small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>-->
                                         <!--<br>-->
-                                       
+
                                         <!--@error('business_registration_doc')-->
                                         <!--    <span class="invalid-feedback" role="alert">-->
                                         <!--        <strong>{{ $message }}</strong>-->
                                         <!--    </span>-->
                                         <!--@enderror-->
-                                          <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/business_registration_doc/{{ $data_registraion->business_registration_doc }}" target="_blank">
+                                          <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/business_registration_doc/{{ $data_registraion->business_registration_doc }}" target="_blank">
                                                     <div class="form-group">
                                                         <?php $document_path = $data_registraion->business_registration_doc;
                                                            $filter_path =  explode(".",$document_path);
                                                            $size_of_array = count($filter_path);
                                                            $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+
+                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
                                                         $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                            {?>
                                                         <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/business_registration_doc/{{ $data_registraion->business_registration_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/business_registration_doc/{{ $data_registraion->business_registration_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
                                                         </p>
                                                         <?php }
                                                                 elseif($filter_ext == 'pdf'){
                                                                     ?>
-                                                                    <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/business_registration_doc/{{ $data_registraion->business_registration_doc }}" target="_blank" >
+                                                                    <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/business_registration_doc/{{ $data_registraion->business_registration_doc }}" target="_blank" >
                                                                         <p class="mt-3 mb-0" id="image_div">
                                                                         <button type="button"class="btn btn-info">
                                                                             View File
                                                                         </button>
-                                                                        </p>                                                                
+                                                                        </p>
                                                                     </a>
                                                         <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
                                                     </div>
                                                 </a>
-                                    </div> 
+                                    </div>
                                 </div>
-                                
-                                
-                                
+
+
+
                                 <div class="form-group row">
                                     <label class="col-sm-2"><strong>Upload receipt of recently paid property tax <br> ( मालमत्ता कर भरल्याचा पुरावा अपलोड करा ): <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
@@ -963,38 +988,38 @@
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
-                                        
-                                        <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/property_tax_doc/{{ $data->property_tax_doc }}" target="_blank">
+
+                                        <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/property_tax_doc/{{ $data->property_tax_doc }}" target="_blank">
                                                     <div class="form-group">
                                                         <?php $document_path = $data->property_tax_doc;
                                                            $filter_path =  explode(".",$document_path);
                                                            $size_of_array = count($filter_path);
                                                            $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+
+                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
                                                         $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                            {?>
                                                         <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/property_tax_doc/{{ $data->property_tax_doc }}" alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/property_tax_doc/{{ $data->property_tax_doc }}" alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
                                                         </p>
                                                         <?php }
                                                                 elseif($filter_ext == 'pdf'){
                                                                     ?>
-                                                                    <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/property_tax_doc/{{ $data->property_tax_doc }}" target="_blank" >
+                                                                    <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/property_tax_doc/{{ $data->property_tax_doc }}" target="_blank" >
                                                                         <p class="mt-3 mb-0" id="image_div">
                                                                         <button type="button"class="btn btn-info">
                                                                             View File
                                                                         </button>
-                                                                        </p>                                                                
+                                                                        </p>
                                                                     </a>
                                                         <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
                                                     </div>
                                                 </a>
                                     </div>
-                                    
+
                                     <label class="col-sm-2"><strong>Upload receipt of recently paid water ( पानी पट्टी पावती अपलोड करा ) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
-                                        
+
                                         <input type="file" name="paid_water_doc" id="paid_water_doc" accept=".png, .jpg, .jpeg, .pdf"  class="form-control @error('paid_water_doc') is-invalid @enderror" value="{{ $data->paid_water }}" placeholder="Upload receipt of recently paid water">
                                         <small class="text-secondary text-justify "> Note : The file should be less than 2MB .</small>
                                         <br>
@@ -1005,40 +1030,40 @@
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
-                                        
-                                        
-                                         <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/paid_water_doc/{{ $data->paid_water_doc }}" target="_blank">
+
+
+                                         <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/paid_water_doc/{{ $data->paid_water_doc }}" target="_blank">
                                                     <div class="form-group">
                                                         <?php $document_path = $data->paid_water_doc;
                                                            $filter_path =  explode(".",$document_path);
                                                            $size_of_array = count($filter_path);
                                                            $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+
+                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
                                                         $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                            {?>
                                                         <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/paid_water_doc/{{ $data->paid_water_doc }}" alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/paid_water_doc/{{ $data->paid_water_doc }}" alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
                                                         </p>
                                                         <?php }
                                                                 elseif($filter_ext == 'pdf'){
                                                                     ?>
-                                                                    <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/paid_water_doc/{{ $data->paid_water_doc }}" target="_blank" >
+                                                                    <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/paid_water_doc/{{ $data->paid_water_doc }}" target="_blank" >
                                                                         <p class="mt-3 mb-0" id="image_div">
                                                                         <button type="button"class="btn btn-info">
                                                                             View File
                                                                         </button>
-                                                                        </p>                                                                
+                                                                        </p>
                                                                     </a>
                                                         <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
                                                     </div>
                                                 </a>
-                                    </div> 
+                                    </div>
                                 </div>
-                                
+
                                 <div class="form-group row">
-                           
-                                    
+
+
                                     <label class="col-sm-2"><strong>Upload details & authority letter from authorized slaughter house / poultry form & authority letter <br>( अधिकृत कुक्कुट पालन करणाऱ्या संस्थेचे व कत्तलखाण्याची माहिती ई संमातीपत्र अपलोड करा ) : <span style="color:red;">*</span></strong></label>
                                   <div class="col-sm-4 col-md-4 p-2">
                                       <!--<input type="file" name="slaughter_letter_doc" id="slaughter_letter_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('slaughter_letter_doc') is-invalid @enderror" value="{{ $data->letter_doc }}" placeholder="Upload details & authority letter from authorized slaughter house / poultry form & authority letter">-->
@@ -1051,39 +1076,39 @@
                                       <!--        <strong>{{ $message }}</strong>-->
                                       <!--    </span>-->
                                       <!--@enderror-->
-                                      
-                                        <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/slaughter_letter_doc/{{ $data_registraion->slaughter_letter_doc }}" target="_blank">
+
+                                        <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/slaughter_letter_doc/{{ $data_registraion->slaughter_letter_doc }}" target="_blank">
                                                   <div class="form-group">
                                                       <?php $document_path = $data_registraion->slaughter_letter_doc;
                                                          $filter_path =  explode(".",$document_path);
                                                          $size_of_array = count($filter_path);
                                                          $filter_ext = $filter_path[$size_of_array - 1];
-                                                         
-                                                      if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+
+                                                      if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
                                                       $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                          {?>
                                                       <p class="mt-3 mb-0" id="image_div">
-                                                          <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/slaughter_letter_doc/{{ $data_registraion->slaughter_letter_doc }}" alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                          <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/slaughter_letter_doc/{{ $data_registraion->slaughter_letter_doc }}" alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
                                                       </p>
                                                       <?php }
                                                               elseif($filter_ext == 'pdf'){
                                                                   ?>
-                                                                  <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/slaughter_letter_doc/{{ $data_registraion->slaughter_letter_doc }}" target="_blank" >
+                                                                  <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/slaughter_letter_doc/{{ $data_registraion->slaughter_letter_doc }}" target="_blank" >
                                                                       <p class="mt-3 mb-0" id="image_div">
                                                                       <button type="button"class="btn btn-info">
                                                                           View File
                                                                       </button>
-                                                                      </p>                                                                
+                                                                      </p>
                                                                   </a>
                                                       <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
                                                   </div>
                                               </a>
                                   </div>
-                                  
+
                                   <label class="col-sm-2"><strong>Upload pest control treatment certificate issued from authorized agency <br> ( नोंदणीकृत  संस्थेकडून  कीटनाशक फवारणी केल्याचे प्रमाणपत्र अपलोड करा ): <span style="color:red;">*</span></strong></label>
                                   <div class="col-sm-4 col-md-4 p-2">
                                        <input type="file" name="treatment_authorized_doc" id="treatment_authorized_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('treatment_authorized_doc') is-invalid @enderror" value="{{$data->treatment_authorized_doc }}" placeholder="Upload old_licence ">
-                                     
+
                                       <small class="text-secondary text-justify "> Note : The file should be less than 2MB .</small>
                                       <br>
                                       <small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>
@@ -1093,41 +1118,41 @@
                                               <strong>{{ $message }}</strong>
                                           </span>
                                       @enderror
-                                      
-                                      <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/treatment_authorized_doc/{{ $data->treatment_authorized_doc }}" target="_blank">
+
+                                      <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/treatment_authorized_doc/{{ $data->treatment_authorized_doc }}" target="_blank">
                                                   <div class="form-group">
                                                       <?php $document_path = $data->treatment_authorized_doc;
                                                          $filter_path =  explode(".",$document_path);
                                                          $size_of_array = count($filter_path);
                                                          $filter_ext = $filter_path[$size_of_array - 1];
-                                                         
-                                                      if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+
+                                                      if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
                                                       $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                          {?>
                                                       <p class="mt-3 mb-0" id="image_div">
-                                                          <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/treatment_authorized_doc/{{ $data->treatment_authorized_doc }}" alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                          <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/treatment_authorized_doc/{{ $data->treatment_authorized_doc }}" alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
                                                       </p>
                                                       <?php }
                                                               elseif($filter_ext == 'pdf'){
                                                                   ?>
-                                                                  <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/treatment_authorized_doc/{{ $data->treatment_authorized_doc }}" target="_blank" >
+                                                                  <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/treatment_authorized_doc/{{ $data->treatment_authorized_doc }}" target="_blank" >
                                                                       <p class="mt-3 mb-0" id="image_div">
                                                                       <button type="button"class="btn btn-info">
                                                                           View File
                                                                       </button>
-                                                                      </p>                                                                
+                                                                      </p>
                                                                   </a>
                                                       <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
                                                   </div>
                                               </a>
                                   </div>
                               </div>
-                              
+
                               <div class="form-group row">
                                   <label class="col-sm-2"><strong>Upload medical fitness certificate issued by MBBS Doctor <br> ( एमबीबीएस डॉक्टरांनी दिलेले वैद्यकीय फिटनेस प्रमाणपत्र अपलोड करा ): <span style="color:red;">*</span></strong></label>
                                   <div class="col-sm-4 col-md-4 p-2">
                                        <input type="file" name="fitness_certificate_doc" id="fitness_certificate_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('fitness_certificate_doc') is-invalid @enderror" value="{{$data->fitness_certificate_doc }}" placeholder="Upload old_licence ">
-                                    
+
                                       <small class="text-secondary text-justify "> Note : The file should be less than 2MB .</small>
                                       <br>
                                       <small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>
@@ -1137,35 +1162,35 @@
                                               <strong>{{ $message }}</strong>
                                           </span>
                                       @enderror
-                                      
-                                       <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/fitness_certificate_doc/{{ $data->fitness_certificate_doc }}" target="_blank">
+
+                                       <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/fitness_certificate_doc/{{ $data->fitness_certificate_doc }}" target="_blank">
                                                   <div class="form-group">
                                                       <?php $document_path = $data->fitness_certificate_doc;
                                                          $filter_path =  explode(".",$document_path);
                                                          $size_of_array = count($filter_path);
                                                          $filter_ext = $filter_path[$size_of_array - 1];
-                                                         
-                                                      if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+
+                                                      if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
                                                       $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                          {?>
                                                       <p class="mt-3 mb-0" id="image_div">
-                                                          <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/fitness_certificate_doc/{{ $data->fitness_certificate_doc }}" alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                          <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/fitness_certificate_doc/{{ $data->fitness_certificate_doc }}" alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
                                                       </p>
                                                       <?php }
                                                               elseif($filter_ext == 'pdf'){
                                                                   ?>
-                                                                  <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/fitness_certificate_doc/{{ $data->fitness_certificate_doc }}" target="_blank" >
+                                                                  <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/fitness_certificate_doc/{{ $data->fitness_certificate_doc }}" target="_blank" >
                                                                       <p class="mt-3 mb-0" id="image_div">
                                                                       <button type="button"class="btn btn-info">
                                                                           View File
                                                                       </button>
-                                                                      </p>                                                                
+                                                                      </p>
                                                                   </a>
                                                      <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
                                                   </div>
                                               </a>
-                                  </div> 
-                                  
+                                  </div>
+
                                   {{-- <label class="col-sm-2"><strong>Upload FSSAI Registration Certificate  <br> (अन्न  सुरक्षा व मानदे अधिनियम २००६ व नियम  व नियमन,२०११ अन्वये, व्यवसाय नोंदणी प्रमाणपत्र )करा ) : <span style="color:red;">*</span></strong></label>
                                   <div class="col-sm-4 col-md-4 p-2">
                                       <!--<input type="file" name="issued_doc" id="issued_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('issued_doc') is-invalid @enderror" value="{{ $data->regi_issued_doc }}" placeholder="Upload document issued by APEDA, MPCB(ETP), FSSAI">-->
@@ -1178,37 +1203,37 @@
                                       <!--        <strong>{{ $message }}</strong>-->
                                       <!--    </span>-->
                                       <!--@enderror-->
-                                      
-                                       <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/issued_doc/{{ $data_registraion->issued_doc }}" target="_blank">
+
+                                       <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/issued_doc/{{ $data_registraion->issued_doc }}" target="_blank">
                                                   <div class="form-group">
                                                       <?php $document_path = $data_registraion->issued_doc;
                                                          $filter_path =  explode(".",$document_path);
                                                          $size_of_array = count($filter_path);
                                                          $filter_ext = $filter_path[$size_of_array - 1];
-                                                         
-                                                      if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+
+                                                      if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
                                                       $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                          {?>
                                                       <p class="mt-3 mb-0" id="image_div">
-                                                          <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/issued_doc/{{ $data_registraion->issued_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                          <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/issued_doc/{{ $data_registraion->issued_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
                                                       </p>
                                                       <?php }
                                                               elseif($filter_ext == 'pdf'){
                                                                   ?>
-                                                                  <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/issued_doc/{{ $data_registraion->issued_doc }}" target="_blank" >
+                                                                  <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/issued_doc/{{ $data_registraion->issued_doc }}" target="_blank" >
                                                                       <p class="mt-3 mb-0" id="image_div">
                                                                       <button type="button"class="btn btn-info">
                                                                           View File
                                                                       </button>
-                                                                      </p>                                                                
+                                                                      </p>
                                                                   </a>
                                                       <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
                                                   </div>
                                               </a>
                                   </div> --}}
                               </div>
-                              
-                              
+
+
                               <div class="form-group row">
                                   <label class="col-sm-2"><strong>Upload applicant signature / ( अर्जदाराची स्वाक्षरी अपलोड करा ) : <span style="color:red;">*</span></strong></label>
                                   <div class="col-sm-4 col-md-4 p-2">
@@ -1222,36 +1247,36 @@
                                       <!--        <strong>{{ $message }}</strong>-->
                                       <!--    </span>-->
                                       <!--@enderror-->
-                                      
-                                      
-                                        <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/applicant_signature/{{ $data_registraion->applicant_signature }}" target="_blank">
+
+
+                                        <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/applicant_signature/{{ $data_registraion->applicant_signature }}" target="_blank">
                                                   <div class="form-group">
                                                       <?php $document_path = $data_registraion->applicant_signature;
                                                          $filter_path =  explode(".",$document_path);
                                                          $size_of_array = count($filter_path);
                                                          $filter_ext = $filter_path[$size_of_array - 1];
-                                                         
-                                                      if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+
+                                                      if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
                                                       $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                          {?>
                                                       <p class="mt-3 mb-0" id="image_div">
-                                                          <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/applicant_signature/{{ $data_registraion->applicant_signature }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                          <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/applicant_signature/{{ $data_registraion->applicant_signature }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
                                                       </p>
                                                       <?php }
                                                               elseif($filter_ext == 'pdf'){
                                                                   ?>
-                                                                  <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/applicant_signature/{{ $data_registraion->applicant_signature }}" target="_blank" >
+                                                                  <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/applicant_signature/{{ $data_registraion->applicant_signature }}" target="_blank" >
                                                                       <p class="mt-3 mb-0" id="image_div">
                                                                       <button type="button"class="btn btn-info">
                                                                           View File
                                                                       </button>
-                                                                      </p>                                                                
+                                                                      </p>
                                                                   </a>
                                                       <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
                                                   </div>
                                               </a>
                                   </div>
-                                  
+
                                   <label class="col-sm-2"><strong>Upload applicant profile photo / ( अर्जदाराचा प्रोफाइल फोटो अपलोड करा ): <span style="color:red;">*</span></strong></label>
                                   <div class="col-sm-4 col-md-4 p-2">
                                       <!--<input type="file" name="profile_photo" id="profile_photo" accept=".png, .jpg, .jpeg, .pdf"  class="form-control @error('profile_photo') is-invalid @enderror" value="{{ $data->regi_profile_photo }}" placeholder="Upload applicant profile photo">-->
@@ -1264,35 +1289,80 @@
                                       <!--        <strong>{{ $message }}</strong>-->
                                       <!--    </span>-->
                                       <!--@enderror-->
-                                      
-                                        <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/profile_photo/{{ $data_registraion->profile_photo }}" target="_blank">
+
+                                        <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/profile_photo/{{ $data_registraion->profile_photo }}" target="_blank">
                                                   <div class="form-group">
                                                       <?php $document_path = $data_registraion->profile_photo;
                                                          $filter_path =  explode(".",$document_path);
                                                          $size_of_array = count($filter_path);
                                                          $filter_ext = $filter_path[$size_of_array - 1];
-                                                         
-                                                      if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+
+                                                      if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
                                                       $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                          {?>
                                                       <p class="mt-3 mb-0" id="image_div">
-                                                          <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/profile_photo/{{ $data_registraion->profile_photo }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                          <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/profile_photo/{{ $data_registraion->profile_photo }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
                                                       </p>
                                                       <?php }
                                                               elseif($filter_ext == 'pdf'){
                                                                   ?>
-                                                                  <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/profile_photo/{{ $data_registraion->profile_photo }}" target="_blank" >
+                                                                  <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/profile_photo/{{ $data_registraion->profile_photo }}" target="_blank" >
                                                                       <p class="mt-3 mb-0" id="image_div">
                                                                       <button type="button"class="btn btn-info">
                                                                           View File
                                                                       </button>
-                                                                      </p>                                                                
+                                                                      </p>
                                                                   </a>
                                                       <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
                                                   </div>
                                               </a>
-                                  </div> 
+                                  </div>
                               </div>
+                            </div>
+                              <div id="div1" style="display: none;">
+                                <div class="form-group row">
+                                    <label class="col-sm-2"><strong>Upload Municipal Corporation Permission Letter <br> (महापालिकेचे परवानगी पत्र करा ) : <span  </strong></label>
+                                    <div class="col-sm-4 col-md-4 p-2">
+                                        <input type="file" name="municipal_corpor_doc" id="municipal_corpor_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('municipal_corpor_doc') is-invalid @enderror" value="{{$data->municipal_corpor_doc }}" placeholder="Upload municipal_corpor_doc">
+                                        <small class="text-secondary text-justify "> Note : The file should be less than 10MB .</small>
+                                        <br>
+                                        <small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>
+                                        <br>
+                                        @error('applicant_signature')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+
+                                          <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/municipal_corpor_doc/{{ $data->municipal_corpor_doc }}" target="_blank">
+                                                    <div class="form-group">
+                                                        <?php $document_path = $data->municipal_corpor_doc;
+                                                           $filter_path =  explode(".",$document_path);
+                                                           $size_of_array = count($filter_path);
+                                                           $filter_ext = $filter_path[$size_of_array - 1];
+
+                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
+                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
+                                                           {?>
+                                                        <p class="mt-3 mb-0" id="image_div">
+                                                            <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/municipal_corpor_doc/{{ $data->municipal_corpor_doc}} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                        </p>
+                                                        <?php }
+                                                                else{
+                                                                    ?>
+                                                                    <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/municipal_corpor_doc/{{ $data->municipal_corpor_doc}}" target="_blank">
+                                                                        <p class="mt-3 mb-0" id="image_div">
+                                                                        <button type="button"class="btn btn-info">
+                                                                            View File
+                                                                        </button>
+                                                                        </p>
+                                                                    </a>
+                                                        <?php }?>
+                                                    </div>
+                                                </a>
+                                    </div>
+                                </div>
+                            </div>
 
                               <div class="form-group row">
                                 <label class="col-sm-2"><strong>Upload previous year licence copy  / ( मागील वर्षाच्या परवान्याची प्रत अपलोड करा ) : <span style="color:red;">*</span></strong></label>
@@ -1307,57 +1377,60 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
-                                    
-                                     <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/old_licence/{{ $data->old_licence }}" target="_blank">
+
+                                     <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/old_licence/{{ $data->old_licence }}" target="_blank">
                                                 <div class="form-group">
                                                     <?php $document_path = $data->old_licence;
                                                        $filter_path =  explode(".",$document_path);
                                                        $size_of_array = count($filter_path);
                                                        $filter_ext = $filter_path[$size_of_array - 1];
-                                                       
-                                                    if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+
+                                                    if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
                                                     $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                        {?>
                                                     <p class="mt-3 mb-0" id="image_div">
-                                                        <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/old_licence/{{ $data->old_licence }}" alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                        <img src="{{url('/')}}/PMC_Meat_Registration/meat_file/old_licence/{{ $data->old_licence }}" alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
                                                     </p>
                                                     <?php }
                                                             elseif($filter_ext == 'pdf'){
                                                                 ?>
-                                                                <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/old_licence/{{ $data->old_licence }}" target="_blank" >
+                                                                <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/old_licence/{{ $data->old_licence }}" target="_blank" >
                                                                     <p class="mt-3 mb-0" id="image_div">
                                                                     <button type="button"class="btn btn-info">
                                                                         View File
                                                                     </button>
-                                                                    </p>                                                                
+                                                                    </p>
                                                                 </a>
                                                     <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
                                                 </div>
                                             </a>
                                 </div>
                                 </div>
-                                
-                                    
+
+
+
+
+
                               <div class="form-group row mt-4">
                                 <label class="col-md-3"></label>
                                 <div class="col-md-9" style="display: flex; justify-content: flex-end;">
                                     <a href="{{ url('/') }}" class="btn btn-danger">Cancel</a>&nbsp;&nbsp;
-                                 
+
                                     <button type="submit" class="btn btn-success">Update</button>
-                                   
+
                                 </div>
-                            </div>        
+                            </div>
                             </section>
-                            
+
                         </form>
                     </div>
-                    
+
                 </div>
             </div>
-            
+
         </div>
     </div>
-    
+
     <!-- success Popup html Start -->
     <div class="modal fade" id="success-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -1370,7 +1443,7 @@
                 </div>
                 <div class="modal-footer justify-content-center">
                     @if(Auth::guard('meatregistereduser')->check())
-                       <a href="{{ url('/user/appli_form') }}" class="btn btn-danger ">Cancel</a>&nbsp;&nbsp; 
+                       <a href="{{ url('/user/appli_form') }}" class="btn btn-danger ">Cancel</a>&nbsp;&nbsp;
                     @elseif(Auth::guard('web')->check())
                        <a href="{{ url('/user/appli_form') }}" class="btn btn-danger ">Cancel</a>&nbsp;&nbsp;
                     @else
@@ -1378,21 +1451,100 @@
                     @endif
                     <!--<button type="submit" class="btn btn-primary" >Done</button>-->
                 </div>
-                
+
                 </form>
             </div>
         </div>
     </div>
     <!-- success Popup html End -->
-    
+
     <!-- js -->
     <script src="{{ url('/') }}/userend/assets/vendors/scripts/core.js"></script>
     <script src="{{ url('/') }}/userend/assets/vendors/scripts/script.min.js"></script>
     <script src="{{ url('/') }}/userend/assets/vendors/scripts/process.js"></script>
     <script src="{{ url('/') }}/userend/assets/vendors/scripts/layout-settings.js"></script>
-    <script src="{{ url('/') }}/userend/assets/src/plugins/jquery-steps/jquery.steps.js"></script>
-    <script src="{{ url('/') }}/userend/assets/vendors/scripts/steps-setting.js"></script>
-    
+    {{-- <script src="{{ url('/') }}/userend/assets/src/plugins/jquery-steps/jquery.steps.js"></script>
+    <script src="{{ url('/') }}/userend/assets/vendors/scripts/steps-setting.js"></script> --}}
+
+
+
+    <script>
+        $(document).ready(function() {
+            $('.custom-select2').select2();
+            // Function to show/hide the relevant div based on dropdown selection
+            function showRelevantDiv() {
+                var selectedValue = $('#business_place').val(); // Get the selected value using jQuery
+
+                // Hide both divs initially
+                $('#div1').hide();
+                $('#div2').hide();
+
+                // Show the relevant div based on the selected option
+                if (selectedValue === '1') {
+                    $('#div1').show();  // Show div1 if value is '1'
+                } else if (selectedValue === '2') {
+                    $('#div2').show();  // Show div2 if value is '2'
+                }
+            }
+
+            // Run the function on page load
+            showRelevantDiv();  // Call the function to check the current value on load
+
+            // Run the function when the dropdown value changes
+            $('#business_place').on('change', function() {
+                showRelevantDiv();  // Call the function again when the user changes the dropdown
+            });
+        });
+    </script>
+
+    <script>
+       function showRelevantDiv() {
+            // Get the selected value
+            var selectedValue = document.getElementById('business_place').value;
+
+            // Debugging: Log the selected value
+            console.log("Selected Value:", selectedValue);
+
+            // Get the div elements
+            var div1 = document.getElementById('div1');
+            var div2 = document.getElementById('div2');
+
+            // Ensure div1 and div2 are not null
+            if (!div1 || !div2) {
+                console.error("Div elements not found.");
+                return;
+            }
+
+            // Hide both divs initially
+            div1.style.display = 'none';
+            div2.style.display = 'none';
+
+            // Show the relevant div based on the selected option
+            if (selectedValue === '1') {
+                div1.style.display = 'block';
+                console.log("Div 1 is now visible.");
+            } else if (selectedValue === '2') {
+                div2.style.display = 'block';
+                console.log("Div 2 is now visible.");
+            } else {
+                console.log("No matching value, both divs hidden.");
+            }
+        }
+
+        // Run the function when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("Page loaded, running showRelevantDiv.");
+            showRelevantDiv();
+        });
+
+        // Run the function when the select value changes
+        document.getElementById('business_place').addEventListener('change', function() {
+            console.log("Dropdown value changed.");
+            showRelevantDiv();
+        });
+    </script>
+
+
 </body>
 
 </html>

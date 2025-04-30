@@ -396,7 +396,9 @@
                                             <div class="col-sm-4 col-md-4 p-2">
                                                 <input readonly class="form-control" value="{{ $meat_registration_view->per_day_capacity  }}" >
                                             </div>
-                                             <label class="col-sm-2"><strong>Unit / (युनिट) :<span style="color:red;">*</span> </strong></label>
+                            </div>
+                          <div class="form-group row">
+                            <label class="col-sm-2"><strong>Unit / (युनिट) :<span style="color:red;">*</span> </strong></label>
                                                            <div class="col-sm-4 col-md-4 p-2">
                                        <select class="form-control custom-select2 @error('unit') is-invalid @enderror" name="unit" id="meat_type" style="width: 100%; height: 38px;">
                                             <option value="">Select Unit / (युनिट) </option>
@@ -416,8 +418,7 @@
 
 
                                     </div>
-                            </div>
-
+                          </div>
                              <div class="form-group row">
                                             <?php
                                                 $provision_water = '';

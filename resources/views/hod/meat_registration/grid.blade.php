@@ -14,7 +14,7 @@
                     @elseif ($status == 2)
                         <h2>Reject Meat Application</h2>
                     @endif
-                    
+
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/hod/dashboard') }}"><i class="zmdi zmdi-home"></i> Home</a></li>
                         <!--<li class="breadcrumb-item"><a href="{{ url('/#') }}">PET Application</a></li>-->
@@ -30,7 +30,7 @@
                     </ul>
                     <button class="btn btn-primary btn-icon mobile_menu" type="button"><i class="zmdi zmdi-sort-amount-desc"></i></button>
                 </div>
-                
+
                 <div class="col-lg-5 col-md-6 col-sm-12">
                     <button class="btn btn-primary btn-icon float-right right_icon_toggle_btn" type="button"><i class="zmdi zmdi-arrow-right"></i></button>
                 </div>
@@ -51,7 +51,7 @@
                                 @elseif ($status == 2)
                                     <strong style="text-transform: capitalize;">Reject Meat Application</strong>
                                 @endif
-                                
+
                             </h2>
                         </div>
                         <div class="body">
@@ -70,14 +70,14 @@
                                             <th>Per day capacity</th>
                                             @if (($status == 2))
                                              <th>Reasons for Rejection</th>
-                                            
+
                                              @endif
                                             <th>View Details</th>
                                             <!-- @if ($status == 1)-->
                                             <!-- <th>Generate Certificate</th>-->
                                             <!-- <th>Affidavit </th>-->
                                             <!--@endif-->
-                                             
+
         								</tr>
                                     </thead>
                                     <tbody>
@@ -87,7 +87,7 @@
                                                 <td><b>{{ $value->meat_pplication_no }}</b></td>
                                                 <?php
                                                     $applicant_title_id = '';
-                                                    
+
                                                     if($value->applicant_title_id == 1)
                                                     {
                                                         $applicant_title_id = 'Kum.';
@@ -123,7 +123,7 @@
                                                 <td>{{ $value->business_name }}</td>
                                                 <?php
                                                     $business_type = '';
-                                                    
+
                                                     if($value->business_type == 1)
                                                     {
                                                         $business_type = 'Butcher Shope ( मांस  विक्री  केंद्र )';
@@ -142,13 +142,23 @@
                                                     }
                                                 ?>
                                                 <!--<td>{{ $business_type }}</td>-->
-                                                <td>{{ $value->meat_name }}</td>
+                                                <td>
+                                                    @php
+                                                    $array = explode(",",$value->meat_type);
+
+                                                    $meatNames = DB::table('meat_type_mst')
+                                                                    ->whereIn('id', $array)
+                                                                    ->pluck('meat_name');
+                                                    $commaSeparatedMeatNames = $meatNames->implode(', ');
+                                                @endphp
+                                                {{ $commaSeparatedMeatNames }}
+                                                </td>
                                                 <td>{{ $value->per_day_capacity }}</td>
-                                                
+
                                                 <?php if(($value->hod_status == 2) ){ ?>
-                                                      
-                                                  <td>{{ $value->reject_resion }}</td>    
-                                                      <?php    } ?> 
+
+                                                  <td>{{ $value->reject_resion }}</td>
+                                                      <?php    } ?>
             									<td>
                                                     <a href='{{ url("/meat_registration_view_hod/{$value->id}/{$value->hod_status}") }}' class="btn btn-info btn-sm text-light">
                                                         <i class="zmdi zmdi-eye"></i>
@@ -156,7 +166,7 @@
                                                 </td>
                                                   <?php //if($value->status == 1) { ?>
                                                 <!-- <td>-->
-                                                    
+
                                                 <!--    <a href='{{ url("/generate_english_meat_registration_pdf/{$value->id}/{$value->status}") }}'-->
                                                 <!--        class="btn btn-danger waves-effect waves-float btn-sm waves-green">-->
                                                 <!--        <i class="zmdi zmdi-file"></i> English-->
@@ -166,30 +176,30 @@
                                                 <!--        class="btn btn-danger waves-effect waves-float btn-sm waves-green">-->
                                                 <!--        <i class="zmdi zmdi-file"></i> Marathi-->
                                                 <!--    </a>-->
-                                                    
-                                                   
-                                                    
-                                                     
+
+
+
+
                                                 <!--</td>-->
-                                                 
-                                                
+
+
                                                 <!--<td>-->
-                                                     
+
                                                 <!--      <a href='{{ url("/generate_affidavit_pdf/{$value->id}/{$value->status}") }}'-->
                                                 <!--        class="btn btn-primary waves-effect waves-float btn-sm waves-green">-->
                                                 <!--        <i class="zmdi zmdi-file"></i> Affidavit-->
                                                 <!--       </a>-->
-                                                      
+
                                                 <!--</td>-->
                                                  <?php   // } ?>
-                                                 
-                                                 
-                                                 
-                                                   
+
+
+
+
             								</tr>
                                         @endforeach
                                     </tbody>
-                                    
+
                                 </table>
                             </div>
                         </div>
@@ -201,4 +211,4 @@
     </div>
 </section>
 
-@include('common.footer')  
+@include('common.footer')

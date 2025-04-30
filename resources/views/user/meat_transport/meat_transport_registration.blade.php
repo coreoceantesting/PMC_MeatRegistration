@@ -29,7 +29,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
+
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -40,11 +40,11 @@
 
         gtag('config', 'UA-119386393-1');
     </script>
-    
+
 </head>
 
 <body>
-    
+
     <div class="col-12" style="padding-top:20px; padding-bottom:20px;">
         <div class="align-items-center">
 
@@ -58,7 +58,7 @@
             							<img src="{{ url('/') }}/assets/images/PMC-logo.png" alt="" style="width: 100px; height: 80px;">
             						</span>
             				            <span class="user-name">
-                						    {{ Auth::guard('meatregistereduser')->user()->name }} 
+                						    {{ Auth::guard('meatregistereduser')->user()->name }}
                 						</span>
                 					</a>
                 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
@@ -94,20 +94,20 @@
 						</div>
 					</div>
 				</div>
-				
-				
+
+
 				<div class="pd-20 card-box mb-30" >
-				    
+
 				    <div class="wizard-content p-4">
     					<form method="POST" action="{{ url('/user/meat_transport_registration') }}" enctype="multipart/form-data">
     					    @csrf
-    					    
+
     						<section class="pt-3">
     						    <strong class="pt-2 text-primary">
                                      Basic Details / ( मूलभूत तपशील )
                                 </strong>
                                 <hr>
-                                
+
                                 <strong class="pb-1">Name of Applicant / ( अर्जदाराचे नाव ) : <span style="color:red;">*</span> </strong>
                                 <div class="form-group row">
                                     <!--<label class="col-sm-1"><strong>Title : <span style="color:red;">*</span></strong></label>-->
@@ -128,8 +128,8 @@
                                             </span>
                                         @enderror
                                     </div>
-                                    
-                                    
+
+
                                     <!--<label class="col-sm-1"><strong>First Name : <span style="color:red;">*</span></strong></label>-->
                                     <div class="col-sm-3 col-md-3 p-2">
                                         <input type="text" name="applicant_fname" id="inputTextBox" class="form-control @error('applicant_fname') is-invalid @enderror" value="{{ old('applicant_fname') }}" placeholder="Applicant First Name.">
@@ -139,7 +139,7 @@
                                             </span>
                                         @enderror
                                     </div>
-                                    
+
                                     <!--<label class="col-sm-1"><strong>Middle Name : <span style="color:red;">*</span></strong></label>-->
                                     <div class="col-sm-3 col-md-3 p-2">
                                         <input type="text" name="applicant_mname" id="inputTextBox" class="form-control @error('applicant_mname') is-invalid @enderror" value="{{ old('applicant_mname') }}" placeholder="Applicant Middle Name.">
@@ -149,7 +149,7 @@
                                             </span>
                                         @enderror
                                     </div>
-                                    
+
                                     <!--<label class="col-sm-1"><strong>Last Name : <span style="color:red;">*</span></strong></label>-->
                                     <div class="col-sm-3 col-md-3 p-2">
                                         <input type="text" name="applicant_lname" id="inputTextBox" class="form-control @error('applicant_lname') is-invalid @enderror" value="{{ old('applicant_lname') }}" placeholder="Applicant Last Name.">
@@ -160,9 +160,9 @@
                                         @enderror
                                     </div>
                                 </div>
-                                
-                              
-                                
+
+
+
                                     <div class="form-group row">
                                      <label class="col-sm-2"><strong>Mobile Number / (मोबाईल नंबर) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
@@ -173,8 +173,8 @@
                                             </span>
                                         @enderror
                                     </div>
-                                   
-                                    
+
+
                                     <label class="col-sm-2"><strong>Aadhar Number / (आधार क्रमांक) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
                                         <input type="text" name="aadhar_number" id="aadhar_number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" maxlength="12" class="form-control @error('aadhar_number') is-invalid @enderror" value="{{ old('aadhar_number') }}" placeholder="Aadhar Number / (आधार क्रमांक)">
@@ -185,12 +185,12 @@
                                         @enderror
                                     </div>
                                 </div>
-                                
+
                                 <!--<strong class="pt-2 text-primary">-->
                                 <!--     Residential Address of Applicant / ( अर्जदाराचा निवासी पत्ता )-->
                                 <!--</strong>-->
                                 <!--<hr>-->
-                                    
+
                                 <div class="form-group row">
                                     <label class="col-sm-2"><strong> Residential Address / (परवाना धारकाच्या पत्ता ) :  <span style="color:red;">*</span></strong></label>
                                      <div class="col-sm-4 col-md-4 p-2">
@@ -206,7 +206,7 @@
 
 
                                 </div>
-                                    
+
                                    <?php
                                     $mst_dist = DB::select('SELECT
                                                                 `mst_dist`.`id`, `mst_dist`.`dist_name`
@@ -230,12 +230,12 @@
                                 <!--            </span>-->
                                 <!--        @enderror-->
                                 <!--    </div>-->
-                                    
+
                                 <!--    <label class="col-sm-2"><strong>Taluka / (तालुका) : <span style="color:red;">*</span></strong></label>-->
                                 <!--    <div class="col-sm-4 col-md-4 p-2">-->
                                 <!--        <select class="form-control custom-select2 @error('taluka_id') is-invalid @enderror"  name="taluka_id" id="taluka_id" style="width: 100%; height: 38px;">-->
                                 <!--            <option value=" ">Select Taluka / (तालुका)</option>-->
-                                            
+
                                 <!--        </select>-->
                                 <!--        @error('taluka_id')-->
                                 <!--            <span class="invalid-feedback" role="alert">-->
@@ -244,8 +244,8 @@
                                 <!--        @enderror-->
                                 <!--    </div>-->
                                 <!--</div>-->
-                            
-                            
+
+
                                 <!--<div class="form-group row">-->
                                 <!--    <label class="col-sm-2"><strong>Country / (देश) : <span style="color:red;">*</span></strong></label>-->
                                 <!--    <div class="col-sm-4 col-md-4 p-2">-->
@@ -259,7 +259,7 @@
                                 <!--            </span>-->
                                 <!--        @enderror-->
                                 <!--    </div>-->
-                                    
+
                                 <!--    <label class="col-sm-2"><strong>State / (राज्य)  <span style="color:red;">*</span>: </strong></label>-->
                                 <!--    <div class="col-sm-4 col-md-4 p-2">-->
                                 <!--        <select class="form-control custom-select2 @error('state_id') is-invalid @enderror"  name="state_id" id="state_id" style="width: 100%; height: 38px;" >-->
@@ -273,8 +273,8 @@
                                 <!--        @enderror-->
                                 <!--    </div>-->
                                 <!--</div>-->
-                                
-                            
+
+
                                 <!--<div class="form-group row">-->
                                 <!--    <label class="col-sm-2"><strong>Zip Code / (पिनकोड) : <span style="color:red;">*</span></strong></label>-->
                                 <!--    <div class="col-sm-4 col-md-4 p-2">-->
@@ -286,8 +286,8 @@
                                 <!--        @enderror-->
                                 <!--    </div>-->
                                 <!--</div>-->
-                                
-                                
+
+
                                 <strong class="pt-2 text-primary">
                                     Business Details / ( व्यवसाय तपशील )
                                 </strong>
@@ -311,13 +311,13 @@
                                             </span>
                                         @enderror
                                     </div>
-                                  
+
                                 </div>
-                                
-                               
-                                
+
+
+
                                 <div class="form-group row">
-                                    
+
                                      <label class="col-sm-2"><strong>Address of the vehicle / (वाहनाचा पत्ता ) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
                                         <textarea type="text" name="vehical_address" id="vehical_address" class="form-control @error('vehical_address') is-invalid @enderror" value="{{ old('vehical_address') }}" placeholder="Address of the vehicle / (वाहनाचा पत्ता)" style="height:100px;">{{ old('vehical_address') }}</textarea>
@@ -327,7 +327,7 @@
                                             </span>
                                         @enderror
                                     </div>
-                                    
+
                                     <label class="col-sm-2"><strong> Address of the business / (व्यवसायाचा पत्त्ता    ) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
                                         <textarea type="text" name="business_address" id="business_address" class="form-control @error('business_address') is-invalid @enderror" value="{{ old('business_address') }}" placeholder="Address of the business / (व्यवसायाचा पत्त्ता)" style="height:100px;">{{ old('business_address') }}</textarea>
@@ -337,7 +337,7 @@
                                             </span>
                                         @enderror
                                     </div>
-                                    
+
                                 </div>
 
                                  <div class="form-group row">
@@ -350,7 +350,7 @@
                                             </span>
                                         @enderror
                                     </div>
-                                    
+
                                     <label class="col-sm-2"><strong>Up to the license sale validity period / <br> (परवाना विक्री ग्राह्य अवधी पर्यंत ) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
                                         <input type="date" name="to_date" id="to_date" class="form-control  @error('to_date') is-invalid @enderror" value="{{ old('to_date') }}" placeholder="DD/MM/YYYY">
@@ -365,20 +365,20 @@
                                  <div class="form-group row">
                                     <label class="col-sm-2"><strong>Meat Type / (मांसाचा प्रकार) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
-                                        <select class="form-control custom-select2 @error('meat_type') is-invalid @enderror"  name="meat_type" id="meat_type" style="width: 100%; height: 38px;">
-                                            <option value=" ">Select Meat Type / (मांसाचा प्रकार) </option>
+                                        <select class="form-control custom-select2 @error('meat_type') is-invalid @enderror" name="meat_type[]" id="meat_type" multiple style="width: 100%; height: 38px;">
+                                            <option value=" ">Select Meat Type / (मांसाचा प्रकार)</option>
                                             @foreach ($meattype_mst as $key => $value)
-                                            <option value="{{ $key }}" {{ old('meat_type') == $key ? 'selected' : '' }}>{{ $value }}</option>
+                                            <option value="{{ $key }}" {{ in_array($key, old('meat_type', [])) ? 'selected' : '' }}>{{ $value }}</option>
                                             @endforeach
                                         </select>
-                                        
+
                                         @error('meat_type')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
                                     </div>
-                                    
+
                                    <label class="col-sm-2"><strong>Per Day Capacity in tonne / (प्रतिदिन क्षमता टन मध्ये)  : <span style="color:red;">*</span> </strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
                                         <input type="text" name="per_day_capacity" id="per_day_capacity" class="form-control @error('per_day_capacity') is-invalid @enderror" value="{{ old('per_day_capacity') }}" placeholder="Per Day Capacity / प्रतिदिन क्षमता  (टन/Ton)">
@@ -389,14 +389,31 @@
                                         @enderror
                                     </div>
                                 </div>
-                                
-                                
-                                
-                                
+
+                            <div class="form-group row">
+                                <label class="col-sm-2"><strong>Unit / (युनिट) : <span style="color:red;">*</span></strong></label>
+                                <div class="col-sm-4 col-md-4 p-2">
+                                    <select class="form-control custom-select2 @error('unit') is-invalid @enderror" name="unit" id="unit" style="width: 100%; height: 38px;">
+                                        <option value="">Select Unit / (युनिट)</option>
+                                        @foreach ($unit_Meat_Type as $item)
+                                            <option value="{{ $item->id }}" {{ old('unit') == $item->id ? 'selected' : '' }}>
+                                                {{ $item->unit_name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+
+                                    @error('unit')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
                                 <div class="form-group row">
                                     <label class="col-sm-2"><strong> Upload Driving License Copy  / ( चालक परवानाची प्रत अपलोड करा ) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
-                                       
+
                                           <input type="file" name="driving_licence" id="driving_licence" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('driving_licence') is-invalid @enderror" value="{{ (!empty($data->old_licence)) ? $data->old_licence : ''  }}" placeholder="Upload applicant signature">
                                         <small class="text-secondary text-justify "> Note : The file should be less than 2MB .</small>
                                         <br>
@@ -409,11 +426,11 @@
                                         @enderror
                                     </div>
 
-                                    
-                                    
+
+
                                       <label class="col-sm-2"><strong> Upload Vehicle Insurance Certificate  / (वाहन विमा प्रमाणपत्र अपलोड करा ) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
-                                       
+
                                           <input type="file" name="vehicle_insurance_doc" id="vehicle_insurance_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('driving_licence') is-invalid @enderror" value="{{ (!empty($data->old_licence)) ? $data->old_licence : ''  }}" placeholder="Upload applicant signature">
                                         <small class="text-secondary text-justify "> Note : The file should be less than 2MB .</small>
                                         <br>
@@ -426,11 +443,11 @@
                                         @enderror
                                     </div>
 
-                                   
-                                </div>    
-                                
-                                                        
-                                
+
+                                </div>
+
+
+
                                 <div class="form-group row mt-4">
                                     <label class="col-md-3"></label>
                                     <div class="col-md-9" style="display: flex; justify-content: flex-end;">
@@ -438,20 +455,20 @@
                                         <button type="submit" class="btn btn-success">Submit</button>
                                     </div>
                                 </div>
-                                
+
     						</section>
-    						
+
     					</form>
     				</div>
-    				
+
 				</div>
 			</div>
-			
+
         </div>
     </div>
-    
-    
-	
+
+
+
     <!-- js -->
     <script src="{{ url('/') }}/userend/assets/vendors/scripts/core.js"></script>
     <script src="{{ url('/') }}/userend/assets/vendors/scripts/script.min.js"></script>
@@ -460,10 +477,10 @@
     <script src="{{ url('/') }}/userend/assets/src/plugins/jquery-steps/jquery.steps.js"></script>
 	<script src="{{ url('/') }}/userend/assets/vendors/scripts/steps-setting.js"></script>
 	<script src="{{ url('/') }}/userend/assets/vendors/scripts/advanced-components.js"></script>
-	
+
 	<script>
         $(document).ready(function () {
-            
+
             $('#ward_id').on('change', function () {
                 var idCountry = this.value;
                 $("#dept_id").html('');
@@ -481,19 +498,19 @@
                             $("#dept_id").append('<option value="' + value
                                 .id + '">' + value.dept_name + '</option>');
                         });
-                        
+
                     }
                 });
             });
-            
+
         });
     </script>
-    
-    
-    
+
+
+
     <script>
         $(document).ready(function () {
-            
+
             $('#district_id').on('change', function () {
                 var idCountry = this.value;
                 $("#taluka_id").html('');
@@ -515,16 +532,16 @@
                     }
                 });
             });
-            
+
         });
     </script>
-    
+
     <script>
       function showDiv(divId, element) {
          document.getElementById(divId).style.display = element.value == 4 ? 'block' : 'none';
       }
    </script>
-    
+
     <script>
         $(document).ready(function () {
             var today = new Date();
@@ -536,8 +553,8 @@
             }).on('changeDate', function (ev) {
                     $(this).datepicker('hide');
                 });
-    
-    
+
+
             $('.date-picker').keyup(function () {
                 if (this.value.match(/[^0-9]/g)) {
                     this.value = this.value.replace(/[^0-9^-]/g, '');
@@ -555,7 +572,7 @@
             }
         });
     </script>
-    
+
     <script>
           function isNumber(evt)
           {
@@ -566,8 +583,8 @@
               }
               return true; }
               </script>
-              
-    
+
+
 </body>
 
 </html>

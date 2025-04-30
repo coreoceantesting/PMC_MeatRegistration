@@ -522,7 +522,7 @@ class MeatRegistrationController extends Controller
         $data->inserted_dt = date("Y-m-d H:i:s");
         $data->inserted_by = Auth::guard('meatregistereduser')->user()->id;
         $data->save();
-        //  dd($data->save());
+    //   dd($data);
         // $unique_id = "PMC-MET".rand(1000,10000000);
         $update = [
             'meat_pplication_no' => $unique_id,

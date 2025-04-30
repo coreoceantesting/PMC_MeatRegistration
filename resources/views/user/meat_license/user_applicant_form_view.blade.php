@@ -512,7 +512,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-2"><strong>Meat Type / (मांसाचा प्रकार) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
-                                        <select class="form-control custom-select2 select2 @error('meat_type') is-invalid @enderror" name="meat_type[]" id="meat_type" multiple style="width: 100%; height: 50px;">
+                                        <select class="form-control custom-select2 @error('meat_type') is-invalid @enderror" name="meat_type[]" id="meat_type" multiple style="width: 100%; height: 50px;">
                                             <option value=" ">Select Meat Type / (मांसाचा प्रकार)</option>
                                             @php
                                                 $arrayMeat = explode(",", $data->meat_type);
@@ -521,9 +521,6 @@
                                             <option value="{{ $key }}" {{ in_array($key, $arrayMeat) ? 'selected' : '' }}>{{ $value }}</option>
                                             @endforeach
                                         </select>
-                                        {{-- @dd($data->meat_type); --}}
-                                        {{-- @dump($data->meat_type) --}}
-
                                     </div>
 
 
@@ -799,9 +796,6 @@
                                 <hr>
                                    <div id="div2" style="display: none;">
                                <div class="form-group row">
-
-
-
 
                                   <label class="col-sm-2"><strong>Upload ID proof (Adharcard) of the applicant  <br> (अर्जदाराचा आयडी पुरावा (आधारकार्ड) अपलोड करा ) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
@@ -1449,17 +1443,19 @@
     {{-- <script src="{{ url('/') }}/userend/assets/src/plugins/jquery-steps/jquery.steps.js"></script>
     <script src="{{ url('/') }}/userend/assets/vendors/scripts/steps-setting.js"></script> --}}
 
-      <script>
-    $(document).ready(function(){
-        $('#sewerage_disposing').on('change', function() {
-            if (this.value == '2') {
-                $("#business").show();
-            } else {
-                $("#business").hide();
-            }
-        });
-    });
+<script>
+            $(document).ready(function(){
+                $('#sewerage_disposing').on('change', function() {
+                    if (this.value == '2') {
+                        $("#business").show();
+                    } else {
+                        $("#business").hide();
+                    }
+                });
+            });
 </script>
+
+
 <script>
     $(document).ready(function() {
         $('.custom-select2').select2();

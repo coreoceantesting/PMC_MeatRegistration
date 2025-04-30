@@ -462,6 +462,7 @@ class MeatRegistrationRenewalController extends Controller
         } else {
             $muncipalcorporName = $request->input('old_municipal_corpor_doc'); // Use old file
         }
+        // dd($muncipalcorporName);
         if ($request->hasFile('old_licence')) {
             $oldlicenceFile = $request->file('old_licence');
             $oldlicenceName = time() . '_' . $oldlicenceFile->getClientOriginalName();
@@ -469,7 +470,7 @@ class MeatRegistrationRenewalController extends Controller
         } else {
             $oldlicenceName = $request->input('old_old_licence'); // Use old file
         }
-
+// dd($oldlicenceName);
 
         // if(!empty($request->hasFile('adharcard_doc'))){
         //     $image = $request->file('adharcard_doc');
@@ -623,21 +624,22 @@ class MeatRegistrationRenewalController extends Controller
         //     $data->profile_photo = $new_name;
         // }
 
-         if(!empty($request->hasFile('old_licence'))){
-            $image = $request->file('old_licence');
-            $image_name = $image->getClientOriginalName();
-            $extension = $image->getClientOriginalExtension();
-            $new_name = time().rand(10,999).'.'.$extension;
-            $image->move(public_path('/PMC_Meat_Registration/meat_file/old_licence'),$new_name);
+        //  if(!empty($request->hasFile('old_licence'))){
+        //     $image = $request->file('old_licence');
+        //     $image_name = $image->getClientOriginalName();
+        //     $extension = $image->getClientOriginalExtension();
+        //     $new_name = time().rand(10,999).'.'.$extension;
+        //     $image->move(public_path('/PMC_Meat_Registration/meat_file/old_licence'),$new_name);
 
-            $image_path = "/PMC_Meat_Registration/meat_file/old_licence" . $image_name;
-            $data->old_licence = $new_name;
-        }
+        //     $image_path = "/PMC_Meat_Registration/meat_file/old_licence" . $image_name;
+        //     $data->old_licence = $new_name;
+        // }
+
         MeatRenewalLicense_Model::where("register_table_id",$request->get('register_table_id'))->update(['is_renewal'=>0]);
 
         // Basic Details
         $data->meat_register_oldid =$request->get('meat_register_oldid');
-        // dd($request->get('meat_register_oldid'));
+        //  dd($request->get('meat_register_oldid'));
         $data->register_table_id = $request->get('register_table_id');
         // dd($request->get('register_table_id'));
          $data->renwal_liceans_no = $request->get('renwal_liceans_no');
@@ -673,6 +675,8 @@ class MeatRegistrationRenewalController extends Controller
          $data->meat_type = implode(",", $request->get('meat_type'));
         //  $data->meat_type = $request->get('meat_type');
         $data->per_day_capacity = $request->get('per_day_capacity');
+        $data->unit=$request->get('unit');
+        // dd($data->unit);
         $data->provision_water = $request->get('provision_water');
         $data->provision_electricty = $request->get('provision_electricty');
         $data->business_address = $request->get('business_address');
@@ -701,7 +705,9 @@ class MeatRegistrationRenewalController extends Controller
         $data->applicant_signature=$appsignatureName;
         $data->profile_photo=$profilephotoName;
         $data->municipal_corpor_doc=$muncipalcorporName;
+        // dd($data->municipal_corpor_doc);
         $data->old_licence=$oldlicenceName;
+    //  dd($data->old_licence);
         $data ->is_renewal = 1;
         $data->inserted_dt = date("Y-m-d H:i:s");
         $data->inserted_by = Auth::guard('meatregistereduser')->user()->id;
@@ -709,7 +715,7 @@ class MeatRegistrationRenewalController extends Controller
                 $data->renwal_liceans_no = $unique_id;
 
         $data->save();
- dd($data);
+//  dd($data);
         // $update = [
         //     'renwal_liceans_no' => $unique_id.$data->id ,
         //     // 'inserted_by' => $data->id,
@@ -817,54 +823,55 @@ class MeatRegistrationRenewalController extends Controller
     public function UpdateMeatRenewal(Request $request, $id)
     {
         $this->validate($request, [
-
+                'unit'=>'required'
             // Basic Details
-            'applicant_title_id' => 'required|numeric',
-            'applicant_fname' => 'required|string',
-            'applicant_mname' => 'required|string',
-            'applicant_lname' => 'required|string',
+            // 'applicant_title_id' => 'required|numeric',
+            // 'applicant_fname' => 'required|string',
+            // 'applicant_mname' => 'required|string',
+            // 'applicant_lname' => 'required|string',
 
-            'mobile_number' => 'required|string',
-            'email' => 'required|string',
+            // 'mobile_number' => 'required|string',
+            // 'email' => 'required|string',
 
-            'aadhar_number' => 'required|string',
+            // 'aadhar_number' => 'required|string',
 
-            // Residential Address of Applicant
-            'house_number' => 'required|string',
+            // // Residential Address of Applicant
+            // 'house_number' => 'required|string',
 
-            'street_1' => 'required|string',
+            // 'street_1' => 'required|string',
 
-            'area_1' => 'required|string',
+            // 'area_1' => 'required|string',
 
-            'country_id' => 'required|string',
-            'state_id' => 'required|string',
-            'district_id' => 'required|string',
-            'taluka_id' => 'required|string',
-            'zipcode' => 'required|string',
+            // 'country_id' => 'required|string',
+            // 'state_id' => 'required|string',
+            // 'district_id' => 'required|string',
+            // 'taluka_id' => 'required|string',
+            // 'zipcode' => 'required|string',
 
-            // Business Details
-            'business_name' => 'required|string',
-            'business_type' => 'required|numeric',
-            'meat_type' => 'required|string',
-            'per_day_capacity' => 'required|string',
-            'provision_water' => 'required|numeric',
-            'provision_electricty' => 'required|numeric',
-            'business_address' => 'required|string',
-            'sewerage_disposing' => 'required|numeric',
+            // // Business Details
+            // 'business_name' => 'required|string',
+            // 'business_type' => 'required|numeric',
+            // 'meat_type' => 'required|string',
+            // 'per_day_capacity' => 'required|string',
+            // 'provision_water' => 'required|numeric',
+            // 'provision_electricty' => 'required|numeric',
+            // 'business_address' => 'required|string',
+            // 'sewerage_disposing' => 'required|numeric',
 
-            'place_id' => 'required|numeric',
+            // 'place_id' => 'required|numeric',
 
-            'regi_authority_name' => 'required|string',
-            'register_number' => 'required|string',
-            'valid_till' => 'required|string',
+            // 'regi_authority_name' => 'required|string',
+            // 'register_number' => 'required|string',
+            // 'valid_till' => 'required|string',
 
-             'areaof_business_place' => 'required|string',
-             'business_place' => 'required|numeric',
+            //  'areaof_business_place' => 'required|string',
+            //  'business_place' => 'required|numeric',
 
 
 
          ],[
               // Basic Details
+              'unit.reequired'=>'select any one',
               'applicant_title_id.required' => 'Applicant Title is required',
               'applicant_fname.required' => 'Applicant First Name is required',
               'applicant_mname.required' => 'Applicant Middle Name is required',
@@ -1209,7 +1216,8 @@ class MeatRegistrationRenewalController extends Controller
         $data->regi_authority_name = $request->get('regi_authority_name');
         $data->register_number = $request->get('register_number');
         $data->valid_till = $request->get('valid_till');
-
+        // $data->old_licence=$new_name;
+        // // dd($data->old_licence);
         $data->areaof_business_place = $request->get('areaof_business_place');
         $data->business_place = $request->get('business_place');
         $data->business_place_other = $request->get('business_place_other');
@@ -1248,6 +1256,7 @@ class MeatRegistrationRenewalController extends Controller
         $data->modified_dt = date("Y-m-d H:i:s");
         $data->modified_by = Auth::guard('meatregistereduser')->user()->id;
         $data->save();
+//  dd($data);
             // 'inserted_by' => $data->id,
 
 
@@ -1499,8 +1508,8 @@ class MeatRegistrationRenewalController extends Controller
        public function MeatRenewalFormView(Request $request, $application_id)
     {
 
-        $meattype_mst = MeatType_Master::orderBy('id','desc')->pluck('meat_name', 'id')->whereNull('deleted_at');
-
+        $unit_Meat_Type = DB::table('unit_Meat_Type')->get();
+        // $meattype_mst = MeatType_Master::orderBy('id','desc')->pluck('meat_name', 'id')->whereNull('deleted_at');
 
        $meat_renewal_view = DB::table('meat_renewal_license_tbl AS t1')
                                         ->select('t1.*', 't2.dist_name','t3.taluka_name', 't4.meat_name','t5.adharcard_doc as regi_adharcard_doc','t5.residitional_proof_doc as regi_residitional_proof_doc','t5.authority_letter_doc as regi_authority_letter_doc','t5.legal_business_doc as regi_legal_business_doc','t5.business_registration_doc as regi_business_registration_doc','t5.agreement_owner_doc as agreement_owner_renewal','t5.noc_owner_doc as doc_owner','t5.property_tax_doc as property_doc','t5.paid_water_doc as paid_water','t5.paid_receipt_doc as receipt_doc','t5.treatment_authorized_doc as tre_authority_doc','t5.fitness_certificate_doc as fitness_doc','t5.issued_doc as regi_issued_doc','t5.registration_doc as regi_doc','t5.slaughter_letter_doc as letter_doc','t5.profile_photo as regi_profile_photo','t5.applicant_signature as regi_app_sign')
@@ -1519,7 +1528,14 @@ class MeatRegistrationRenewalController extends Controller
 
         // return $meat_registration_view;
 
-        return view('user.meat_renewal.view', compact('meat_renewal_view','meattype_mst'));
+        $array = explode(",",$meat_renewal_view->meat_type);
+
+        $meatNames = DB::table('meat_type_mst')
+                      ->whereIn('id', $array)
+                      ->pluck('meat_name');
+        $commaSeparatedMeatNames = $meatNames->implode(', ');
+
+        return view('user.meat_renewal.view', compact('meat_renewal_view','commaSeparatedMeatNames','unit_Meat_Type'));
 
           //return view('user.meat_license.user_applicant_form_view', compact('data', 'user_type','meattype_mst'));
         }

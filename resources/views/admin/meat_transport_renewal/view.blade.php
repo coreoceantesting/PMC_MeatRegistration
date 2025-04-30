@@ -15,7 +15,7 @@
                     </ul>
                     <button class="btn btn-primary btn-icon mobile_menu" type="button"><i class="zmdi zmdi-sort-amount-desc"></i></button>
                 </div>
-                
+
                 <div class="col-lg-5 col-md-6 col-sm-12">
                     <button class="btn btn-primary btn-icon float-right right_icon_toggle_btn" type="button"><i class="zmdi zmdi-arrow-right"></i></button>
                 </div>
@@ -29,19 +29,19 @@
                     <div class="card">
                         <div class="body">
                              <form class="tab-wizard wizard-circle wizard"  method="POST" action="#" enctype="multipart/form-data">
-                            
+
                             <section class="pt-3">
                                 <strong class="pt-2 text-primary">
                                      Basic Details / ( मूलभूत तपशील )
                                 </strong>
                                 <hr>
-                            
-                                
+
+
                                 <strong class="pb-1">Name of Applicant / ( अर्जदाराचे नाव ) : <span style="color:red;">*</span> </strong>
                                 <div class="form-group row">
                                     <?php
                                         $applicant_title_id = '';
-                                        
+
                                         if($meat_transport_view->applicant_title_id == 1)
                                         {
                                             $applicant_title_id = 'Kum.';
@@ -70,40 +70,40 @@
                                         {
                                             $applicant_title_id = 'Dr.';
                                         }
-                                        
+
                                     ?>
-                                    
-                                    
+
+
                                     <div class="col-sm-3 col-md-3 p-2">
                                         <input class="form-control " value="{{ $applicant_title_id }}" readonly>
                                     </div>
-                                    
-                                    
+
+
                                     <div class="col-sm-3 col-md-3 p-2">
                                         <input class="form-control " value="{{ $meat_transport_view->applicant_fname }}" readonly>
                                     </div>
-                                    
-                                    
+
+
                                     <div class="col-sm-3 col-md-3 p-2">
                                         <input class="form-control " value="{{ $meat_transport_view->applicant_mname }}" readonly>
                                     </div>
-                                    
-                                    
+
+
                                     <div class="col-sm-3 col-md-3 p-2">
                                         <input class="form-control " value="{{ $meat_transport_view->applicant_lname }}" readonly>
                                     </div>
                                 </div>
-                                
-                                
+
+
                                     <div class="form-group row">
                                      <label class="col-sm-2"><strong>Mobile Number / (मोबाईल नंबर) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
                                          <input class="form-control " value="{{ $meat_transport_view->mobile_number }}" readonly>
-                                       
+
                                     </div>
-                                    
-                                  
-                                    
+
+
+
                                     <label class="col-sm-2"><strong>Aadhar Number / (आधार क्रमांक) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
                                           <input class="form-control " value="{{ $meat_transport_view->aadhar_number }}" readonly>
@@ -113,101 +113,101 @@
                                     <label class="col-sm-2"><strong> Residential Address / (परवाना धारकाच्या पत्ता ) :  <span style="color:red;">*</span></strong></label>
                                      <div class="col-sm-4 col-md-4 p-2">
                                         <textarea type="text" class="form-control" value="{{ $meat_transport_view->applicant_address }}" readonly  style="height:70px;">{{ $meat_transport_view->applicant_address }}</textarea>
-                                       
+
                                     </div>
 
 
 
 
                                 </div>
-                                
+
                                 <!--<strong class="pt-2 text-primary">-->
                                 <!--     Residential Address of Applicant / ( अर्जदाराचा निवासी पत्ता )-->
                                 <!--</strong>-->
                                 <!--<hr>-->
-                                    
-                                
+
+
                                 <!--<div class="form-group row">-->
                                     <?php
                                         $country_id = '';
-                                        
+
                                         if($meat_transport_view->country_id == 1)
                                         {
                                             $country_id = 'India';
                                         }
-                                        
+
                                     ?>
                                     <!--<label class="col-sm-2"><strong>Country / <br> ( देश ) : <span style="color:red;">*</span></strong></label>-->
                                     <!--<div class="col-sm-4 col-md-4 p-2">-->
                                     <!--    <input class="form-control " value="{{ $country_id }}" readonly>-->
                                     <!--</div>-->
-                                    
+
                                     <?php
                                         $state_id = '';
-                                        
+
                                         if($meat_transport_view->state_id == 1)
                                         {
                                             $state_id = 'Maharashtra';
-                                        }                                         
-                                        
+                                        }
+
                                     ?>
                                 <!--    <label class="col-sm-2"><strong>State / ( राज्य ) <span style="color:red;">*</span>: </strong></label>-->
                                 <!--    <div class="col-sm-4 col-md-4 p-2">-->
                                 <!--        <input class="form-control " value="{{ $state_id }}" readonly>-->
                                 <!--    </div>-->
                                 <!--</div>-->
-                                
+
                                 <!--<div class="form-group row">-->
                                 <!--    <label class="col-sm-2"><strong>District / <br> ( जिल्हा ) : <span style="color:red;">*</span></strong></label>-->
                                 <!--    <div class="col-sm-4 col-md-4 p-2">-->
                                 <!--        <input class="form-control " value="{{ $meat_transport_view->dist_name }}" readonly>-->
                                 <!--    </div>-->
-                                    
+
                                 <!--    <label class="col-sm-2"><strong>Taluka / <br> ( तालुका ) : <span style="color:red;">*</span></strong></label>-->
                                 <!--    <div class="col-sm-4 col-md-4 p-2">-->
                                 <!--        <input class="form-control " value="{{ $meat_transport_view->taluka_name }}" readonly>-->
                                 <!--    </div>-->
                                 <!--</div>-->
-                            
+
                                 <!--<div class="form-group row">-->
                                 <!--    <label class="col-sm-2"><strong>Zip Code / <br> ( पिनकोड ): <span style="color:red;">*</span></strong></label>-->
                                 <!--    <div class="col-sm-4 col-md-4 p-2">-->
                                 <!--        <input class="form-control " value="{{ $meat_transport_view->zipcode }}" readonly>-->
                                 <!--    </div>-->
-                                    
-                                 
+
+
                                 <!--</div>-->
-                            
+
                                <strong class="pt-2 text-primary">
                                     Business Details / ( व्यवसाय तपशील )
                                 </strong>
                                 <hr>
-                                
+
                                  <div class="form-group row">
                                     <label class="col-sm-2"><strong>Name of the business / (व्यवसायाचे नाव) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
                                          <input class="form-control " value="{{ $meat_transport_view->business_name }}" readonly>
                                     </div>
-                                    
+
                                     <label class="col-sm-2"><strong>Vehicle registration number / (वाहन नोंदणी क्रमांक ) : <span style="color:red;">*</span> </strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
                                         <input class="form-control " value="{{ $meat_transport_view->vehical_register_no }}" readonly>
 
-                                        
+
                                     </div>
                                     </div>
 
                            <div class="form-group row">
-                                    
+
                                 <label class="col-sm-2"><strong>Address of the vehicle / (वाहनाचा पत्ता ) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
                                         <textarea type="text"   class="form-control " value="{{ $meat_transport_view->vehical_address }}"  style="height:80px;"readonly> {{ $meat_transport_view->vehical_address }} </textarea>
-                                       
+
                                     </div>
-                                    
+
                                       <label class="col-sm-2"><strong> Address of the business / (व्यायसायचा पत्ता    ) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
-                                        
+
                                          <textarea type="text"  class="form-control" value="{{ $meat_transport_view->business_address }}" style="height:80px;" readonly>{{ $meat_transport_view->business_address }}</textarea>
                                     </div>
                                 </div>
@@ -216,40 +216,61 @@
                                     <label class="col-sm-2"><strong> From the validity period of license sale / <br> (परवाना विक्री ग्राह्य अवधी पासून ) ) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
                                         <input type="date"  class="form-control " readonly value="{{ $meat_transport_view->from_date }}" placeholder="DD/MM/YYYY">
-                                       
+
                                     </div>
-                                    
+
                                     <label class="col-sm-2"><strong>Up to the license sale validity period / <br> (परवाना विक्री ग्राह्य अवधी पर्यंत ) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
                                         <input type="date" class="form-control " readonly value="{{ $meat_transport_view->to_date }}" >
-                                      
+
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group row">
-                                            <label class="col-sm-2"><strong>Meat Type / (मांसाचा प्रकार) : <span style="color:red;">*</span></strong></label>
-                                            <div class="col-sm-4 col-md-4 p-2">
-                                                <input readonly  class="form-control " value="{{ $meat_transport_view->meat_name }}" >
-                                            </div>
-                                            
+                                    <label class="col-sm-2"><strong>Meat Type / (मांसाचा प्रकार) : <span style="color:red;">*</span></strong></label>
+                                    <div class="col-sm-4 col-md-4 p-2">
+                                       {{ $commaSeparatedMeatNames }}
+                                    </div>
+
                                             <label class="col-sm-2"><strong>Per Day Capacity / (प्रतिदिन क्षमता) : <span style="color:red;">*</span> </strong></label>
                                             <div class="col-sm-4 col-md-4 p-2">
                                                 <input readonly class="form-control" value="{{ $meat_transport_view->per_day_capacity  }}" >
                                             </div>
                             </div>
-                            
+
+                            <div class="form-group row">
+                                <label class="col-sm-2"><strong>Unit / (युनिट) :  <span style="color:red;">*</span></strong></label>
+
+                                <div class="col-sm-4 col-md-4 p-2">
+
+                                    <input type="text" class="form-control @error('unit') is-invalid @enderror"
+                                           value="{{ $unit_Meat_Type->firstWhere('id', old('unit') ?? $meat_transport_view->unit)->unit_name ?? '' }}"
+                                           readonly style="width: 100%; height: 38px;" />
+
+                                    <!-- Hidden input to send the unit ID -->
+                                    <input type="hidden" name="unit"
+                                           value="{{ old('unit') ?? $meat_transport_view->unit }}" />
+
+                                    @error('meat_type')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
                                <div class="form-group row">
                                     <label class="col-sm-2"><strong>Upload Driving License Copy  / ( ड्रायव्हिंग लायसन्सची प्रत अप करा ) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
-                                        <?php if(!empty($meat_transport_view->driving_licence)) { ?>   
+                                        <?php if(!empty($meat_transport_view->driving_licence)) { ?>
                                           <a href="{{url('/')}}/PMC_vehicle_Registration/meat_file/driving_licence/{{ $meat_transport_view->driving_licence }}" target="_blank">
                                                     <div class="form-group">
                                                         <?php $document_path = $meat_transport_view->driving_licence;
                                                            $filter_path =  explode(".",$document_path);
                                                            $size_of_array = count($filter_path);
                                                            $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+
+                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
                                                         $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                            {?>
                                                         <p class="mt-3 mb-0" id="image_div">
@@ -263,7 +284,7 @@
                                                                         <button type="button"class="btn btn-info">
                                                                             Download File
                                                                         </button>
-                                                                        </p>                                                                
+                                                                        </p>
                                                                     </a>
                                                         <?php }?>
                                                     </div>
@@ -278,8 +299,8 @@
                                                            $filter_path =  explode(".",$document_path);
                                                            $size_of_array = count($filter_path);
                                                            $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+
+                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
                                                         $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                            {?>
                                                         <p class="mt-3 mb-0" id="image_div">
@@ -293,7 +314,7 @@
                                                                         <button type="button"class="btn btn-info">
                                                                             Download File
                                                                         </button>
-                                                                        </p>                                                                
+                                                                        </p>
                                                                     </a>
                                                         <?php }?>
                                                     </div>
@@ -302,18 +323,18 @@
 
                                            <?php } ?>
                                     </div>
-                                    
+
                                     <label class="col-sm-2"><strong>Upload Vehicle Insurance Certificate  / (वाहन विमा प्रमाणपत्र अपलोड करा ): <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
-                                         <?php if(!empty($meat_transport_view->vehicle_insurance_doc)) { ?>   
+                                         <?php if(!empty($meat_transport_view->vehicle_insurance_doc)) { ?>
                                           <a href="{{url('/')}}/PMC_vehicle_Registration/meat_file/vehicle_insurance_doc/{{ $meat_transport_view->vehicle_insurance_doc }}" target="_blank">
                                                     <div class="form-group">
                                                         <?php $document_path = $meat_transport_view->vehicle_insurance_doc;
                                                            $filter_path =  explode(".",$document_path);
                                                            $size_of_array = count($filter_path);
                                                            $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+
+                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
                                                         $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                            {?>
                                                         <p class="mt-3 mb-0" id="image_div">
@@ -327,7 +348,7 @@
                                                                         <button type="button"class="btn btn-info">
                                                                             Download File
                                                                         </button>
-                                                                        </p>                                                                
+                                                                        </p>
                                                                     </a>
                                                         <?php }?>
                                                     </div>
@@ -341,8 +362,8 @@
                                                            $filter_path =  explode(".",$document_path);
                                                            $size_of_array = count($filter_path);
                                                            $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+
+                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
                                                         $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                            {?>
                                                         <p class="mt-3 mb-0" id="image_div">
@@ -356,7 +377,7 @@
                                                                         <button type="button"class="btn btn-info">
                                                                             Download File
                                                                         </button>
-                                                                        </p>                                                                
+                                                                        </p>
                                                                     </a>
                                                         <?php }?>
                                                     </div>
@@ -365,22 +386,22 @@
 
 
                                        <?php   } ?>
-                                    </div> 
-                                </div>     
-                                
+                                    </div>
+                                </div>
+
 
                             <div class="form-group row">
                                      <label class="col-sm-2"><strong>Upload previous year licence copy  / ( मागील वर्षाच्या परवान्याची प्रत अपलोड करा ) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
-                                       
+
                                           <a href="{{url('/')}}/PMC_Meat_Registration/meat_file/transport_renewal/old_licence/{{ $meat_transport_view->old_licence }}" target="_blank">
                                                     <div class="form-group">
                                                         <?php $document_path = $meat_transport_view->old_licence;
                                                            $filter_path =  explode(".",$document_path);
                                                            $size_of_array = count($filter_path);
                                                            $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+
+                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
                                                         $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                            {?>
                                                         <p class="mt-3 mb-0" id="image_div">
@@ -394,7 +415,7 @@
                                                                         <button type="button"class="btn btn-info">
                                                                             Download File
                                                                         </button>
-                                                                        </p>                                                                
+                                                                        </p>
                                                                     </a>
                                                         <?php }?>
                                                     </div>
@@ -409,7 +430,7 @@
                                                 <div class="col-md-9" style="display: flex; justify-content: flex-end;">
                                                     <a href="{{ url('/meat_transport_renewal_list/0') }}"><button type="button"  class="btn btn-danger">Cancel</button></a>&nbsp;&nbsp;
                                                     <!--<a href="{{ url('/reject_meat_renewal_transport',$meat_transport_view->id) }}"><button type="button" class="btn btn-primary">Reject</button></a>&nbsp;&nbsp;-->
-                                                    
+
                                                     <?php if ($meat_transport_view->tr_final_approve != 1) { ?>
                                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#rejectModal">Reject</button>&nbsp;&nbsp;
                                                 <?php } ?>
@@ -444,7 +465,7 @@
                                         </div>
                                     </div>
                                 <?php } ?>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -453,7 +474,7 @@
     </div>
 </section>
 
-<!-- Modal Dialogs ====== --> 
+<!-- Modal Dialogs ====== -->
 
 <div class="modal fade" id="largeModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
@@ -461,19 +482,19 @@
             <div class="modal-header">
                 <h4 class="title text-danger" id="largeModalLabel">Approved By Admin</h4>
             </div>
-            <div class="modal-body"> 
+            <div class="modal-body">
                 <form method="POST" action="{{ url('approve_meat_renewal_transport', $meat_transport_view->id ) }}" enctype="multipart/form-data">
                     @csrf
-                    
-         
-                    
+
+
+
                     <input type="hidden" class="form-control " id="mobile_number" name="mobile_number" value="{{ $meat_transport_view->mobile_number }}" >
 
-                    
+
                     <input type="hidden" class="form-control " id="id" name="id" value="{{ $meat_transport_view->id }}" >
 
                     <input type="hidden" class="form-control " id="meat_pplication_no" name="meat_pplication_no" value="{{ $meat_transport_view->trans_renwal_liceans_no }}" >
-                    
+
                     <div class="form-group row">
                         <label class="col-sm-2"><strong>स्विकारलेल्या एकूण कराची रक्कम / <br>  Total Amount of tax received  :  <span style="color:red;">*</span></strong></label>
                         <div class="col-sm-4 col-md-4 p-2">
@@ -484,7 +505,7 @@
                                 </span>
                             @enderror
                         </div>
-                        
+
                         <label class="col-sm-2"><strong>पावती क्रमांक / <br>  Receipt No : <span style="color:red;">*</span></strong></label>
                         <div class="col-sm-4 col-md-4 p-2">
                             <input type="text" name="receipt_no" id="receipt_no" required class="form-control @error('receipt_no') is-invalid @enderror" value="{{ old('receipt_no') }}" placeholder="पावती क्रमांक / Receipt No.">
@@ -495,7 +516,7 @@
                             @enderror
                         </div>
                     </div>
-                    
+
                     <div class="form-group row">
                         <label class="col-sm-2"><strong>पावती दिनांक / Date of Receipt  : <span style="color:red;">*</span> </strong></label>
                         <div class="col-sm-4 col-md-4 p-2">
@@ -506,7 +527,7 @@
                                 </span>
                             @enderror
                         </div>
-                        
+
                         <label class="col-sm-2"><strong>परवाना क्रमांक / License Number : <span style="color:red;">*</span></strong></label>
                         <div class="col-sm-4 col-md-4 p-2">
                             <input type="text" name="license_number" id="license_number" readonly class="form-control @error('license_number') is-invalid @enderror" value="{{ $meat_transport_view->trans_renwal_liceans_no }}" placeholder="परवाना क्रमांक / License Number.">
@@ -517,7 +538,7 @@
                             @enderror
                         </div>
                     </div>
-                    
+
                     <div class="form-group row">
                         <label class="col-sm-2"><strong>परवाना दिल्याची दिनांक / Date of License Obtained  : <span style="color:red;">*</span> </strong></label>
                         <div class="col-sm-4 col-md-4 p-2">
@@ -528,7 +549,7 @@
                                 </span>
                             @enderror
                         </div>
-                        
+
                         <label class="col-sm-2"><strong>दिनांक /  Date : <span style="color:red;">*</span></strong></label>
                         <div class="col-sm-4 col-md-4 p-2">
                             <input type="date" name="date" readonly max="<?php echo date("d-m-Y"); ?>" id="date" required class="form-control @error('date') is-invalid @enderror" value="<?php echo date('Y-m-d'); ?>" placeholder="परवाना क्रमांक / License Number.">
@@ -539,7 +560,7 @@
                             @enderror
                         </div>
                     </div>
-                    
+
                     <div class="form-group row mt-4">
                         <label class="col-md-3"></label>
                         <div class="col-md-9" style="display: flex; justify-content: flex-end;">
@@ -553,7 +574,7 @@
     </div>
 </div>
 
-<!-- Modal Dialogs ====== --> 
+<!-- Modal Dialogs ====== -->
 <!-- Large Size -->
 
 <div class="modal fade" id="largeModal1" tabindex="-1" role="dialog">
@@ -562,16 +583,16 @@
             <div class="modal-header">
                 <h4 class="title text-danger" id="largeModalLabel">Approved By Admin</h4>
             </div>
-            <div class="modal-body"> 
+            <div class="modal-body">
                 <form method="POST" action="{{ url('approve_meat_renewal_transport', $meat_transport_view->id ) }}" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" class="form-control " id="mobile_number" name="mobile_number" value="{{ $meat_transport_view->mobile_number }}" >
 
-                    
+
                     <input type="hidden" class="form-control " id="id" name="id" value="{{ $meat_transport_view->id }}" >
 
                     <input type="hidden" class="form-control " id="meat_pplication_no" name="meat_pplication_no" value="{{ $meat_transport_view->trans_renwal_liceans_no }}" >
-                    
+
                     <div class="form-group row">
                         <label class="col-sm-2"><strong>स्विकारलेल्या एकूण कराची रक्कम / <br>  Total Amount of tax received  :  <span style="color:red;">*</span></strong></label>
                         <div class="col-sm-4 col-md-4 p-2">
@@ -582,7 +603,7 @@
                                 </span>
                             @enderror
                         </div>
-                        
+
                         <label class="col-sm-2"><strong>पावती क्रमांक / <br>  Receipt No : <span style="color:red;">*</span></strong></label>
                         <div class="col-sm-4 col-md-4 p-2">
                             <input type="text" name="receipt_no" id="receipt_no" required class="form-control @error('receipt_no') is-invalid @enderror" value="{{ old('receipt_no') }}" placeholder="पावती क्रमांक / Receipt No.">
@@ -593,7 +614,7 @@
                             @enderror
                         </div>
                     </div>
-                    
+
                     <div class="form-group row">
                         <label class="col-sm-2"><strong>पावती दिनांक / Date of Receipt  : <span style="color:red;">*</span> </strong></label>
                         <div class="col-sm-4 col-md-4 p-2">
@@ -604,7 +625,7 @@
                                 </span>
                             @enderror
                         </div>
-                        
+
                         <label class="col-sm-2"><strong>परवाना क्रमांक / License Number : <span style="color:red;">*</span></strong></label>
                         <div class="col-sm-4 col-md-4 p-2">
                             <input type="text" name="license_number" id="license_number" readonly class="form-control @error('license_number') is-invalid @enderror" value="{{ $meat_transport_view->trans_renwal_liceans_no }}" placeholder="परवाना क्रमांक / License Number.">
@@ -615,7 +636,7 @@
                             @enderror
                         </div>
                     </div>
-                    
+
                     <div class="form-group row">
                         <label class="col-sm-2"><strong>परवाना दिल्याची दिनांक / Date of License Obtained  : <span style="color:red;">*</span> </strong></label>
                         <div class="col-sm-4 col-md-4 p-2">
@@ -626,7 +647,7 @@
                                 </span>
                             @enderror
                         </div>
-                        
+
                         <label class="col-sm-2"><strong>दिनांक /  Date : <span style="color:red;">*</span></strong></label>
                         <div class="col-sm-4 col-md-4 p-2">
                             <input type="date" name="date" readonly max="<?php echo date("d-m-Y"); ?>" id="date" required class="form-control @error('date') is-invalid @enderror" value="<?php echo date('Y-m-d'); ?>" placeholder="परवाना क्रमांक / License Number.">
@@ -637,7 +658,7 @@
                             @enderror
                         </div>
                     </div>
-                    
+
                     <div class="form-group row mt-4">
                         <label class="col-md-3"></label>
                         <div class="col-md-9" style="display: flex; justify-content: flex-end;">
@@ -651,7 +672,7 @@
     </div>
 </div>
 
-<!-- Modal Dialogs ====== --> 
+<!-- Modal Dialogs ====== -->
 <!-- Large Size -->
 <div class="modal fade" id="rejectModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
@@ -659,12 +680,12 @@
             <div class="modal-header">
                 <h4 class="title text-danger" id="largeModalLabel">Reject By Admin</h4>
             </div>
-            <div class="modal-body"> 
+            <div class="modal-body">
                 <form method="POST" action="{{ url('reject_meat_renewal_transport', $meat_transport_view->id ) }}" enctype="multipart/form-data">
                     @csrf
-                    
+
                     <input type="hidden" class="form-control " id="meat_pplication_no" name="meat_pplication_no" value="{{ $meat_transport_view->trans_renwal_liceans_no }}" >
-                    
+
                       <input type="hidden" class="form-control " id="mobile_number" name="mobile_number" value="{{ $meat_transport_view->mobile_number }}" >
 
                     <div class="form-group row">
@@ -674,13 +695,13 @@
                             <textarea  class="form-control" name ="reject_resion" id="reject_resion" value="" style="height:120px;"></textarea>
 
                         </div>
-                        
-                       
+
+
                     </div>
-                    
-                   
-                    
-                   
+
+
+
+
                     <div class="form-group row mt-4">
                         <label class="col-md-3"></label>
                         <div class="col-md-9" style="display: flex; justify-content: flex-end;">
@@ -699,4 +720,4 @@
 
 
 
-@include('common.footer')  
+@include('common.footer')
