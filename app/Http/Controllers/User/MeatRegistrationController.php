@@ -143,8 +143,7 @@ class MeatRegistrationController extends Controller
      public function store(Request $request)
     {
 
-//  dd($request->all());
-    //   echo "hfdhg"; die;
+
       $mainid = Auth::guard('meatregistereduser')->user()->id;
 //  dd($mainid);
       $check =  DB::table('meat_registration_tbl AS t1')
