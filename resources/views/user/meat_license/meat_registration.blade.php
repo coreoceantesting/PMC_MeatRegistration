@@ -4,7 +4,7 @@
 <head>
     <!-- Basic Page Info -->
     <meta charset="utf-8">
-    <title>PMC || Application for Meat License 1</title>
+    <title>PMC || Application for Meat License</title>
 
     <!-- Site favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="{{ url('/') }}/assets/images/PMC-logo.png">
@@ -471,7 +471,7 @@
 
                                                         <div class="form-group row">
                                                             <label class="col-sm-2"><strong>Meat Type / (मांसाचा प्रकार) : <span style="color:red;">*</span></strong></label>
-                                                            {{-- <div class="col-sm-4 col-md-4 p-2">
+                                                            <div class="col-sm-4 col-md-4 p-2">
                                                                 <select class="form-control custom-select2 @error('meat_type') is-invalid @enderror" name="meat_type[]" id="meat_type" multiple style="width: 100%; height: 38px;">
                                                                     <option value=" ">Select Meat Type / (मांसाचा प्रकार)</option>
                                                                     @foreach ($meattype_mst as $key => $value)
@@ -484,7 +484,7 @@
                                                                         <strong>{{ $message }}</strong>
                                                                     </span>
                                                                 @enderror
-                                                            </div> --}}
+                                                            </div>
 
                                                             <label class="col-sm-2"><strong>Per Day Capacity / (प्रतिदिन क्षमता) : <span style="color:red;">*</span> </strong></label>
                                                             <div class="col-sm-4 col-md-4 p-2">
